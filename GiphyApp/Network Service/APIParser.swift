@@ -1,13 +1,13 @@
 //
-//  APIService.m
+//  APIParser.swift
 //  GiphyApp
 //
 //  Created by Aliaksei Piatyha on 8/24/18.
 //  Copyright © 2018 Aliaksei Piatyha. All rights reserved.
 //
 
-#import "APIService.h"
+import Foundation
 
-@implementation APIService
-
-@end
+class APIParser: NSObject {
+    
+}
