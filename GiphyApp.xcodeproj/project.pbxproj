@@ -8,12 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03C2130489E005375F5 /* AppDelegate.swift */; };
-		9A3DD03F2130489E005375F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03E2130489E005375F5 /* ViewController.swift */; };
 		9A3DD0422130489E005375F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0402130489E005375F5 /* Main.storyboard */; };
 		9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */; };
 		9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD046213048A0005375F5 /* Assets.xcassets */; };
 		9A3DD04A213048A0005375F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD048213048A0005375F5 /* LaunchScreen.storyboard */; };
 		9A3DD055213048A0005375F5 /* GiphyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD054213048A0005375F5 /* GiphyAppTests.swift */; };
+		9A3DD0762130548F005375F5 /* GifListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0742130548F005375F5 /* GifListViewController.m */; };
+		9A3DD0772130548F005375F5 /* GifListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0752130548F005375F5 /* GifListViewController.xib */; };
+		9A3DD0792130552B005375F5 /* GifListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0782130552B005375F5 /* GifListViewModel.swift */; };
+		9A3DD07D21306004005375F5 /* GifDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD07B21306004005375F5 /* GifDetailViewController.m */; };
+		9A3DD07E21306004005375F5 /* GifDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD07C21306004005375F5 /* GifDetailViewController.xib */; };
+		9A3DD0802130601B005375F5 /* GifDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD07F2130601B005375F5 /* GifDetailViewModel.swift */; };
+		9A3DD083213060CD005375F5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD082213060CD005375F5 /* Navigation.swift */; };
+		9A3DD086213067CA005375F5 /* GifEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD085213067CA005375F5 /* GifEntity.swift */; };
+		9A3DD08C21306846005375F5 /* GifCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD08A21306846005375F5 /* GifCollectionViewCell.m */; };
+		9A3DD08D21306846005375F5 /* GifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD08B21306846005375F5 /* GifCollectionViewCell.xib */; };
+		9A3DD08F21306E24005375F5 /* GifCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD08E21306E24005375F5 /* GifCellViewModel.swift */; };
+		9A3DD094213071E5005375F5 /* GifCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */; };
+		9A3DD09C21307906005375F5 /* APIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD09B21307906005375F5 /* APIService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +41,6 @@
 /* Begin PBXFileReference section */
 		9A3DD0392130489E005375F5 /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD03C2130489E005375F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A3DD03E2130489E005375F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A3DD0412130489E005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A3DD0442130489E005375F5 /* GiphyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GiphyApp.xcdatamodel; sourceTree = "<group>"; };
 		9A3DD046213048A0005375F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -38,6 +49,24 @@
 		9A3DD050213048A0005375F5 /* GiphyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiphyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD054213048A0005375F5 /* GiphyAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAppTests.swift; sourceTree = "<group>"; };
 		9A3DD056213048A0005375F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A3DD06C21304C89005375F5 /* GiphyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GiphyApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A3DD0732130548F005375F5 /* GifListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GifListViewController.h; sourceTree = "<group>"; };
+		9A3DD0742130548F005375F5 /* GifListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GifListViewController.m; sourceTree = "<group>"; };
+		9A3DD0752130548F005375F5 /* GifListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifListViewController.xib; sourceTree = "<group>"; };
+		9A3DD0782130552B005375F5 /* GifListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifListViewModel.swift; sourceTree = "<group>"; };
+		9A3DD07A21306004005375F5 /* GifDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GifDetailViewController.h; sourceTree = "<group>"; };
+		9A3DD07B21306004005375F5 /* GifDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GifDetailViewController.m; sourceTree = "<group>"; };
+		9A3DD07C21306004005375F5 /* GifDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifDetailViewController.xib; sourceTree = "<group>"; };
+		9A3DD07F2130601B005375F5 /* GifDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailViewModel.swift; sourceTree = "<group>"; };
+		9A3DD082213060CD005375F5 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		9A3DD085213067CA005375F5 /* GifEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifEntity.swift; sourceTree = "<group>"; };
+		9A3DD08921306846005375F5 /* GifCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GifCollectionViewCell.h; sourceTree = "<group>"; };
+		9A3DD08A21306846005375F5 /* GifCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GifCollectionViewCell.m; sourceTree = "<group>"; };
+		9A3DD08B21306846005375F5 /* GifCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifCollectionViewCell.xib; sourceTree = "<group>"; };
+		9A3DD08E21306E24005375F5 /* GifCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCellViewModel.swift; sourceTree = "<group>"; };
+		9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewLayout.swift; sourceTree = "<group>"; };
+		9A3DD09A21307906005375F5 /* APIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIService.h; sourceTree = "<group>"; };
+		9A3DD09B21307906005375F5 /* APIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +108,16 @@
 		9A3DD03B2130489E005375F5 /* GiphyApp */ = {
 			isa = PBXGroup;
 			children = (
-				9A3DD03C2130489E005375F5 /* AppDelegate.swift */,
-				9A3DD03E2130489E005375F5 /* ViewController.swift */,
+				9A3DD06321304A09005375F5 /* Launching files */,
+				9A3DD081213060B1005375F5 /* Navigation */,
+				9A3DD060213049DD005375F5 /* Gif List Screen */,
+				9A3DD061213049E7005375F5 /* Gif Detail Screen */,
+				9A3DD05F213049CE005375F5 /* Model */,
+				9A3DD062213049F5005375F5 /* Network Service */,
 				9A3DD0402130489E005375F5 /* Main.storyboard */,
 				9A3DD046213048A0005375F5 /* Assets.xcassets */,
-				9A3DD048213048A0005375F5 /* LaunchScreen.storyboard */,
 				9A3DD04B213048A0005375F5 /* Info.plist */,
+				9A3DD06C21304C89005375F5 /* GiphyApp-Bridging-Header.h */,
 				9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */,
 			);
 			path = GiphyApp;
@@ -97,6 +130,123 @@
 				9A3DD056213048A0005375F5 /* Info.plist */,
 			);
 			path = GiphyAppTests;
+			sourceTree = "<group>";
+		};
+		9A3DD05F213049CE005375F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD085213067CA005375F5 /* GifEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A3DD060213049DD005375F5 /* Gif List Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD09521307701005375F5 /* Views */,
+				9A3DD0962130770C005375F5 /* View Models */,
+			);
+			path = "Gif List Screen";
+			sourceTree = "<group>";
+		};
+		9A3DD061213049E7005375F5 /* Gif Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD09721307756005375F5 /* Views */,
+				9A3DD09821307760005375F5 /* View Models */,
+			);
+			path = "Gif Detail Screen";
+			sourceTree = "<group>";
+		};
+		9A3DD062213049F5005375F5 /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD09A21307906005375F5 /* APIService.h */,
+				9A3DD09B21307906005375F5 /* APIService.m */,
+			);
+			path = "Network Service";
+			sourceTree = "<group>";
+		};
+		9A3DD06321304A09005375F5 /* Launching files */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD03C2130489E005375F5 /* AppDelegate.swift */,
+				9A3DD048213048A0005375F5 /* LaunchScreen.storyboard */,
+			);
+			path = "Launching files";
+			sourceTree = "<group>";
+		};
+		9A3DD081213060B1005375F5 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD082213060CD005375F5 /* Navigation.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		9A3DD0872130681C005375F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD0732130548F005375F5 /* GifListViewController.h */,
+				9A3DD0742130548F005375F5 /* GifListViewController.m */,
+				9A3DD0752130548F005375F5 /* GifListViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A3DD08821306827005375F5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD08921306846005375F5 /* GifCollectionViewCell.h */,
+				9A3DD08A21306846005375F5 /* GifCollectionViewCell.m */,
+				9A3DD08B21306846005375F5 /* GifCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9A3DD09521307701005375F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD0872130681C005375F5 /* Controller */,
+				9A3DD08821306827005375F5 /* Cell */,
+				9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9A3DD0962130770C005375F5 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD0782130552B005375F5 /* GifListViewModel.swift */,
+				9A3DD08E21306E24005375F5 /* GifCellViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		9A3DD09721307756005375F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD09921307777005375F5 /* Controller */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9A3DD09821307760005375F5 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD07F2130601B005375F5 /* GifDetailViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		9A3DD09921307777005375F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD07A21306004005375F5 /* GifDetailViewController.h */,
+				9A3DD07B21306004005375F5 /* GifDetailViewController.m */,
+				9A3DD07C21306004005375F5 /* GifDetailViewController.xib */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +299,7 @@
 				TargetAttributes = {
 					9A3DD0382130489E005375F5 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					9A3DD04F213048A0005375F5 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -181,8 +332,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A3DD04A213048A0005375F5 /* LaunchScreen.storyboard in Resources */,
+				9A3DD07E21306004005375F5 /* GifDetailViewController.xib in Resources */,
 				9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */,
+				9A3DD08D21306846005375F5 /* GifCollectionViewCell.xib in Resources */,
 				9A3DD0422130489E005375F5 /* Main.storyboard in Resources */,
+				9A3DD0772130548F005375F5 /* GifListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +354,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3DD0762130548F005375F5 /* GifListViewController.m in Sources */,
 				9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */,
-				9A3DD03F2130489E005375F5 /* ViewController.swift in Sources */,
+				9A3DD083213060CD005375F5 /* Navigation.swift in Sources */,
+				9A3DD0802130601B005375F5 /* GifDetailViewModel.swift in Sources */,
+				9A3DD07D21306004005375F5 /* GifDetailViewController.m in Sources */,
+				9A3DD086213067CA005375F5 /* GifEntity.swift in Sources */,
+				9A3DD09C21307906005375F5 /* APIService.m in Sources */,
 				9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */,
+				9A3DD094213071E5005375F5 /* GifCollectionViewLayout.swift in Sources */,
+				9A3DD08C21306846005375F5 /* GifCollectionViewCell.m in Sources */,
+				9A3DD0792130552B005375F5 /* GifListViewModel.swift in Sources */,
+				9A3DD08F21306E24005375F5 /* GifCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M3L778SRB3;
 				INFOPLIST_FILE = GiphyApp/Info.plist;
@@ -371,6 +535,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Piatyha.GiphyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GiphyApp/GiphyApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,6 +546,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M3L778SRB3;
 				INFOPLIST_FILE = GiphyApp/Info.plist;
@@ -389,6 +556,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Piatyha.GiphyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "GiphyApp/GiphyApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -14,9 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let navigation = Navigation()
+        
+        window.rootViewController = navigation.navigationController
+        
+        self.window = window
+        self.window?.makeKeyAndVisible()
+        
+        navigation.showGifList()
+        
         return true
     }
 
