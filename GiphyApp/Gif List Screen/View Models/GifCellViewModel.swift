@@ -9,7 +9,7 @@
 import UIKit
 
 @objc class GifCellViewModel: NSObject {
-    var gifEntity: GifEntity
+    @objc var gifEntity: GifEntity
     
     var didUpdate: (() -> Void)?
     

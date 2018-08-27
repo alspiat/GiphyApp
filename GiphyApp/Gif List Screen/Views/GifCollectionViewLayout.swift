@@ -32,6 +32,10 @@ class GifCollectionViewLayout: UICollectionViewLayout {
         return collectionView.bounds.width - (insets.left + insets.right)
     }
     
+    @objc var columnWidth: CGFloat {
+        return contentWidth / CGFloat(numberOfColumns)
+    }
+    
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }

@@ -5,3 +5,4 @@
 #import "GifListViewController.h"
 #import "GifDetailViewController.h"
 #import "GifCollectionViewCell.h"
+#import "UIColor+AppColor.h"

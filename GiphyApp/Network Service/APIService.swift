@@ -2,35 +2,17 @@
 //  APIService.swift
 //  GiphyApp
 //
-//  Created by Aliaksei Piatyha on 8/24/18.
+//  Created by Алексей on 26.08.2018.
 //  Copyright © 2018 Aliaksei Piatyha. All rights reserved.
 //
 
 import UIKit
 
-enum APIServiceError {
-    case NoDataReturned
-    case InvalidDataFormat
-    case ConnectionFailed(Error)
-    
-    var description: String {
-        switch self {
-        case .NoDataReturned:
-            return "No data returned"
-        case .InvalidDataFormat:
-            return "Parsing was failed"
-        case .ConnectionFailed(let error):
-            return "Connection failed: \(error.localizedDescription)"
-        }
-    }
-}
-
 class APIService: NSObject {
-    
     static let shared = APIService(apiKey: "4cuwERJ0LN5JjlzdZDdWe5DOSFN2Yj0o")
     
-    private var apiKey: String?
-        
+    private var apiKey: String
+    
     private lazy var session: URLSession = {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -42,8 +24,8 @@ class APIService: NSObject {
     private init(apiKey: String) {
         self.apiKey = apiKey
     }
-
-    private func getFullURL(queryType: APIQueryType, offset: Int, limit: Int, rating: APIRatingType, searchString: String?) -> URL? {
+    
+    private func getFullURL(queryType: APIRequestType, offset: Int, limit: Int, rating: GifRatingType, searchString: String?) -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.giphy.com"
@@ -54,50 +36,67 @@ class APIService: NSObject {
         let limitQuery = URLQueryItem(name: "limit", value: String(limit))
         let ratingQuery = URLQueryItem(name: "rating", value: rating.rawValue)
         
+        urlComponents.queryItems = [apiKeyQuery, offsetQuery, limitQuery, ratingQuery]
+        
         if let searchString = searchString,
-            queryType == .searching {
+            queryType == .search {
             let searchQuery = URLQueryItem(name: "q", value: searchString)
-            urlComponents.queryItems = [apiKeyQuery, offsetQuery, limitQuery, ratingQuery, searchQuery]
-        } else {
-            urlComponents.queryItems = [apiKeyQuery, offsetQuery, limitQuery, ratingQuery]
+            urlComponents.queryItems?.append(searchQuery)
         }
         
         return urlComponents.url
     }
     
-    private func fetchData(url: URL, completionHandler: @escaping (Data?, APIServiceError?) -> Void) {
-        
+    private func fetchGifs(url: URL, completionHandler: @escaping (APIResult<[GifEntity]>) -> Void) {
         session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                return completionHandler(nil, .ConnectionFailed(error))
+                return completionHandler(.Failure(.ConnectionFailed(error)))
             }
             
             guard let data = data else {
-                return completionHandler(nil, .NoDataReturned)
+                return completionHandler(.Failure(.NoDataReturned))
             }
             
-            completionHandler(data, nil)
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []),
+                let dictionary = json as? JSON,
+                let gifsData = dictionary["data"] as? [JSON] {
+                
+                var gifEntities = [GifEntity]()
+                
+                for gifData in gifsData {
+                    if let gifEntity = GifEntity(JSON: gifData) {
+                        gifEntities.append(gifEntity)
+                    }
+                }
+                
+                return completionHandler(.Success(gifEntities))
+            } else {
+               return completionHandler(.Failure(.InvalidDataFormat))
+            }
             
         }.resume()
     }
     
-    public func trending(offset: Int = 0,
-                         limit: Int = 25,
-                         rating: APIRatingType = .unrated,
-                         completionHandler: @escaping () -> Void) {
+    public func fetchSearch(query: String,
+                       offset: Int = 0,
+                       limit: Int = 25,
+                       rating: GifRatingType = .unrated,
+                       completionHandler: @escaping (APIResult<[GifEntity]>) -> Void) {
         
-        guard let url = self.getFullURL(queryType: .trending, offset: offset, limit: limit, rating: rating, searchString: nil) else { return }
+        guard let url = self.getFullURL(queryType: .search, offset: offset, limit: limit, rating: rating, searchString: query) else { return }
+        
+        self.fetchGifs(url: url, completionHandler: completionHandler)
         
     }
     
-    public func search(query: String,
-                        offset: Int = 0,
-                        limit: Int = 25,
-                        rating: APIRatingType = .unrated,
-                        completionHandler: @escaping () -> Void) {
+    public func fetchTrending(offset: Int = 0,
+                              limit: Int = 25,
+                              rating: GifRatingType = .unrated,
+                              completionHandler: @escaping (APIResult<[GifEntity]>) -> Void) {
         
-        guard let url = self.getFullURL(queryType: .searching, offset: offset, limit: limit, rating: rating, searchString: query) else { return }
+        guard let url = self.getFullURL(queryType: .trending, offset: offset, limit: limit, rating: rating, searchString: nil) else { return }
         
+        self.fetchGifs(url: url, completionHandler: completionHandler)
     }
     
 }

@@ -20,6 +20,7 @@
 @implementation GifListViewController
 
 - (instancetype)initWithViewModel:(GifListViewModel *)viewModel {
+    NSLog(@"Init VC");
     self = [super init];
     if (self) {
         self.viewModel = viewModel;
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"view did load");
     self.collectionView.dataSource = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
@@ -67,7 +69,9 @@
 // MARK: - GifCollectionViewLayout Delegate methods
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView heightForContentAtIndexPath:(NSIndexPath *)indexPath {
-    return [self.viewModel contentHeightAt:indexPath.row];
+    GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
+    CGSize contentSize = [self.viewModel contentSizeAt:indexPath.row];
+    return contentSize.height * layout.columnWidth / contentSize.width;
 }
 
 @end
