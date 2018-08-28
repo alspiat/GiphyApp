@@ -14,6 +14,7 @@ extern NSString * const gifCellIdentifier;
 extern NSString * const gifCellNibName;
 
 @interface GifCollectionViewCell : UICollectionViewCell
+@property(nonatomic, strong) GifCellViewModel *viewModel;
 
 - (void)setup:(GifCellViewModel *)viewModel;
 

@@ -8,6 +8,11 @@
 
 import UIKit
 
-@objc class GifDetailViewModel: NSObject {
-
+@objcMembers class GifDetailViewModel: NSObject {
+    var gifEntity: GifEntity
+    
+    init(gifEntity: GifEntity) {
+        self.gifEntity = gifEntity
+    }
+    
 }

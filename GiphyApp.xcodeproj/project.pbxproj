@@ -203,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				9A3DD082213060CD005375F5 /* Navigation.swift */,
+				3213C10C2135B126002100E6 /* TransitionManger.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -214,7 +215,6 @@
 				9A3DD0742130548F005375F5 /* GifListViewController.m */,
 				9A3DD0752130548F005375F5 /* GifListViewController.xib */,
 				9A3DD0782130552B005375F5 /* GifListViewModel.swift */,
-				3213C10C2135B126002100E6 /* TransitionManger.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

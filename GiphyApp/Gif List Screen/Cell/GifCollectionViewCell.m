@@ -17,7 +17,7 @@ NSString * const gifCellNibName = @"GifCollectionViewCell";
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property(nonatomic, strong) GifCellViewModel *viewModel;
+
 
 @end
 

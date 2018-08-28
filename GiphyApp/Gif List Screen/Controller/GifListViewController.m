@@ -10,10 +10,14 @@
 #import "GifCollectionViewCell.h"
 #import "GiphyApp-Swift.h"
 
+//importing
+#import "GifDetailViewController.h"
+
 @interface GifListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GifCollectionViewLayoutDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, strong) GifListViewModel *viewModel;
+
 
 @end
 
@@ -74,12 +78,6 @@
     return cell;
 }
 
-// MARK: - Collection View Delegate methods
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-
 // MARK: - GifCollectionViewLayout Delegate methods
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView heightForContentAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,5 +85,26 @@
     CGSize contentSize = [self.viewModel contentSizeAt:indexPath.row];
     return contentSize.height * layout.columnWidth / contentSize.width;
 }
+
+
+
+
+
+/////////////////////////////////\\\\\Dimas\\\\\\\\\\///////////////////////////////////
+
+// MARK: GifCollectionViewDelegeta
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GifCollectionViewCell * cell = (GifCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    //points
+    CGPoint newPoint =
+    [collectionView convertPoint: cell.center toView:self.view];
+   
+    //second controller
+    Navigation* nav = [[Navigation alloc] init];
+    [nav showGifDetailWith:cell.viewModel.gifEntity and:newPoint presentingController:self];
+   
+}
+
 
 @end
