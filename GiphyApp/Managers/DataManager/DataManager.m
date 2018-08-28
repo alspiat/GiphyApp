@@ -13,7 +13,7 @@ static NSString * const dataType = @"gif";
 
 @implementation DataManager
 
-+ (NSURLSessionDataTask *)loadImage:(GifImage*)gifImage withName:(NSString *)filename folder:(NSString*)folderPath
++ (id<NetworkCancelable>)loadImage:(GifImage*)gifImage withName:(NSString *)filename folder:(NSString*)folderPath
                              saving:(BOOL)saving completionHandler:(BlockWithImage)completionHandler {
     AppFileManager *fileManager = [[AppFileManager alloc] init];
     NSData *data = [fileManager dataFromFileWithFilename:filename folder:folderPath];
@@ -25,7 +25,7 @@ static NSString * const dataType = @"gif";
         return nil;
     } else {
         APIService *service = APIService.shared;
-        NSURLSessionDataTask *dataTask = [service fetchDataWithStringURL:gifImage.url completionHandler:^(NSData *data) {
+        id<NetworkCancelable> dataTask = [service fetchDataWithStringURL:gifImage.url completionHandler:^(NSData *data) {
             UIImage *image = [UIImage animatedImageWithData:data];
             if (saving) {
                 [fileManager createFile:filename data:data folder:folderPath];
@@ -37,12 +37,12 @@ static NSString * const dataType = @"gif";
     }
 }
 
-+ (NSURLSessionDataTask *)loadPreviewImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler {
++ (id<NetworkCancelable>)loadPreviewImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler {
     NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
     return [self loadImage:gifEntity.previewImage withName:filename folder: AppFileManager.previewsPath saving:YES completionHandler:completionHandler];
 }
 
-+ (NSURLSessionDataTask *)loadOriginalImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler {
++ (id<NetworkCancelable>)loadOriginalImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler {
     NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
     return [self loadImage:gifEntity.originImage withName:filename folder: AppFileManager.originalsPath saving:NO completionHandler:completionHandler];
 }

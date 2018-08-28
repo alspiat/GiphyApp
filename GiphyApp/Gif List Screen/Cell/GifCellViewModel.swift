@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class GifCellViewModel: NSObject {
     
-    private var loadingTask: URLSessionDataTask?
+    private var loadingTask: NetworkCancelable?
     
     var gifEntity: GifEntity
     var image: UIImage?

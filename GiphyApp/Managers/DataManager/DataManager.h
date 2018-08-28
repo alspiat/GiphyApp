@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class GifEntity;
+@protocol NetworkCancelable;
 
 typedef void (^BlockWithImage)(UIImage *);
 
 @interface DataManager : NSObject
 
-+ (NSURLSessionDataTask *)loadPreviewImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler;
-+ (NSURLSessionDataTask *)loadOriginalImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler;
++ (id<NetworkCancelable>)loadPreviewImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler;
++ (id<NetworkCancelable>)loadOriginalImage:(GifEntity*)gifEntity completionHandler:(BlockWithImage)completionHandler;
 
 @end

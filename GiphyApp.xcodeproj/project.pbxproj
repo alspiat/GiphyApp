@@ -34,6 +34,8 @@
 		9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1531421343B76000CE838 /* Date+FormattedString.swift */; };
 		9AF2FCB421354BA400347C36 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCB321354BA400347C36 /* DataManager.m */; };
 		9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCB721354F8600347C36 /* AppFileManager.swift */; };
+		9AF2FCBD2135B26200347C36 /* NetworkCancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCBC2135B26200347C36 /* NetworkCancelable.swift */; };
+		9AF2FCC02135B79F00347C36 /* APIParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCBF2135B79F00347C36 /* APIParsing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		9AF2FCB221354BA400347C36 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		9AF2FCB321354BA400347C36 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		9AF2FCB721354F8600347C36 /* AppFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
+		9AF2FCBC2135B26200347C36 /* NetworkCancelable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCancelable.swift; sourceTree = "<group>"; };
+		9AF2FCBF2135B79F00347C36 /* APIParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParsing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,8 @@
 			children = (
 				9A3DD09E21307AF8005375F5 /* APIService.swift */,
 				9A3DD0A021307B58005375F5 /* APITypes.swift */,
+				9AF2FCBC2135B26200347C36 /* NetworkCancelable.swift */,
+				9AF2FCBF2135B79F00347C36 /* APIParsing.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 				9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */,
 				9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */,
 				9A3DD083213060CD005375F5 /* Navigation.swift in Sources */,
+				9AF2FCC02135B79F00347C36 /* APIParsing.swift in Sources */,
 				9AC1530D2133E6BF000CE838 /* GifTypes.swift in Sources */,
 				9A3DD0802130601B005375F5 /* GifDetailViewModel.swift in Sources */,
 				9A3DD07D21306004005375F5 /* GifDetailViewController.m in Sources */,
@@ -404,6 +411,7 @@
 				9AC1530E2133E6BF000CE838 /* GifImage.swift in Sources */,
 				9A3DD08C21306846005375F5 /* GifCollectionViewCell.m in Sources */,
 				9A3DD0792130552B005375F5 /* GifListViewModel.swift in Sources */,
+				9AF2FCBD2135B26200347C36 /* NetworkCancelable.swift in Sources */,
 				9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */,
 				9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */,
 				9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */,

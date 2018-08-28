@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias JSON = [String: Any]
-
 enum APIResult<T> {
     case Failure(APIErrorType)
     case Success(T)

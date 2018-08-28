@@ -77,7 +77,7 @@ import UIKit
         }.resume()
     }
     
-    func fetchData(stringURL: String, completionHandler: @escaping (Data) -> Void) -> URLSessionDataTask? {
+    func fetchData(stringURL: String, completionHandler: @escaping (Data) -> Void) -> NetworkCancelable? {
         guard let url = URL(string: stringURL) else {
             return nil
         }

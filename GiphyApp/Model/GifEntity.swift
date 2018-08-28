@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class GifEntity: NSObject {
+@objcMembers class GifEntity: NSObject, JSONDecodable {
     var id: String
     var title: String?
     var username: String?
@@ -18,7 +18,7 @@ import Foundation
     var originImage: GifImage
     var previewImage: GifImage
     
-    init?(JSON: JSON) {
+    required init?(JSON: JSON) {
         
         // Required values
         guard let id = JSON["id"] as? String,
