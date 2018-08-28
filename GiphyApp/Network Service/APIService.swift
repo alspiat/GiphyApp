@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APIService: NSObject {
+@objcMembers class APIService: NSObject {
     static let shared = APIService(apiKey: "dc6zaTOxFJmzC")
     
     private var apiKey: String
@@ -77,15 +77,14 @@ class APIService: NSObject {
         }.resume()
     }
     
-    func fetchImage(stringURL: String, completionHanlder: @escaping (UIImage) -> Void) -> URLSessionDataTask? {
+    func fetchData(stringURL: String, completionHandler: @escaping (Data) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: stringURL) else {
             return nil
         }
         
         let loadingDataTask = session.dataTask(with: url) { (data, response, error) in
-            if let data = data,
-                let image = UIImage.animatedImage(data: data) {
-                completionHanlder(image)
+            if let data = data {
+                completionHandler(data)
             }
         }
         loadingDataTask.resume()

@@ -33,6 +33,7 @@
 		9AC1530E2133E6BF000CE838 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1530C2133E6BF000CE838 /* GifImage.swift */; };
 		9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1531421343B76000CE838 /* Date+FormattedString.swift */; };
 		9AF2FCB421354BA400347C36 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCB321354BA400347C36 /* DataManager.m */; };
+		9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2FCB721354F8600347C36 /* AppFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		9AC1531421343B76000CE838 /* Date+FormattedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+FormattedString.swift"; sourceTree = "<group>"; };
 		9AF2FCB221354BA400347C36 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		9AF2FCB321354BA400347C36 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		9AF2FCB721354F8600347C36 /* AppFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,10 +261,27 @@
 		9AF2FCB121354B2800347C36 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				9AF2FCB521354F0E00347C36 /* FileManager */,
+				9AF2FCB621354F1A00347C36 /* DataManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9AF2FCB521354F0E00347C36 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				9AF2FCB721354F8600347C36 /* AppFileManager.swift */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		9AF2FCB621354F1A00347C36 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
 				9AF2FCB221354BA400347C36 /* DataManager.h */,
 				9AF2FCB321354BA400347C36 /* DataManager.m */,
 			);
-			path = Managers;
+			path = DataManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +404,7 @@
 				9AC1530E2133E6BF000CE838 /* GifImage.swift in Sources */,
 				9A3DD08C21306846005375F5 /* GifCollectionViewCell.m in Sources */,
 				9A3DD0792130552B005375F5 /* GifListViewModel.swift in Sources */,
+				9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */,
 				9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */,
 				9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */,
 				9AF2FCB421354BA400347C36 /* DataManager.m in Sources */,

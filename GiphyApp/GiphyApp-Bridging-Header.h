@@ -7,3 +7,4 @@
 #import "GifCollectionViewCell.h"
 
 #import "UIColor+AppColor.h"
+#import "DataManager.h"

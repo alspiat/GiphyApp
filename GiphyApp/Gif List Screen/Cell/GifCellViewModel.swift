@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class GifCellViewModel: NSObject {
     
-    private var loadingDataTask: URLSessionDataTask?
+    private var loadingTask: URLSessionDataTask?
     
     var gifEntity: GifEntity
     var image: UIImage?
@@ -22,15 +22,13 @@ import UIKit
     }
     
     func cancelImageLoading() {
-        if let loadingDataTask = self.loadingDataTask {
-            loadingDataTask.cancel()
+        if let loadingTask = self.loadingTask {
+            loadingTask.cancel()
         }
     }
     
     func startImageLoading() {
-        let api = APIService.shared
-        
-        self.loadingDataTask = api.fetchImage(stringURL: gifEntity.previewImage.url) { (image) in
+        self.loadingTask = DataManager.loadPreviewImage(gifEntity) { (image) in
             DispatchQueue.main.async {
                 self.image = image
                 self.didUpdate()

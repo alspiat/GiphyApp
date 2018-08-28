@@ -20,7 +20,6 @@
 @implementation GifListViewController
 
 - (instancetype)initWithViewModel:(GifListViewModel *)viewModel {
-    NSLog(@"Init VC");
     self = [super init];
     if (self) {
         self.viewModel = viewModel;
@@ -31,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"view did load");
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
