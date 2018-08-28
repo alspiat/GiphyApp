@@ -22,6 +22,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SzT-c1-nLS">
                         <rect key="frame" x="0.0" y="0.0" width="214" height="139"/>
                     </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="2Vs-o0-a8S">
+                        <rect key="frame" x="97.5" y="60" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,11 +32,14 @@
                 <constraint firstItem="SzT-c1-nLS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5Cz-f2-XIt"/>
                 <constraint firstAttribute="bottom" secondItem="SzT-c1-nLS" secondAttribute="bottom" id="V9J-C7-tFT"/>
                 <constraint firstItem="SzT-c1-nLS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ah5-Sw-yVZ"/>
+                <constraint firstItem="2Vs-o0-a8S" firstAttribute="centerY" secondItem="SzT-c1-nLS" secondAttribute="centerY" id="wUG-OU-P2A"/>
                 <constraint firstAttribute="trailing" secondItem="SzT-c1-nLS" secondAttribute="trailing" id="xie-zC-6OY"/>
+                <constraint firstItem="2Vs-o0-a8S" firstAttribute="centerX" secondItem="SzT-c1-nLS" secondAttribute="centerX" id="y0u-F2-YhG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="214" height="139"/>
             <connections>
+                <outlet property="activityIndicator" destination="2Vs-o0-a8S" id="8x4-RO-kBs"/>
                 <outlet property="imageView" destination="SzT-c1-nLS" id="DAb-tt-Iaf"/>
             </connections>
             <point key="canvasLocation" x="108" y="81.5"/>

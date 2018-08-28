@@ -10,20 +10,26 @@ import UIKit
 
 @objcMembers class GifListViewModel: NSObject {
     
-    var gifEntities = [GifEntity]()
+    private var gifEntities = [GifEntity]()
     
     public var didUpdate: (() -> Void) = {}
     
-    override init() {
-        super.init()
+    func loadDataIfNeeded(fromIndex index: Int) {
+        
+        let reloadIndex = 10;
+        let dataLimit = 24;
+        
+        guard index == gifEntities.count - reloadIndex || gifEntities.isEmpty else {
+            return
+        }
         
         let api = APIService.shared
         
-        api.fetchTrending { (result) in
+        api.fetchTrending(offset: gifEntities.count, limit: dataLimit) { (result) in
             switch result {
             case .Success(let gifEntities):
                 DispatchQueue.main.async {
-                    self.gifEntities = gifEntities
+                    self.gifEntities.append(contentsOf: gifEntities)
                     self.didUpdate()
                 }
             case .Failure(let apiError):
@@ -37,7 +43,8 @@ import UIKit
     }
     
     func contentSize(at index: Int) -> CGSize {
-        return CGSize(width: gifEntities[index].originImage!.width, height: gifEntities[index].originImage!.height)
+        let image = gifEntities[index].previewImage
+        return CGSize(width: image.width, height: image.height)
     }
     
     func numberOfRows() -> Int {

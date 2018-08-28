@@ -9,29 +9,30 @@
 import UIKit
 
 @objcMembers class GifImage: NSObject {
-    var url: String = ""
-    var size: Int = 0
-    var height: Int = 0
-    var width: Int = 0
+    var url: String
+    var size: Int?
+    var height: Int
+    var width: Int
     
     init?(JSON: JSON) {
+        
+        // Required values
         guard let url = JSON["url"] as? String,
             let heightStr = JSON["height"] as? String,
             let widthStr = JSON["width"] as? String,
-            let sizeStr = JSON["size"] as? String else {
+            let height = Int(heightStr),
+            let width = Int(widthStr) else {
                 return nil
         }
         
-        
         self.url = url
+        self.width = width
+        self.height = height
         
-        if let size = Int(sizeStr),
-            let height = Int(heightStr),
-            let width = Int(widthStr) {
-            
+        // Optional values
+        if let sizeStr = JSON["size"] as? String,
+            let size = Int(sizeStr) {
             self.size = size
-            self.width = width
-            self.height = height
         }
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class APIService: NSObject {
-    static let shared = APIService(apiKey: "4cuwERJ0LN5JjlzdZDdWe5DOSFN2Yj0o")
+    static let shared = APIService(apiKey: "dc6zaTOxFJmzC")
     
     private var apiKey: String
     
@@ -75,6 +75,22 @@ class APIService: NSObject {
             }
             
         }.resume()
+    }
+    
+    func fetchImage(stringURL: String, completionHanlder: @escaping (UIImage) -> Void) -> URLSessionDataTask? {
+        guard let url = URL(string: stringURL) else {
+            return nil
+        }
+        
+        let loadingDataTask = session.dataTask(with: url) { (data, response, error) in
+            if let data = data,
+                let image = UIImage.animatedImage(data: data) {
+                completionHanlder(image)
+            }
+        }
+        loadingDataTask.resume()
+        
+        return loadingDataTask
     }
     
     public func fetchSearch(query: String,

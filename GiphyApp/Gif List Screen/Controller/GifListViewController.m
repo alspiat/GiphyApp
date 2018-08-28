@@ -10,7 +10,7 @@
 #import "GifCollectionViewCell.h"
 #import "GiphyApp-Swift.h"
 
-@interface GifListViewController () <UICollectionViewDataSource, GifCollectionViewLayoutDelegate>
+@interface GifListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GifCollectionViewLayoutDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic, strong) GifListViewModel *viewModel;
@@ -33,12 +33,14 @@
     
     NSLog(@"view did load");
     self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
     
     [self.collectionView registerNib:[UINib nibWithNibName:gifCellNibName bundle:NSBundle.mainBundle] forCellWithReuseIdentifier:gifCellIdentifier];
     
     [self bindToViewModel];
+    [self.viewModel loadDataIfNeededFromIndex:0];
 }
 
 - (void)bindToViewModel {
@@ -49,9 +51,14 @@
 }
 
 - (void)viewModelDidUpdate {
-    // Update UI elements with data from viewModel
+    [self.collectionView performBatchUpdates:^{
+        for (NSInteger i = [self.collectionView numberOfItemsInSection:0]; i < self.viewModel.numberOfRows; i++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
+        }
+    } completion:nil];
     
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
 }
 
 // MARK: - Collection View DataSource methods
@@ -63,7 +70,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gifCellIdentifier forIndexPath:indexPath];
     [cell setup:[self.viewModel viewModelForCellAt:indexPath.row]];
+    
+    [self.viewModel loadDataIfNeededFromIndex:indexPath.row];
+    
     return cell;
+}
+
+// MARK: - Collection View Delegate methods
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
 // MARK: - GifCollectionViewLayout Delegate methods
