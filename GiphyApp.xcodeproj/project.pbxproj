@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213C10C2135B126002100E6 /* TransitionManger.swift */; };
 		9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03C2130489E005375F5 /* AppDelegate.swift */; };
 		9A3DD0422130489E005375F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0402130489E005375F5 /* Main.storyboard */; };
 		9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3213C10C2135B126002100E6 /* TransitionManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManger.swift; sourceTree = "<group>"; };
 		9A3DD0392130489E005375F5 /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD03C2130489E005375F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3DD0412130489E005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				9A3DD0742130548F005375F5 /* GifListViewController.m */,
 				9A3DD0752130548F005375F5 /* GifListViewController.xib */,
 				9A3DD0782130552B005375F5 /* GifListViewModel.swift */,
+				3213C10C2135B126002100E6 /* TransitionManger.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC153062133E6A4000CE838 /* UIImage+Animated.swift in Sources */,
+				3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */,
 				9A3DD0762130548F005375F5 /* GifListViewController.m in Sources */,
 				9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */,
 				9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */,
