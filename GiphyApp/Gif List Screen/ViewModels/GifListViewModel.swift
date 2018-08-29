@@ -52,7 +52,7 @@ import UIKit
     
     func contentSize(at index: Int) -> CGSize {
         let image = gifEntities[index].previewImage
-        return CGSize(width: image.width, height: image.height)
+        return CGSize(width: image!.width, height: image!.height)
     }
     
 }

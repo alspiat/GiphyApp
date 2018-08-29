@@ -8,10 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213C10C2135B126002100E6 /* TransitionManger.swift */; };
+		325E7556213728C4000C9698 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 325E7554213728C4000C9698 /* GiphyApp.xcdatamodeld */; };
+		325E756221372C01000C9698 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756121372C01000C9698 /* CoreDataManager.m */; };
+		325E756B21372C53000C9698 /* GifManagedObjectImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756521372C53000C9698 /* GifManagedObjectImage+CoreDataClass.m */; };
+		325E756C21372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756621372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.m */; };
+		325E756D21372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756921372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.m */; };
+		325E756E21372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756A21372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.m */; };
 		6252E8AA2136CF2F00042E0C /* GifListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6252E8A92136CF2E00042E0C /* GifListViewController.xib */; };
 		9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03C2130489E005375F5 /* AppDelegate.swift */; };
 		9A3DD0422130489E005375F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0402130489E005375F5 /* Main.storyboard */; };
-		9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */; };
 		9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD046213048A0005375F5 /* Assets.xcassets */; };
 		9A3DD04A213048A0005375F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD048213048A0005375F5 /* LaunchScreen.storyboard */; };
 		9A3DD055213048A0005375F5 /* GiphyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD054213048A0005375F5 /* GiphyAppTests.swift */; };
@@ -55,11 +60,21 @@
 
 /* Begin PBXFileReference section */
 		3213C10C2135B126002100E6 /* TransitionManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManger.swift; sourceTree = "<group>"; };
+		325E7555213728C4000C9698 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		325E756021372C01000C9698 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		325E756121372C01000C9698 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		325E756321372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifManagedObjectImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		325E756421372C53000C9698 /* GifManagedObjectImage+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifManagedObjectImage+CoreDataClass.h"; sourceTree = "<group>"; };
+		325E756521372C53000C9698 /* GifManagedObjectImage+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifManagedObjectImage+CoreDataClass.m"; sourceTree = "<group>"; };
+		325E756621372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifManagedObjectImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		325E756721372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifManagedObjectEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		325E756821372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifManagedObjectEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		325E756921372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifManagedObjectEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		325E756A21372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifManagedObjectEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		6252E8A92136CF2E00042E0C /* GifListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GifListViewController.xib; sourceTree = "<group>"; };
 		9A3DD0392130489E005375F5 /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD03C2130489E005375F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3DD0412130489E005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A3DD0442130489E005375F5 /* GiphyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GiphyApp.xcdatamodel; sourceTree = "<group>"; };
 		9A3DD046213048A0005375F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A3DD049213048A0005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A3DD04B213048A0005375F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,6 +135,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		325E755F21372AA2000C9698 /* CoreData Service */ = {
+			isa = PBXGroup;
+			children = (
+				325E756021372C01000C9698 /* CoreDataManager.h */,
+				325E756121372C01000C9698 /* CoreDataManager.m */,
+				325E756F21372C62000C9698 /* GIfManagedObjects */,
+			);
+			path = "CoreData Service";
+			sourceTree = "<group>";
+		};
+		325E756F21372C62000C9698 /* GIfManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				325E756321372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.h */,
+				325E756421372C53000C9698 /* GifManagedObjectImage+CoreDataClass.h */,
+				325E756521372C53000C9698 /* GifManagedObjectImage+CoreDataClass.m */,
+				325E756621372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.m */,
+				325E756721372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.h */,
+				325E756821372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.h */,
+				325E756921372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.m */,
+				325E756A21372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.m */,
+			);
+			path = GIfManagedObjects;
+			sourceTree = "<group>";
+		};
 		9A3DD0302130489E005375F5 = {
 			isa = PBXGroup;
 			children = (
@@ -149,12 +189,13 @@
 				9A3DD061213049E7005375F5 /* Gif Detail Screen */,
 				9A91FF94213697220012F072 /* Gif Search Screen */,
 				9A3DD05F213049CE005375F5 /* Model */,
+				325E755F21372AA2000C9698 /* CoreData Service */,
 				9A3DD062213049F5005375F5 /* Network Service */,
 				9A3DD0402130489E005375F5 /* Main.storyboard */,
 				9A3DD046213048A0005375F5 /* Assets.xcassets */,
 				9A3DD04B213048A0005375F5 /* Info.plist */,
 				9A3DD06C21304C89005375F5 /* GiphyApp-Bridging-Header.h */,
-				9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */,
+				325E7554213728C4000C9698 /* GiphyApp.xcdatamodeld */,
 			);
 			path = GiphyApp;
 			sourceTree = "<group>";
@@ -434,12 +475,16 @@
 				9AC153062133E6A4000CE838 /* UIImage+Animated.swift in Sources */,
 				3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */,
 				9A3DD0762130548F005375F5 /* GifListViewController.m in Sources */,
+				325E756B21372C53000C9698 /* GifManagedObjectImage+CoreDataClass.m in Sources */,
 				9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */,
-				9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */,
+				325E7556213728C4000C9698 /* GiphyApp.xcdatamodeld in Sources */,
 				9A3DD083213060CD005375F5 /* Navigation.swift in Sources */,
 				9AF2FCC02135B79F00347C36 /* APIParsing.swift in Sources */,
+				325E756D21372C53000C9698 /* GifManagedObjectEntity+CoreDataClass.m in Sources */,
+				325E756C21372C53000C9698 /* GifManagedObjectImage+CoreDataProperties.m in Sources */,
 				9AC1530D2133E6BF000CE838 /* GifTypes.swift in Sources */,
 				9A3DD0802130601B005375F5 /* GifDetailViewModel.swift in Sources */,
+				325E756221372C01000C9698 /* CoreDataManager.m in Sources */,
 				9A3DD07D21306004005375F5 /* GifDetailViewController.m in Sources */,
 				9A3DD0A121307B58005375F5 /* APITypes.swift in Sources */,
 				9A3DD086213067CA005375F5 /* GifEntity.swift in Sources */,
@@ -450,6 +495,7 @@
 				9A3DD0792130552B005375F5 /* GifListViewModel.swift in Sources */,
 				9AF2FCBD2135B26200347C36 /* NetworkCancelable.swift in Sources */,
 				9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */,
+				325E756E21372C53000C9698 /* GifManagedObjectEntity+CoreDataProperties.m in Sources */,
 				9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */,
 				9A91FF9A2136AF480012F072 /* ControllerViewModel.swift in Sources */,
 				9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */,
@@ -730,12 +776,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */ = {
+		325E7554213728C4000C9698 /* GiphyApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9A3DD0442130489E005375F5 /* GiphyApp.xcdatamodel */,
+				325E7555213728C4000C9698 /* Model.xcdatamodel */,
 			);
-			currentVersion = 9A3DD0442130489E005375F5 /* GiphyApp.xcdatamodel */;
+			currentVersion = 325E7555213728C4000C9698 /* Model.xcdatamodel */;
 			path = GiphyApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

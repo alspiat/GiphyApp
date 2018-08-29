@@ -59,4 +59,9 @@ import Foundation
         }
     }
     
+    public func getRawValue() -> String {
+        return self.rawValue;
+    }
 }
+
+

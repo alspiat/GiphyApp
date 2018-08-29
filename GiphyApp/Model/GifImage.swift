@@ -35,4 +35,15 @@ import UIKit
             self.size = size
         }
     }
+    
+    init?(with managedObject: GifManagedObjectImage) {
+        
+        if let urlMO = managedObject.webURL {
+            self.url = urlMO
+            self.height = Int(managedObject.height)
+            self.width = Int(managedObject.width)
+        } else {
+            return nil
+        }
+    }
 }

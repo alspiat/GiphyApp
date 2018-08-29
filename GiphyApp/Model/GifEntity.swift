@@ -9,14 +9,14 @@
 import Foundation
 
 @objcMembers class GifEntity: NSObject, JSONDecodable {
-    var id: String
+    var id: String?
     var title: String?
     var username: String?
     var publishingDate: Date?
     var trendingDate: Date?
     var rating: GifRatingType = .unrated
-    var originImage: GifImage
-    var previewImage: GifImage
+    var originImage: GifImage?
+    var previewImage: GifImage?
     
     required init?(JSON: JSON) {
         
@@ -59,5 +59,22 @@ import Foundation
             self.trendingDate = trendingDate
         }
         
+    }
+    
+    //MARK: - MamagedObjectInit
+    init?(with managedObject: GifManagedObjectEntity) {
+        guard let titleMO       = managedObject.title,
+           let usernameMO       = managedObject.username,
+           let publishingDateMO = managedObject.publishingDate,
+           let trendingDateMO   = managedObject.trendingDate,
+           let originalImageMO  = managedObject.originalImage,
+           let previewImageMO   = managedObject.previewImage  else {return nil}
+            
+            self.title = titleMO
+            self.username = usernameMO
+            self.publishingDate = publishingDateMO
+            self.trendingDate = trendingDateMO
+            self.originImage = GifImage(with: originalImageMO)!
+            self.previewImage = GifImage(with: previewImageMO)!
     }
 }
