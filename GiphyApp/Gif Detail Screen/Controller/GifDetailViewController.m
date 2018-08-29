@@ -7,6 +7,7 @@
 //
 
 #import "GifDetailViewController.h"
+#import "NSDate+FormattedString.h"
 #import "GiphyApp-Swift.h"
 
 @interface GifDetailViewController ()
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *trendingView;
 @property (weak, nonatomic) IBOutlet UILabel *titleGifLabel;
 @property (weak, nonatomic) IBOutlet UILabel *publicationDateGifLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userLabel;
 
 //buttons
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
@@ -60,12 +62,21 @@
     
     //adaptiveConstraint
     
-    self.adaptiveHeightGifConstraint.constant =  self.view.frame.size.width * self.viewModel.gifEntity.originImage.height /self.viewModel.gifEntity.originImage.width;
+    self.adaptiveHeightGifConstraint.constant = self.viewModel.gifEntity.originImage.height * UIScreen.mainScreen.bounds.size.width / self.viewModel.gifEntity.originImage.width;
     //labels
     self.titleGifLabel.text = self.viewModel.gifEntity.title.capitalizedString;
-    //self.publicationDateGifLabel.text = self.viewModel.gifEntity.publishingDate
+    self.publicationDateGifLabel.text = self.viewModel.gifEntity.publishingDate.formattedString;
+    self.userLabel.text = self.viewModel.gifEntity.username;
+    
+    if (self.viewModel.gifEntity.trendingDate != nil) {
+        [self.trendingView setHidden:NO];
+    } else {
+        [self.trendingView setHidden:YES];
+    }
+    
     //buttons
     self.activityIndicator.hidesWhenStopped = YES;
+    
     self.shareButton.hidden = YES;
     self.shareButton.userInteractionEnabled = NO;
     self.saveButton.hidden = YES;
@@ -91,7 +102,7 @@
 - (void)viewModelDidUpdate {
     [UIView transitionWithView:self.gifView duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.activityIndicator stopAnimating];
-        self.gifView.image = self.viewModel.gifImage;
+        self.gifView.image = [UIImage animatedImageWithData:self.viewModel.gifData];
         
         self.shareButton.hidden = NO;
         self.shareButton.userInteractionEnabled = YES;
@@ -109,65 +120,30 @@
 }
 
 - (IBAction)shareActionHandler:(id)sender {
-    NSData* gifData = [self loadGifFromFolder];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[gifData] applicationActivities:nil];
-    [self presentViewController:activityVC animated:YES completion:nil];
+    NSData *gifData = self.viewModel.gifData;
+    NSString *gifTitle = self.viewModel.gifEntity.title.capitalizedString;
     
-    if (activityVC.beingDismissed) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saved" message:@"Save GIF to camera roll" preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alert animated:YES completion:nil];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[gifData, gifTitle] applicationActivities:nil];
+    
+    activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+        if (completed && activityType == UIActivityTypeSaveToCameraRoll) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saving" message:@"GIF saved to camera roll" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    };
+    
+    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        activityVC.popoverPresentationController.sourceView = self.view;
     }
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 
 - (IBAction)saveActionHandler:(id)sender {
-    //add alert with action sheet
-    UIAlertController * alertWithActionSheet =
-    [UIAlertController alertControllerWithTitle:nil
-                                        message: @"GIF was saved"
-                                 preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *actionSaveToDevice = [UIAlertAction actionWithTitle:@"Save on device"
-                                                                 style:UIAlertActionStyleDefault
-                                                               handler:^(UIAlertAction * _Nonnull action) {
-        //save on device
-        UIImageWriteToSavedPhotosAlbum(self.gifView.image, nil, nil, nil);
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saved"
-                                                                       message:@"Save GIF to camera roll"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alert animated:YES completion:nil];
-                                                                   
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel
-                                                             handler:nil];
-        [alert addAction:cancelAction];
-    }];
-    
-    UIAlertAction *actionSaveInApp = [UIAlertAction actionWithTitle:@"Add to favorites" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //add to saved4
-        NSLog(@"add to core data to saveed");
-    }];
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        //add to saved4
-        NSLog(@"cancelled");
-    }];
-    
-    [alertWithActionSheet addAction:actionSaveToDevice];
-    [alertWithActionSheet addAction:actionSaveInApp];
-    [alertWithActionSheet addAction:actionCancel];
-    [self presentViewController:alertWithActionSheet animated:YES completion:nil];
-}
-
-
-//MARK: - Load Image From Folder
--(NSData*)loadGifFromFolder {
-    AppFileManager *fileManager = [[AppFileManager alloc] init];
-    NSString *filename = [NSString stringWithFormat:@"%@.%@", self.viewModel.gifEntity.id, @"gif"];
-    NSLog(@"File: %@", filename);
-    NSData *data = [fileManager dataFromFileWithFilename:filename folder:AppFileManager.previewsPath];
-    return data;
+    // Add to CoreData
 }
 
 @end

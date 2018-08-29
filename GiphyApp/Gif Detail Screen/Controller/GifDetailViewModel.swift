@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class GifDetailViewModel: NSObject {
     var gifEntity: GifEntity
-    var gifImage: UIImage?
+    var gifData: Data?
     
     init(gifEntity: GifEntity) {
         self.gifEntity = gifEntity
@@ -18,11 +18,10 @@ import UIKit
     
     public var didUpdate: (() -> Void) = {}
     
-    ///update
     public func loadGif() {
-        DataManager.loadOriginalImageData(self.gifEntity) { (data) in
+        DataManager.loadOriginalImageData(self.gifEntity, previewFirstly: true) { (data) in
             DispatchQueue.main.async {
-                self.gifImage = UIImage.animatedImage(data: data!)
+                self.gifData = data
                 self.didUpdate()
             }
         }

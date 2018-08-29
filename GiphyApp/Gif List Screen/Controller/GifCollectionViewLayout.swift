@@ -17,7 +17,13 @@ import UIKit
 class GifCollectionViewLayout: UICollectionViewLayout {
     @objc weak var delegate: GifCollectionViewLayoutDelegate!
     
-    fileprivate var numberOfColumns = 2
+    fileprivate var numberOfColumns: Int {
+        if UIScreen.main.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.regular {
+            return 3
+        }
+        return 2
+    }
+    
     fileprivate var cellPadding: CGFloat = 3
     
     fileprivate var cache = [UICollectionViewLayoutAttributes]()

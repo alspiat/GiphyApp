@@ -36,13 +36,23 @@ static NSString * const dataType = @"gif";
     }
 }
 
-+ (id<NetworkCancelable>)loadPreviewImageData:(GifEntity*)gifEntity completionHandler:(BlockWithData)completionHandler {
++ (id<NetworkCancelable>)loadPreviewImageData:(GifEntity*)gifEntity
+                        completionHandler:(BlockWithData)completionHandler {
+    
     NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
     return [self loadImageData:gifEntity.previewImage withName:filename folder: AppFileManager.previewsPath saving:YES completionHandler:completionHandler];
 }
 
-+ (id<NetworkCancelable>)loadOriginalImageData:(GifEntity*)gifEntity completionHandler:(BlockWithData)completionHandler {
++ (id<NetworkCancelable>)loadOriginalImageData:(GifEntity*)gifEntity
+                        previewFirstly:(BOOL)isPreview
+                        completionHandler:(BlockWithData)completionHandler {
+    
     NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
+    
+    if (isPreview) {
+        [self loadImageData:gifEntity.originImage withName:filename folder: AppFileManager.previewsPath saving:NO completionHandler:completionHandler];
+    }
+    
     return [self loadImageData:gifEntity.originImage withName:filename folder: AppFileManager.originalsPath saving:NO completionHandler:completionHandler];
 }
 

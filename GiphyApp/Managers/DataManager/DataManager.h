@@ -16,6 +16,6 @@ typedef void (^BlockWithData)(NSData *);
 @interface DataManager : NSObject
 
 + (id<NetworkCancelable>)loadPreviewImageData:(GifEntity*)gifEntity completionHandler:(BlockWithData)completionHandler;
-+ (id<NetworkCancelable>)loadOriginalImageData:(GifEntity*)gifEntity completionHandler:(BlockWithData)completionHandler;
++ (id<NetworkCancelable>)loadOriginalImageData:(GifEntity*)gifEntity previewFirstly:(BOOL)isPreview completionHandler:(BlockWithData)completionHandler;
 
 @end

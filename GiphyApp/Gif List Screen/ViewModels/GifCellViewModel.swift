@@ -30,10 +30,8 @@ import UIKit
     func startImageLoading() {
         self.loadingTask = DataManager.loadPreviewImageData(gifEntity) { (data) in
             DispatchQueue.main.async {
-                if let image = UIImage.animatedImage(data: data!) {
-                    self.image = image;
-                    self.didUpdate()
-                }
+                self.image = UIImage.animatedImage(data: data!)
+                self.didUpdate()
             }
         }
     }
