@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         navigation.showGifList()
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }

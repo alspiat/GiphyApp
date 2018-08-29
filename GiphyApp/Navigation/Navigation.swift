@@ -15,6 +15,7 @@ import UIKit
     
     override init() {
         self.navigationController = UINavigationController()
+        self.navigationController.navigationBar.barTintColor = .black
         self.transitionManager = CircularControllerTransition()
         self.currentCenterPoint = CGPoint.zero
         super.init()
@@ -54,7 +55,7 @@ extension Navigation: UIViewControllerTransitioningDelegate {
     
         self.transitionManager.transitionMode = .present
         self.transitionManager.startingPoint = self.currentCenterPoint
-        self.transitionManager.circleColor = UIColor.white
+        self.transitionManager.circleColor = UIColor.black
         return self.transitionManager
     }
     
@@ -62,7 +63,7 @@ extension Navigation: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.transitionManager.transitionMode = .dismiss
         self.transitionManager.startingPoint = self.currentCenterPoint
-        self.transitionManager.circleColor = UIColor.white
+        self.transitionManager.circleColor = UIColor.black
         return self.transitionManager;
     }
 }

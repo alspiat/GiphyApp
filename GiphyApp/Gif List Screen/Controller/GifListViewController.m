@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
