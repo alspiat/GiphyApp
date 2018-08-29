@@ -39,7 +39,7 @@ import UIKit
     }
     
     
-/////////////////////////////////\\\\\Dimas\\\\\\\\\\///////////////////////////////////
+
     public func showGifDetail(with gifEntity: GifEntity ,and centerPoint:CGPoint) {
         self.currentCenterPoint = centerPoint
         self.transitionManager.startingPoint = self.currentCenterPoint
@@ -81,4 +81,4 @@ extension Navigation: UIViewControllerTransitioningDelegate {
         return self.transitionManager;
     }
 }
-/////////////////////////////////\\\\\Dimas\\\\\\\\\\///////////////////////////////////
+

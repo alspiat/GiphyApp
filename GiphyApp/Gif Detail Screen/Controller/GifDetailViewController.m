@@ -63,7 +63,7 @@
     self.adaptiveHeightGifConstraint.constant =  self.view.frame.size.width * self.viewModel.gifEntity.originImage.height /self.viewModel.gifEntity.originImage.width;
     //labels
     self.titleGifLabel.text = self.viewModel.gifEntity.title.capitalizedString;
-    self.publicationDateGifLabel.text = [NSDateFormatter localizedStringFromDate:self.viewModel.gifEntity.publishingDate dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    //self.publicationDateGifLabel.text = self.viewModel.gifEntity.publishingDate
     //buttons
     self.activityIndicator.hidesWhenStopped = YES;
     self.shareButton.hidden = YES;
@@ -125,17 +125,23 @@
 
 - (IBAction)saveActionHandler:(id)sender {
     //add alert with action sheet
-    UIAlertController * alertWithActionSheet = [UIAlertController alertControllerWithTitle:nil
-                                                                     message: @"GIF was saved"
-                                                              preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController * alertWithActionSheet =
+    [UIAlertController alertControllerWithTitle:nil
+                                        message: @"GIF was saved"
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *actionSaveToDevice = [UIAlertAction actionWithTitle:@"Save on device" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *actionSaveToDevice = [UIAlertAction actionWithTitle:@"Save on device"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:^(UIAlertAction * _Nonnull action) {
         //save on device
         UIImageWriteToSavedPhotosAlbum(self.gifView.image, nil, nil, nil);
-
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saved" message:@"Save GIF to camera roll" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saved"
+                                                                       message:@"Save GIF to camera roll"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         [self presentViewController:alert animated:YES completion:nil];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil];
+                                                                   
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel
+                                                             handler:nil];
         [alert addAction:cancelAction];
     }];
     
