@@ -188,8 +188,8 @@
 			children = (
 				9A3DD09E21307AF8005375F5 /* APIService.swift */,
 				9A3DD0A021307B58005375F5 /* APITypes.swift */,
-				9AF2FCBC2135B26200347C36 /* NetworkCancelable.swift */,
 				9AF2FCBF2135B79F00347C36 /* APIParsing.swift */,
+				9AF2FCBC2135B26200347C36 /* NetworkCancelable.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";

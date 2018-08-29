@@ -25,7 +25,9 @@ static NSString * const dataType = @"gif";
         return nil;
     } else {
         APIService *service = APIService.shared;
-        id<NetworkCancelable> dataTask = [service fetchDataWithStringURL:gifImage.url completionHandler:^(NSData *data) {
+        NSURL *url = [NSURL URLWithString:gifImage.url];
+        
+        id<NetworkCancelable> dataTask = [service fetchDataWithURL:url completionHandler:^(NSData *data) {
             UIImage *image = [UIImage animatedImageWithData:data];
             if (saving) {
                 [fileManager createFile:filename data:data folder:folderPath];
