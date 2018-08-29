@@ -11,9 +11,6 @@
 #import "GifListViewController+SearchTextField.h"
 #import "GifCollectionViewCell.h"
 
-//importing
-#import "GifDetailViewController.h"
-
 @interface GifListViewController ()
 
 @property (readwrite, weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -43,7 +40,7 @@
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
     
-    UIView *paddingView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 15, self.searchTextField.frame.size.height)];
+    UIView *paddingView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 10, self.searchTextField.frame.size.height)];
     self.searchTextField.leftView = paddingView;
     self.searchTextField.leftViewMode = UITextFieldViewModeAlways;
     self.searchTextField.delegate = self;
@@ -73,7 +70,9 @@
 }
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
-    [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
+    if (![self.searchTextField.text isEqualToString:@""]) {
+        [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
+    }
 }
 
 
