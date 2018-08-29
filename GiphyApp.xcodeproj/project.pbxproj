@@ -27,6 +27,10 @@
 		9A3DD094213071E5005375F5 /* GifCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */; };
 		9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD09E21307AF8005375F5 /* APIService.swift */; };
 		9A3DD0A121307B58005375F5 /* APITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0A021307B58005375F5 /* APITypes.swift */; };
+		9A91FF982136AE500012F072 /* GifSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A91FF972136AE500012F072 /* GifSearchViewModel.swift */; };
+		9A91FF9A2136AF480012F072 /* ControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A91FF992136AF480012F072 /* ControllerViewModel.swift */; };
+		9A91FF9F2136C3D70012F072 /* GifListViewController+CollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A91FF9E2136C3D70012F072 /* GifListViewController+CollectionView.m */; };
+		9A91FFA22136C3E70012F072 /* GifListViewController+SearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A91FFA12136C3E70012F072 /* GifListViewController+SearchTextField.m */; };
 		9AC153062133E6A4000CE838 /* UIImage+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC153052133E6A4000CE838 /* UIImage+Animated.swift */; };
 		9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC153092133E6B3000CE838 /* UIColor+AppColor.m */; };
 		9AC1530D2133E6BF000CE838 /* GifTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1530B2133E6BF000CE838 /* GifTypes.swift */; };
@@ -77,6 +81,12 @@
 		9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9A3DD09E21307AF8005375F5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		9A3DD0A021307B58005375F5 /* APITypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypes.swift; sourceTree = "<group>"; };
+		9A91FF972136AE500012F072 /* GifSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifSearchViewModel.swift; sourceTree = "<group>"; };
+		9A91FF992136AF480012F072 /* ControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerViewModel.swift; sourceTree = "<group>"; };
+		9A91FF9D2136C3D70012F072 /* GifListViewController+CollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifListViewController+CollectionView.h"; sourceTree = "<group>"; };
+		9A91FF9E2136C3D70012F072 /* GifListViewController+CollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifListViewController+CollectionView.m"; sourceTree = "<group>"; };
+		9A91FFA02136C3E70012F072 /* GifListViewController+SearchTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifListViewController+SearchTextField.h"; sourceTree = "<group>"; };
+		9A91FFA12136C3E70012F072 /* GifListViewController+SearchTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifListViewController+SearchTextField.m"; sourceTree = "<group>"; };
 		9AC153052133E6A4000CE838 /* UIImage+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Animated.swift"; path = "GiphyApp/Helpers/UIImage+Animated.swift"; sourceTree = SOURCE_ROOT; };
 		9AC153082133E6B3000CE838 /* UIColor+AppColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+AppColor.h"; path = "GiphyApp/Helpers/Color/UIColor+AppColor.h"; sourceTree = SOURCE_ROOT; };
 		9AC153092133E6B3000CE838 /* UIColor+AppColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+AppColor.m"; path = "GiphyApp/Helpers/Color/UIColor+AppColor.m"; sourceTree = SOURCE_ROOT; };
@@ -135,6 +145,7 @@
 				9A3DD081213060B1005375F5 /* Navigation */,
 				9A3DD060213049DD005375F5 /* Gif List Screen */,
 				9A3DD061213049E7005375F5 /* Gif Detail Screen */,
+				9A91FF94213697220012F072 /* Gif Search Screen */,
 				9A3DD05F213049CE005375F5 /* Model */,
 				9A3DD062213049F5005375F5 /* Network Service */,
 				9A3DD0402130489E005375F5 /* Main.storyboard */,
@@ -168,9 +179,9 @@
 		9A3DD060213049DD005375F5 /* Gif List Screen */ = {
 			isa = PBXGroup;
 			children = (
+				9A91FFA32136C9080012F072 /* ViewModels */,
 				9A3DD0872130681C005375F5 /* Controller */,
 				9A3DD08821306827005375F5 /* Cell */,
-				9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */,
 			);
 			path = "Gif List Screen";
 			sourceTree = "<group>";
@@ -214,10 +225,14 @@
 		9A3DD0872130681C005375F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9A3DD0752130548F005375F5 /* GifListViewController.xib */,
 				9A3DD0732130548F005375F5 /* GifListViewController.h */,
 				9A3DD0742130548F005375F5 /* GifListViewController.m */,
-				9A3DD0752130548F005375F5 /* GifListViewController.xib */,
-				9A3DD0782130552B005375F5 /* GifListViewModel.swift */,
+				9A91FF9D2136C3D70012F072 /* GifListViewController+CollectionView.h */,
+				9A91FF9E2136C3D70012F072 /* GifListViewController+CollectionView.m */,
+				9A91FFA02136C3E70012F072 /* GifListViewController+SearchTextField.h */,
+				9A91FFA12136C3E70012F072 /* GifListViewController+SearchTextField.m */,
+				9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,7 +243,6 @@
 				9A3DD08921306846005375F5 /* GifCollectionViewCell.h */,
 				9A3DD08A21306846005375F5 /* GifCollectionViewCell.m */,
 				9A3DD08B21306846005375F5 /* GifCollectionViewCell.xib */,
-				9A3DD08E21306E24005375F5 /* GifCellViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -242,6 +256,24 @@
 				9A3DD07F2130601B005375F5 /* GifDetailViewModel.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A91FF94213697220012F072 /* Gif Search Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9A91FF972136AE500012F072 /* GifSearchViewModel.swift */,
+				9A91FF992136AF480012F072 /* ControllerViewModel.swift */,
+			);
+			path = "Gif Search Screen";
+			sourceTree = "<group>";
+		};
+		9A91FFA32136C9080012F072 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DD0782130552B005375F5 /* GifListViewModel.swift */,
+				9A3DD08E21306E24005375F5 /* GifCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		9AC153042133E696000CE838 /* Extensions */ = {
@@ -395,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A91FF982136AE500012F072 /* GifSearchViewModel.swift in Sources */,
 				9AC153062133E6A4000CE838 /* UIImage+Animated.swift in Sources */,
 				9A3DD0762130548F005375F5 /* GifListViewController.m in Sources */,
 				9AC1531521343B76000CE838 /* Date+FormattedString.swift in Sources */,
@@ -414,8 +447,11 @@
 				9AF2FCBD2135B26200347C36 /* NetworkCancelable.swift in Sources */,
 				9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */,
 				9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */,
+				9A91FF9A2136AF480012F072 /* ControllerViewModel.swift in Sources */,
 				9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */,
 				9AF2FCB421354BA400347C36 /* DataManager.m in Sources */,
+				9A91FFA22136C3E70012F072 /* GifListViewController+SearchTextField.m in Sources */,
+				9A91FF9F2136C3D70012F072 /* GifListViewController+CollectionView.m in Sources */,
 				9A3DD08F21306E24005375F5 /* GifCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

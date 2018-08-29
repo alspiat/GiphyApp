@@ -7,19 +7,21 @@
 //
 
 #import "GifListViewController.h"
+#import "GifListViewController+CollectionView.h"
+#import "GifListViewController+SearchTextField.h"
 #import "GifCollectionViewCell.h"
-#import "GiphyApp-Swift.h"
 
-@interface GifListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GifCollectionViewLayoutDelegate>
+@interface GifListViewController ()
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property(nonatomic, strong) GifListViewModel *viewModel;
+@property (readwrite, weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (readwrite, weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (readwrite, nonatomic, strong) id<ControllerViewModel> viewModel;
 
 @end
 
 @implementation GifListViewController
 
-- (instancetype)initWithViewModel:(GifListViewModel *)viewModel {
+- (instancetype)initWithViewModel:(id<ControllerViewModel>)viewModel {
     self = [super init];
     if (self) {
         self.viewModel = viewModel;
@@ -30,11 +32,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = self.viewModel.title;
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
     
+    UIView *paddingView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 15, self.searchTextField.frame.size.height)];
+    self.searchTextField.leftView = paddingView;
+    self.searchTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.searchTextField.delegate = self;
+
     [self.collectionView registerNib:[UINib nibWithNibName:gifCellNibName bundle:NSBundle.mainBundle] forCellWithReuseIdentifier:gifCellIdentifier];
     
     [self bindToViewModel];
@@ -59,33 +68,8 @@
 //    [self.collectionView reloadData];
 }
 
-// MARK: - Collection View DataSource methods
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.viewModel.numberOfRows;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gifCellIdentifier forIndexPath:indexPath];
-    [cell setup:[self.viewModel viewModelForCellAt:indexPath.row]];
-    
-    [self.viewModel loadDataIfNeededFromIndex:indexPath.row];
-    
-    return cell;
-}
-
-// MARK: - Collection View Delegate methods
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-
-// MARK: - GifCollectionViewLayout Delegate methods
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView heightForContentAtIndexPath:(NSIndexPath *)indexPath {
-    GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
-    CGSize contentSize = [self.viewModel contentSizeAt:indexPath.row];
-    return contentSize.height * layout.columnWidth / contentSize.width;
+- (IBAction)searchButtonTapped:(UIButton *)sender {
+    [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
 }
 
 @end

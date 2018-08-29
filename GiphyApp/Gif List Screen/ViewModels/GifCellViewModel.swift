@@ -28,10 +28,12 @@ import UIKit
     }
     
     func startImageLoading() {
-        self.loadingTask = DataManager.loadPreviewImage(gifEntity) { (image) in
+        self.loadingTask = DataManager.loadPreviewImageData(gifEntity) { (data) in
             DispatchQueue.main.async {
-                self.image = image
-                self.didUpdate()
+                if let image = UIImage.animatedImage(data: data!) {
+                    self.image = image;
+                    self.didUpdate()
+                }
             }
         }
     }

@@ -8,16 +8,32 @@
 
 import UIKit
 
-class Navigation: NSObject {
+@objcMembers class Navigation: NSObject {
+    
+    static let shared = Navigation()
     public let navigationController: UINavigationController
     
-    override init() {
+    private override init() {
         self.navigationController = UINavigationController()
+        
+        let attributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.white
+        ]
+        self.navigationController.navigationBar.titleTextAttributes = attributes
+        self.navigationController.navigationBar.barTintColor = UIColor.black
+        self.navigationController.navigationBar.isTranslucent = false
+        
         super.init()
     }
     
     public func showGifList() {
         let viewModel = GifListViewModel()
+        let gifListViewController = GifListViewController(viewModel: viewModel)
+        self.navigationController.pushViewController(gifListViewController!, animated: true)
+    }
+    
+    public func showGifSearch(query: String) {
+        let viewModel = GifSearchViewModel(query: query)
         let gifListViewController = GifListViewController(viewModel: viewModel)
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
