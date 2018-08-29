@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213C10C2135B126002100E6 /* TransitionManger.swift */; };
+		6252E8AA2136CF2F00042E0C /* GifListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6252E8A92136CF2E00042E0C /* GifListViewController.xib */; };
 		9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03C2130489E005375F5 /* AppDelegate.swift */; };
 		9A3DD0422130489E005375F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0402130489E005375F5 /* Main.storyboard */; };
 		9A3DD0452130489E005375F5 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD0432130489E005375F5 /* GiphyApp.xcdatamodeld */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		3213C10C2135B126002100E6 /* TransitionManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManger.swift; sourceTree = "<group>"; };
+		6252E8A92136CF2E00042E0C /* GifListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GifListViewController.xib; sourceTree = "<group>"; };
 		9A3DD0392130489E005375F5 /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD03C2130489E005375F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3DD0412130489E005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				9A3DD0732130548F005375F5 /* GifListViewController.h */,
 				9A3DD0742130548F005375F5 /* GifListViewController.m */,
+				6252E8A92136CF2E00042E0C /* GifListViewController.xib */,
 				9A91FF9D2136C3D70012F072 /* GifListViewController+CollectionView.h */,
 				9A91FF9E2136C3D70012F072 /* GifListViewController+CollectionView.m */,
 				9A91FFA02136C3E70012F072 /* GifListViewController+SearchTextField.h */,
@@ -409,6 +412,7 @@
 				9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */,
 				9A3DD08D21306846005375F5 /* GifCollectionViewCell.xib in Resources */,
 				9A3DD0422130489E005375F5 /* Main.storyboard in Resources */,
+				6252E8AA2136CF2F00042E0C /* GifListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

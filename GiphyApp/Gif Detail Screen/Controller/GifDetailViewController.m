@@ -105,7 +105,7 @@
 //MARK: - Actions
 
 - (IBAction)dismissActionHandler:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)shareActionHandler:(id)sender {

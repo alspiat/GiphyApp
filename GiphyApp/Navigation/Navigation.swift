@@ -40,7 +40,7 @@ import UIKit
     
     
 /////////////////////////////////\\\\\Dimas\\\\\\\\\\///////////////////////////////////
-    public func showGifDetail(with gifEntity: GifEntity ,and centerPoint:CGPoint, presentingController: UIViewController) {
+    public func showGifDetail(with gifEntity: GifEntity ,and centerPoint:CGPoint) {
         self.currentCenterPoint = centerPoint
         self.transitionManager.startingPoint = self.currentCenterPoint
         
@@ -51,7 +51,7 @@ import UIKit
         gifDetailViewController?.modalPresentationStyle = .custom
         gifDetailViewController?.transitioningDelegate = self;
         //        self.navigationController.present(gifDetailViewController!, animated: true, completion: nil)
-        //presentingController.present(gifDetailViewController!, animated: true, completion: nil)
+        self.navigationController.viewControllers[0].present(gifDetailViewController!, animated: true, completion: nil)
     }
 
     public func showGifSearch(query: String) {

@@ -72,50 +72,8 @@
 //    [self.collectionView reloadData];
 }
 
-// MARK: - Collection View DataSource methods
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.viewModel.numberOfRows;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gifCellIdentifier forIndexPath:indexPath];
-    [cell setup:[self.viewModel viewModelForCellAt:indexPath.row]];
-    
-    [self.viewModel loadDataIfNeededFromIndex:indexPath.row];
-    
-    return cell;
-}
-
-// MARK: - GifCollectionViewLayout Delegate methods
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView heightForContentAtIndexPath:(NSIndexPath *)indexPath {
-    GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
-    CGSize contentSize = [self.viewModel contentSizeAt:indexPath.row];
-    return contentSize.height * layout.columnWidth / contentSize.width;
-}
-
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
-}
-
-
-
-
-
-/////////////////////////////////\\\\\Dimas\\\\\\\\\\///////////////////////////////////
-
-// MARK: GifCollectionViewDelegeta
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    GifCollectionViewCell * cell = (GifCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    //points
-    CGPoint newPoint =
-    [collectionView convertPoint: cell.center toView:self.view];
-   
-    //second controller
-    [Navigation.shared showGifDetailWith:cell.viewModel.gifEntity and:newPoint presentingController:self];
-   
 }
 
 
