@@ -7,23 +7,25 @@
 //
 
 #import "GifListViewController.h"
+#import "GifListViewController+CollectionView.h"
+#import "GifListViewController+SearchTextField.h"
 #import "GifCollectionViewCell.h"
-#import "GiphyApp-Swift.h"
 
 //importing
 #import "GifDetailViewController.h"
 
-@interface GifListViewController () <UICollectionViewDataSource, UICollectionViewDelegate, GifCollectionViewLayoutDelegate>
+@interface GifListViewController ()
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property(nonatomic, strong) GifListViewModel *viewModel;
+@property (readwrite, weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (readwrite, weak, nonatomic) IBOutlet UITextField *searchTextField;
+@property (readwrite, nonatomic, strong) id<ControllerViewModel> viewModel;
 
 
 @end
 
 @implementation GifListViewController
 
-- (instancetype)initWithViewModel:(GifListViewModel *)viewModel {
+- (instancetype)initWithViewModel:(id<ControllerViewModel>)viewModel {
     self = [super init];
     if (self) {
         self.viewModel = viewModel;
@@ -33,11 +35,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = self.viewModel.title;
+
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
     
+    UIView *paddingView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 15, self.searchTextField.frame.size.height)];
+    self.searchTextField.leftView = paddingView;
+    self.searchTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.searchTextField.delegate = self;
+
     [self.collectionView registerNib:[UINib nibWithNibName:gifCellNibName bundle:NSBundle.mainBundle] forCellWithReuseIdentifier:gifCellIdentifier];
     
     [self bindToViewModel];
@@ -85,6 +95,10 @@
     return contentSize.height * layout.columnWidth / contentSize.width;
 }
 
+- (IBAction)searchButtonTapped:(UIButton *)sender {
+    [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
+}
+
 
 
 
@@ -100,8 +114,7 @@
     [collectionView convertPoint: cell.center toView:self.view];
    
     //second controller
-    Navigation* nav = [[Navigation alloc] init];
-    [nav showGifDetailWith:cell.viewModel.gifEntity and:newPoint presentingController:self];
+    [Navigation.shared showGifDetailWith:cell.viewModel.gifEntity and:newPoint presentingController:self];
    
 }
 

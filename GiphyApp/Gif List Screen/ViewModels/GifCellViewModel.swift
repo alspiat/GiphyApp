@@ -10,7 +10,7 @@ import UIKit
 
 @objcMembers class GifCellViewModel: NSObject {
     
-    private var loadingTask: URLSessionDataTask?
+    private var loadingTask: NetworkCancelable?
     
     var gifEntity: GifEntity
     var image: UIImage?
@@ -28,10 +28,12 @@ import UIKit
     }
     
     func startImageLoading() {
-        self.loadingTask = DataManager.loadPreviewImage(gifEntity) { (image) in
+        self.loadingTask = DataManager.loadPreviewImageData(gifEntity) { (data) in
             DispatchQueue.main.async {
-                self.image = image
-                self.didUpdate()
+                if let image = UIImage.animatedImage(data: data!) {
+                    self.image = image;
+                    self.didUpdate()
+                }
             }
         }
     }

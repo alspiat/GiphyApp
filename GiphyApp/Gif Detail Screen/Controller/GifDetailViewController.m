@@ -57,14 +57,26 @@
 -(void)setupViews {
     //activity indicator
     [self.activityIndicator startAnimating];
-    self.activityIndicator.hidesWhenStopped = YES;
+    
     //adaptiveConstraint
+    
     self.adaptiveHeightGifConstraint.constant =  self.view.frame.size.width * self.viewModel.gifEntity.originImage.height /self.viewModel.gifEntity.originImage.width;
     //labels
     self.titleGifLabel.text = self.viewModel.gifEntity.title.capitalizedString;
     self.publicationDateGifLabel.text = [NSDateFormatter localizedStringFromDate:self.viewModel.gifEntity.publishingDate dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
     //buttons
-    self.dismissButton.layer.cornerRadius = self.dismissButton.frame.size.width / 2;
+    self.activityIndicator.hidesWhenStopped = YES;
+    self.shareButton.hidden = YES;
+    self.shareButton.userInteractionEnabled = NO;
+    self.saveButton.hidden = YES;
+    self.saveButton.userInteractionEnabled = NO;
+    
+    CGFloat buttonRadius = self.dismissButton.frame.size.width / 2;
+    self.dismissButton.layer.cornerRadius  = buttonRadius;
+    self.dismissButton.layer.shadowColor   = UIColor.blackColor.CGColor;
+    self.dismissButton.layer.shadowOffset  = CGSizeMake(0, 0);
+    self.dismissButton.layer.shadowRadius  = buttonRadius;
+    self.dismissButton.layer.shadowOpacity = 5;
 }
 
 //MARK: - Binding
@@ -80,6 +92,11 @@
     [UIView transitionWithView:self.gifView duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.activityIndicator stopAnimating];
         self.gifView.image = self.viewModel.gifImage;
+        
+        self.shareButton.hidden = NO;
+        self.shareButton.userInteractionEnabled = YES;
+        self.saveButton.hidden = NO;
+        self.saveButton.userInteractionEnabled = YES;
     } completion:nil];
 }
 

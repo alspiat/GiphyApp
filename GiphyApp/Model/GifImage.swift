@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objcMembers class GifImage: NSObject {
+@objcMembers class GifImage: NSObject, JSONDecodable {
     var url: String
     var size: Int?
     var height: Int
     var width: Int
     
-    init?(JSON: JSON) {
+    required init?(JSON: JSON) {
         
         // Required values
         guard let url = JSON["url"] as? String,

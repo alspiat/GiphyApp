@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class GifListViewModel;
+@protocol ControllerViewModel;
 
 @interface GifListViewController : UIViewController
 
-- (instancetype)initWithViewModel:(GifListViewModel *)viewModel;
+@property (readonly, weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (readonly, nonatomic, strong) id<ControllerViewModel> viewModel;
+@property (readonly, weak, nonatomic) IBOutlet UITextField *searchTextField;
+
+- (instancetype)initWithViewModel:(id<ControllerViewModel>)viewModel;
 
 @end

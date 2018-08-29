@@ -8,9 +8,17 @@
 
 import UIKit
 
-@objcMembers class GifListViewModel: NSObject {
+@objcMembers class GifListViewModel: NSObject, ControllerViewModel {
     
     private var gifEntities = [GifEntity]()
+    
+    var numberOfRows: Int {
+        return gifEntities.count
+    }
+    
+    var title: String {
+        return "Trending"
+    }
     
     public var didUpdate: (() -> Void) = {}
     
@@ -45,10 +53,6 @@ import UIKit
     func contentSize(at index: Int) -> CGSize {
         let image = gifEntities[index].previewImage
         return CGSize(width: image.width, height: image.height)
-    }
-    
-    func numberOfRows() -> Int {
-        return gifEntities.count
     }
     
 }

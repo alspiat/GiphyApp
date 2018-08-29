@@ -47,7 +47,7 @@ import UIKit
         return urlComponents.url
     }
     
-    private func fetchGifs(url: URL, completionHandler: @escaping (APIResult<[GifEntity]>) -> Void) {
+    private func fetchGifs<T: JSONDecodable>(url: URL, completionHandler: @escaping (APIResult<[T]>) -> Void) {
         session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 return completionHandler(.Failure(.ConnectionFailed(error)))
@@ -59,17 +59,17 @@ import UIKit
             
             if let json = try? JSONSerialization.jsonObject(with: data, options: []),
                 let dictionary = json as? JSON,
-                let gifsData = dictionary["data"] as? [JSON] {
+                let jsonData = dictionary["data"] as? [JSON] {
                 
-                var gifEntities = [GifEntity]()
+                var entities = [T]()
                 
-                for gifData in gifsData {
-                    if let gifEntity = GifEntity(JSON: gifData) {
-                        gifEntities.append(gifEntity)
+                for entityData in jsonData {
+                    if let entity = T(JSON: entityData) {
+                        entities.append(entity)
                     }
                 }
                 
-                return completionHandler(.Success(gifEntities))
+                return completionHandler(.Success(entities))
             } else {
                return completionHandler(.Failure(.InvalidDataFormat))
             }
@@ -77,8 +77,8 @@ import UIKit
         }.resume()
     }
     
-    func fetchData(stringURL: String, completionHandler: @escaping (Data) -> Void) -> URLSessionDataTask? {
-        guard let url = URL(string: stringURL) else {
+    @objc func fetchData(URL: URL?, completionHandler: @escaping (Data) -> Void) -> NetworkCancelable? {
+        guard let url = URL else {
             return nil
         }
         

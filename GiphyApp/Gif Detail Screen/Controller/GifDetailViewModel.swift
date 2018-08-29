@@ -20,9 +20,9 @@ import UIKit
     
     ///update
     public func loadGif() {
-        DataManager.loadOriginalImage(self.gifEntity) { (image) in
+        DataManager.loadOriginalImageData(self.gifEntity) { (data) in
             DispatchQueue.main.async {
-                self.gifImage = image
+                self.gifImage = UIImage.animatedImage(data: data!)
                 self.didUpdate()
             }
         }

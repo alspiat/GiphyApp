@@ -9,19 +9,28 @@
 import UIKit
 
 @objcMembers class Navigation: NSObject {
+
+    static let shared = Navigation()
+    
     public let navigationController: UINavigationController
     public let transitionManager:CircularControllerTransition
     private var currentCenterPoint: CGPoint
     
-    override init() {
+    private override init() {
         self.navigationController = UINavigationController()
-        self.navigationController.navigationBar.barTintColor = .black
         self.transitionManager = CircularControllerTransition()
         self.currentCenterPoint = CGPoint.zero
+
+        
+        let attributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.white
+        ]
+        self.navigationController.navigationBar.titleTextAttributes = attributes
+        self.navigationController.navigationBar.barTintColor = UIColor.black
+        self.navigationController.navigationBar.isTranslucent = false
+        
         super.init()
     }
-    
-    
     
     public func showGifList() {
         let viewModel = GifListViewModel()
@@ -41,9 +50,14 @@ import UIKit
         
         gifDetailViewController?.modalPresentationStyle = .custom
         gifDetailViewController?.transitioningDelegate = self;
-//        self.navigationController.present(gifDetailViewController!, animated: true, completion: nil)
-        presentingController.present(gifDetailViewController!, animated: true, completion: nil)
-        
+        //        self.navigationController.present(gifDetailViewController!, animated: true, completion: nil)
+        //presentingController.present(gifDetailViewController!, animated: true, completion: nil)
+    }
+
+    public func showGifSearch(query: String) {
+        let viewModel = GifSearchViewModel(query: query)
+        let gifListViewController = GifListViewController(viewModel: viewModel)
+        self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
 }
 
