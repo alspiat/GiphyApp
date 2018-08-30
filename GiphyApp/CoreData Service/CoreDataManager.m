@@ -17,9 +17,10 @@
 
 
 - (void)addItem:(GifEntity *)item {
-    GifManagedObjectEntity *itemMO = [[GifManagedObjectEntity alloc] initWithItem:item context: [self appDelegate].persistentContainer.viewContext];
+    GifManagedObjectEntity *itemMO = [[GifManagedObjectEntity alloc] initWithItem:item context: [self appDelegate].persistentContainer.newBackgroundContext];
     [[self appDelegate].persistentContainer.viewContext insertObject:itemMO];
     
+    //checking existance
     //context saving
     [[self appDelegate] saveContext];
 }
@@ -29,7 +30,7 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:gifEntityName];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id == %@", item.id];
     
-    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
+    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.newBackgroundContext executeFetchRequest:fetchRequest error:nil];
     
     if (!itemMOArray.firstObject) {
         return;
@@ -71,10 +72,9 @@
 - (BOOL)itemExistsWithID:(NSString *)itemID {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:gifEntityName];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id == %@", itemID];
-    
-    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
-    
-    if (itemMOArray.count > 0) {
+//    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.newBackgroundContext executeFetchRequest:fetchRequest error:nil];
+   
+    if ( [[self appDelegate].persistentContainer.viewContext countForFetchRequest:fetchRequest error:nil] > 0) {
         return YES;
     } else {
         return NO;
