@@ -8,3 +8,5 @@
 
 #import "UIColor+AppColor.h"
 #import "DataManager.h"
+#import "GifManagedObjectImage+CoreDataClass.h"
+#import "GifManagedObjectEntity+CoreDataClass.h"
