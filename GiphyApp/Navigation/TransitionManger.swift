@@ -126,6 +126,8 @@ extension CircularControllerTransition: UIViewControllerAnimatedTransitioning {
         let offsetVector = sqrt(xLength * xLength + yLength * yLength) * 2
         let size = CGSize(width: offsetVector, height: offsetVector)
         
+        print("viewCenter\(viewCenter),viewSize\(viewSize),startPoint\(startPoint),size\(size)")
+        
         return CGRect(origin: CGPoint.zero, size: size)
     }
     

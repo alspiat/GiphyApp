@@ -135,7 +135,8 @@
     };
     
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        activityVC.popoverPresentationController.sourceView = self.view;
+        activityVC.popoverPresentationController.sourceView = self.shareButton;
+        activityVC.popoverPresentationController.sourceRect = self.shareButton.bounds;
     }
     
     [self presentViewController:activityVC animated:YES completion:nil];
