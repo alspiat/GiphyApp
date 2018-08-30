@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GiphyApp-Swift.h"
+
+@class GifEntity;
 
 @protocol CoreDataManager
 - (NSArray<GifEntity *> *)getAllItems;

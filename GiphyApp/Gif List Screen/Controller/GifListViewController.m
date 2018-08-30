@@ -47,6 +47,11 @@
 
     [self.collectionView registerNib:[UINib nibWithNibName:gifCellNibName bundle:NSBundle.mainBundle] forCellWithReuseIdentifier:gifCellIdentifier];
     
+    UIImage *buttonImage = [[UIImage imageNamed:@"bookmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.navigationItem.leftBarButtonItem setImage:buttonImage];
+    [self.navigationItem.leftBarButtonItem setTarget:self];
+    [self.navigationItem.leftBarButtonItem setAction:@selector(favouritesButtonTapped:)];
+    
     [self bindToViewModel];
     [self.viewModel loadDataIfNeededFromIndex:0];
 }
@@ -71,8 +76,12 @@
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     if (![self.searchTextField.text isEqualToString:@""]) {
-        [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
+        [Navigation.shared showSearchingGifsWithQuery:self.searchTextField.text];
     }
+}
+
+- (IBAction)favouritesButtonTapped:(UIBarButtonItem *)sender {
+    [Navigation.shared showFavouritesGifs];
 }
 
 

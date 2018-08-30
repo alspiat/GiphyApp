@@ -15,7 +15,7 @@ import UIKit
     
     private lazy var session: URLSession = {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 1
+        config.timeoutIntervalForRequest = 2
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
         

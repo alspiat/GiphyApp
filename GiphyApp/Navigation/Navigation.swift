@@ -32,8 +32,21 @@ import UIKit
         super.init()
     }
     
-    public func showGifList() {
+    public func showTrendingGifs() {
         let viewModel = GifTrendingViewModel()
+        let gifListViewController = GifListViewController(viewModel: viewModel)
+        gifListViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem()
+        self.navigationController.pushViewController(gifListViewController!, animated: true)
+    }
+    
+    public func showFavouritesGifs() {
+        let viewModel = GifFavouritesViewModel()
+        let gifListViewController = GifListViewController(viewModel: viewModel)
+        self.navigationController.pushViewController(gifListViewController!, animated: true)
+    }
+    
+    public func showSearchingGifs(query: String) {
+        let viewModel = GifSearchViewModel(query: query)
         let gifListViewController = GifListViewController(viewModel: viewModel)
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
@@ -50,12 +63,6 @@ import UIKit
         gifDetailViewController?.transitioningDelegate = self;
         //        self.navigationController.present(gifDetailViewController!, animated: true, completion: nil)
         self.navigationController.viewControllers[0].present(gifDetailViewController!, animated: true, completion: nil)
-    }
-
-    public func showGifSearch(query: String) {
-        let viewModel = GifSearchViewModel(query: query)
-        let gifListViewController = GifListViewController(viewModel: viewModel)
-        self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
 }
 

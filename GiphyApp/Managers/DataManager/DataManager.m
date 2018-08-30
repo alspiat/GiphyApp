@@ -50,10 +50,10 @@ static NSString * const dataType = @"gif";
     NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
     
     if (isPreview) {
-        [self loadImageData:gifEntity.originImage withName:filename folder: AppFileManager.previewsPath saving:NO completionHandler:completionHandler];
+        [self loadImageData:gifEntity.originalImage withName:filename folder: AppFileManager.previewsPath saving:NO completionHandler:completionHandler];
     }
     
-    return [self loadImageData:gifEntity.originImage withName:filename folder: AppFileManager.originalsPath saving:NO completionHandler:completionHandler];
+    return [self loadImageData:gifEntity.originalImage withName:filename folder: AppFileManager.originalsPath saving:NO completionHandler:completionHandler];
 }
 
 @end

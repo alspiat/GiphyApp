@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="GifManagedObjectEntity" representedClassName="GifManagedObjectEntity" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="publishingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="rating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trendingDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="originalImage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GifManagedObjectImage" syncable="YES"/>
-        <relationship name="previewImage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="GifManagedObjectImage" syncable="YES"/>
+        <relationship name="originalImage" maxCount="1" deletionRule="Cascade" destinationEntity="GifManagedObjectImage" syncable="YES"/>
+        <relationship name="previewImage" maxCount="1" deletionRule="Cascade" destinationEntity="GifManagedObjectImage" syncable="YES"/>
     </entity>
     <entity name="GifManagedObjectImage" representedClassName="GifManagedObjectImage" syncable="YES">
-        <attribute name="height" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="localURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="webURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="width" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="height" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <attribute name="width" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GifManagedObjectEntity" positionX="-27" positionY="18" width="128" height="30"/>
-        <element name="GifManagedObjectImage" positionX="18" positionY="63" width="128" height="30"/>
+        <element name="GifManagedObjectEntity" positionX="-27" positionY="18" width="128" height="150"/>
+        <element name="GifManagedObjectImage" positionX="18" positionY="63" width="128" height="90"/>
     </elements>
 </model>

@@ -12,7 +12,7 @@
 @implementation GifListViewController (SearchTextField)
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [Navigation.shared showGifSearchWithQuery:self.searchTextField.text];
+    [Navigation.shared showSearchingGifsWithQuery:self.searchTextField.text];
     return YES;
 }
 

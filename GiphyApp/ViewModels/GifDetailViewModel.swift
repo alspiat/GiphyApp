@@ -14,9 +14,15 @@ import UIKit
     var gifImage: UIImage?
     
     var isAnimating: Bool = true
+    var isSaved: Bool = false
     
     init(gifEntity: GifEntity) {
         self.gifEntity = gifEntity
+        
+        let coreDataManager = CoreDataManager()
+        if coreDataManager.itemExists(withID: self.gifEntity.id) {
+            self.isSaved = true
+        }
     }
     
     public var didUpdate: (() -> Void) = {}
@@ -30,6 +36,37 @@ import UIKit
                 }
                 self.didUpdate()
             }
+        }
+    }
+    
+    public func saveToPersistance() -> Bool {
+        let coreDataManager = CoreDataManager()
+        let fileManager = AppFileManager()
+        
+        if let data = self.gifData {
+            let filename = "\(self.gifEntity.id).gif"
+            fileManager.createFile(filename, data: data, folder: AppFileManager.originalsPath)
+            coreDataManager.addItem(self.gifEntity)
+            self.isSaved = true
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    public func removeFromPersistance() -> Bool {
+        let coreDataManager = CoreDataManager()
+        let fileManager = AppFileManager()
+        
+        let filename = "\(self.gifEntity.id).gif"
+        let result = fileManager.removeFile(filename, folder: AppFileManager.originalsPath)
+        
+        if result {
+            coreDataManager.deleteItem(self.gifEntity)
+            self.isSaved = false
+            return true
+        } else {
+            return false
         }
     }
     

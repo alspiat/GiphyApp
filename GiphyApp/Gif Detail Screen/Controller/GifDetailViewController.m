@@ -8,6 +8,7 @@
 
 #import "GifDetailViewController.h"
 #import "NSDate+FormattedString.h"
+#import "CoreDataManager.h"
 #import "GiphyApp-Swift.h"
 
 @interface GifDetailViewController ()
@@ -62,7 +63,7 @@
     
     //adaptiveConstraint
     
-    self.adaptiveHeightGifConstraint.constant = self.viewModel.gifEntity.originImage.height * UIScreen.mainScreen.bounds.size.width / self.viewModel.gifEntity.originImage.width;
+    self.adaptiveHeightGifConstraint.constant = self.viewModel.gifEntity.originalImage.height * UIScreen.mainScreen.bounds.size.width / self.viewModel.gifEntity.originalImage.width;
     //labels
     self.titleGifLabel.text = self.viewModel.gifEntity.title.capitalizedString;
     self.publicationDateGifLabel.text = self.viewModel.gifEntity.publishingDate.formattedString;
@@ -74,13 +75,14 @@
         [self.trendingView setHidden:YES];
     }
     
+    if (self.viewModel.isSaved) {
+        [self.saveButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    } else {
+        [self.saveButton setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+    }
+    
     //buttons
     self.activityIndicator.hidesWhenStopped = YES;
-    
-    self.shareButton.hidden = YES;
-    self.shareButton.userInteractionEnabled = NO;
-    self.saveButton.hidden = YES;
-    self.saveButton.userInteractionEnabled = NO;
     
     CGFloat buttonRadius = self.dismissButton.frame.size.width / 2;
     self.dismissButton.layer.cornerRadius  = buttonRadius;
@@ -143,23 +145,37 @@
     
     activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
         if (completed && activityType == UIActivityTypeSaveToCameraRoll) {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Saving" message:@"GIF saved to camera roll" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-            [alert addAction:okAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self showInfoAlert:@"Saving" message:@"GIF saved to camera roll"];
         }
     };
     
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        activityVC.popoverPresentationController.sourceView = self.view;
+        activityVC.popoverPresentationController.sourceView = self.shareButton;
+        activityVC.popoverPresentationController.sourceRect = self.shareButton.bounds;
     }
     
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
+- (void)showInfoAlert:(NSString *)title message:(NSString *)message {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 - (IBAction)saveActionHandler:(id)sender {
-    // Add to CoreData
+    if (!self.viewModel.isSaved) {
+        if ([self.viewModel saveToPersistance]) {
+            [self.saveButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+            [self showInfoAlert:@"Saving" message:@"GIF saved to persistance"];
+        }
+    } else {
+        if ([self.viewModel removeFromPersistance]) {
+            [self.saveButton setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+            [self showInfoAlert:@"Removing" message:@"GIF removed from persistance"];
+        }
+    }
 }
 
 @end

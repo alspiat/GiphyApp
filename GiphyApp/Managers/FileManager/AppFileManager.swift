@@ -49,6 +49,23 @@ fileprivate let originalsDirectory = "Originals"
         return try? Data(contentsOf: url)
     }
     
+    func clearPreviewsCache(from rootDirectory: String) -> Bool {
+        do {
+            try self.fileManager.removeItem(atPath: AppFileManager.previewsPath)
+            return true
+        } catch {
+            return false
+        }
+    }
     
+    func removeFile(_ fileName: String, folder: String) -> Bool {
+        let filepath = self.getFullPath(folder: folder, filename: fileName)
+        do {
+            try self.fileManager.removeItem(atPath: filepath)
+            return true
+        } catch {
+            return false
+        }
+    }
     
 }

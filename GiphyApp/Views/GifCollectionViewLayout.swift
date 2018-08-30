@@ -35,7 +35,7 @@ class GifCollectionViewLayout: UICollectionViewLayout {
             return 0
         }
         let insets = collectionView.contentInset
-        return collectionView.bounds.width - (insets.left + insets.right)
+        return UIScreen.main.bounds.width - (insets.left + insets.right)
     }
     
     @objc var columnWidth: CGFloat {

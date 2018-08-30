@@ -8,15 +8,16 @@
 
 import Foundation
 
-@objcMembers class GifEntity: NSObject, JSONDecodable {
-    var id: String?
+@objcMembers class GifEntity: NSObject, JSONDecodable, GifModel {
+    
+    var id: String
     var title: String?
     var username: String?
     var publishingDate: Date?
     var trendingDate: Date?
     var rating: GifRatingType = .unrated
-    var originImage: GifImage?
-    var previewImage: GifImage?
+    var originalImage: GifImageModel
+    var previewImage: GifImageModel
     
     required init?(JSON: JSON) {
         
@@ -32,7 +33,7 @@ import Foundation
         }
         
         self.id = id
-        self.originImage = originalImage
+        self.originalImage = originalImage
         self.previewImage = previewImage
         
         // Optional values
@@ -64,17 +65,19 @@ import Foundation
     //MARK: - MamagedObjectInit
     init?(with managedObject: GifManagedObjectEntity) {
         guard let titleMO       = managedObject.title,
-           let usernameMO       = managedObject.username,
-           let publishingDateMO = managedObject.publishingDate,
-           let trendingDateMO   = managedObject.trendingDate,
-           let originalImageMO  = managedObject.originalImage,
-           let previewImageMO   = managedObject.previewImage  else {return nil}
+            let usernameMO       = managedObject.username,
+            let publishingDateMO = managedObject.publishingDate,
+            let trendingDateMO   = managedObject.trendingDate else {
+            return nil
             
-            self.title = titleMO
-            self.username = usernameMO
-            self.publishingDate = publishingDateMO
-            self.trendingDate = trendingDateMO
-            self.originImage = GifImage(with: originalImageMO)!
-            self.previewImage = GifImage(with: previewImageMO)!
+        }
+        
+        self.id = managedObject.id
+        self.title = titleMO
+        self.username = usernameMO
+        self.publishingDate = publishingDateMO
+        self.trendingDate = trendingDateMO
+        self.originalImage = GifImage(with: managedObject.originalImage)
+        self.previewImage = GifImage(with: managedObject.previewImage)
     }
 }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-@objcMembers class GifImage: NSObject, JSONDecodable {
+@objcMembers class GifImage: NSObject, JSONDecodable, GifImageModel {
+    
     var url: String
     var size: Int?
     var height: Int
@@ -36,14 +37,9 @@ import UIKit
         }
     }
     
-    init?(with managedObject: GifManagedObjectImage) {
-        
-        if let urlMO = managedObject.webURL {
-            self.url = urlMO
-            self.height = Int(managedObject.height)
-            self.width = Int(managedObject.width)
-        } else {
-            return nil
-        }
+    init(with managedObject: GifImageModel) {
+        self.url = managedObject.url
+        self.height = managedObject.height
+        self.width = managedObject.width
     }
 }

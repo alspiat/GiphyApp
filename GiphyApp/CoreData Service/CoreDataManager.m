@@ -9,6 +9,7 @@
 #import "CoreDataManager.h"
 #import "GifManagedObjectEntity+CoreDataClass.h"
 #import "GifManagedObjectImage+CoreDataClass.h"
+#import "GiphyApp-Swift.h"
 
 @implementation CoreDataManager
 - (AppDelegate *)appDelegate {
@@ -17,7 +18,7 @@
 
 
 - (void)addItem:(GifEntity *)item {
-    GifManagedObjectEntity *itemMO = [[GifManagedObjectEntity alloc] initWithItem:item context: [self appDelegate].persistentContainer.newBackgroundContext];
+    GifManagedObjectEntity *itemMO = [[GifManagedObjectEntity alloc] initWithItem:item context: [self appDelegate].persistentContainer.viewContext];
     [[self appDelegate].persistentContainer.viewContext insertObject:itemMO];
     
     //checking existance
@@ -30,7 +31,7 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:gifEntityName];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"id == %@", item.id];
     
-    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.newBackgroundContext executeFetchRequest:fetchRequest error:nil];
+    NSArray<GifManagedObjectEntity *> *itemMOArray = [[self appDelegate].persistentContainer.viewContext executeFetchRequest:fetchRequest error:nil];
     
     if (!itemMOArray.firstObject) {
         return;
