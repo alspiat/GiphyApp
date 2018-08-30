@@ -15,14 +15,14 @@
 
 @property (readwrite, weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (readwrite, weak, nonatomic) IBOutlet UITextField *searchTextField;
-@property (readwrite, nonatomic, strong) id<ControllerViewModel> viewModel;
+@property (readwrite, nonatomic, strong) id<GifListViewModel> viewModel;
 
 
 @end
 
 @implementation GifListViewController
 
-- (instancetype)initWithViewModel:(id<ControllerViewModel>)viewModel {
+- (instancetype)initWithViewModel:(id<GifListViewModel>)viewModel {
     self = [super init];
     if (self) {
         self.viewModel = viewModel;

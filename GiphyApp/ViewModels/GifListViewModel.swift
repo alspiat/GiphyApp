@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol ControllerViewModel {
+@objc protocol GifListViewModel {
     var didUpdate: (() -> Void) { get set }
     var numberOfRows: Int { get }
     var title: String { get }

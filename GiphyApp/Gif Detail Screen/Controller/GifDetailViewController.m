@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *adaptiveHeightGifConstraint;
 //activityIndicator
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-
+@property (weak, nonatomic) IBOutlet UIButton *animateButton;
 
 @end
 
@@ -88,6 +88,12 @@
     self.dismissButton.layer.shadowOffset  = CGSizeMake(0, 0);
     self.dismissButton.layer.shadowRadius  = buttonRadius;
     self.dismissButton.layer.shadowOpacity = 5;
+    
+    self.animateButton.layer.cornerRadius  = buttonRadius;
+    self.animateButton.layer.shadowColor   = UIColor.blackColor.CGColor;
+    self.animateButton.layer.shadowOffset  = CGSizeMake(0, 0);
+    self.animateButton.layer.shadowRadius  = buttonRadius;
+    self.animateButton.layer.shadowOpacity = 5;
 }
 
 //MARK: - Binding
@@ -102,18 +108,28 @@
 - (void)viewModelDidUpdate {
     [UIView transitionWithView:self.gifView duration:0.5 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [self.activityIndicator stopAnimating];
-        self.gifView.image = [UIImage animatedImageWithData:self.viewModel.gifData];
-        
-        self.shareButton.hidden = NO;
-        self.shareButton.userInteractionEnabled = YES;
-        self.saveButton.hidden = NO;
-        self.saveButton.userInteractionEnabled = YES;
+        self.gifView.image = nil;
+        self.gifView.image = self.viewModel.gifImage;
     } completion:nil];
+    
+    if (self.viewModel.isAnimating) {
+        [self.animateButton setBackgroundImage:[UIImage imageNamed:@"stop-button"] forState:UIControlStateNormal];
+    } else {
+        [self.animateButton setBackgroundImage:[UIImage imageNamed:@"play-button"] forState:UIControlStateNormal];
+    }
 }
 
 
 
 //MARK: - Actions
+
+- (IBAction)animatingButtonTapped:(UIButton *)sender {
+    if (self.viewModel.isAnimating) {
+        [self.viewModel stopAnimating];
+    } else {
+        [self.viewModel startAnimating];
+    }
+}
 
 - (IBAction)dismissActionHandler:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

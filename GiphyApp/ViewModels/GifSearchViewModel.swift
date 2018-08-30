@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class GifSearchViewModel: NSObject, ControllerViewModel {
+@objcMembers class GifSearchViewModel: NSObject, GifListViewModel {
     
     private var gifEntities = [GifEntity]()
     private var query: String
@@ -39,7 +39,7 @@ import Foundation
         
         let api = APIService.shared
         
-        api.fetchSearch(query: query, limit: dataLimit) { (result) in
+        api.fetchSearch(query: query, offset: gifEntities.count, limit: dataLimit) { (result) in
             switch result {
             case .Success(let gifEntities):
                 DispatchQueue.main.async {

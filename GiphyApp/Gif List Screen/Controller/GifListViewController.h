@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class GifListViewModel;
-@protocol ControllerViewModel;
+@class GifTrendingViewModel;
+@protocol GifListViewModel;
 
 @interface GifListViewController : UIViewController
 
 @property (readonly, weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (readonly, nonatomic, strong) id<ControllerViewModel> viewModel;
+@property (readonly, nonatomic, strong) id<GifListViewModel> viewModel;
 @property (readonly, weak, nonatomic) IBOutlet UITextField *searchTextField;
 
-- (instancetype)initWithViewModel:(id<ControllerViewModel>)viewModel;
+- (instancetype)initWithViewModel:(id<GifListViewModel>)viewModel;
 
 @end

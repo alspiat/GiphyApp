@@ -32,13 +32,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     GifCollectionViewCell * cell = (GifCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    //points
-    CGPoint newPoint =
-    [collectionView convertPoint: cell.center toView:UIApplication.sharedApplication.keyWindow];
+    CGPoint point = [collectionView convertPoint: cell.center toView:UIApplication.sharedApplication.keyWindow];
     
-    CGPoint finalPoint = CGPointMake(newPoint.x, newPoint.y);
-    //second controllerΩ
-    [Navigation.shared showGifDetailWith:cell.viewModel.gifEntity and:finalPoint];
+    //second controller
+    [Navigation.shared showGifDetailWith:cell.viewModel.gifEntity and:point];
     
 }
 

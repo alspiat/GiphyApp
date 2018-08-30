@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objcMembers class GifListViewModel: NSObject, ControllerViewModel {
+@objcMembers class GifTrendingViewModel: NSObject, GifListViewModel {
     
     private var gifEntities = [GifEntity]()
     
@@ -41,7 +41,7 @@ import UIKit
                     self.didUpdate()
                 }
             case .Failure(let apiError):
-                print(apiError.description)
+                print("Error: ", apiError.description)
             }
         }
     }

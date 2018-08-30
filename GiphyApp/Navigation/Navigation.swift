@@ -33,13 +33,11 @@ import UIKit
     }
     
     public func showGifList() {
-        let viewModel = GifListViewModel()
+        let viewModel = GifTrendingViewModel()
         let gifListViewController = GifListViewController(viewModel: viewModel)
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
     
-    
-
     public func showGifDetail(with gifEntity: GifEntity ,and centerPoint:CGPoint) {
         self.currentCenterPoint = centerPoint
         self.transitionManager.startingPoint = self.currentCenterPoint

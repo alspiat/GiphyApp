@@ -23,6 +23,16 @@ NSString * const gifCellNibName = @"GifCollectionViewCell";
 
 @implementation GifCollectionViewCell
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.layer.cornerRadius = 5.0;
+        self.layer.masksToBounds = YES;
+    }
+    return self;
+}
+
 - (void)setup:(GifCellViewModel *)viewModel {
     [self.activityIndicator startAnimating];
     self.backgroundColor = [UIColor randomThemeColor];
