@@ -10,11 +10,11 @@ import XCTest
 @testable import GiphyApp
 
 class GifListViewModelTests: XCTestCase {
-    var gifListViewModel:GifListViewModel?
+    var gifListViewModel:GifTrendingViewModel?
     
     override func setUp() {
         super.setUp()
-        self.gifListViewModel = GifListViewModel()
+        self.gifListViewModel = GifTrendingViewModel()
       
     }
     

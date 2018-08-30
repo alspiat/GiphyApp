@@ -28,7 +28,6 @@ import UIKit
         let dataLimit = 24;
         
         guard index == gifEntities.count - reloadIndex || gifEntities.isEmpty else {
-            print("index \(index)")
             return
         }
         

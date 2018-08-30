@@ -153,7 +153,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
 		325E755F21372AA2000C9698 /* CoreData Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,11 +169,10 @@
 				9AFC568A213829A5008CB0B3 /* GifManagedObjectImage+CoreDataClass.m */,
 				9AFC568D213829A5008CB0B3 /* GifManagedObjectEntity+CoreDataClass.h */,
 				9AFC568E213829A5008CB0B3 /* GifManagedObjectEntity+CoreDataClass.m */,
-				9A58E1C721381B2400869E8E /* Image */,
-				9A58E1C821381B2D00869E8E /* Entity */,
 			);
 			path = ManagedObjects;
-=======
+			sourceTree = "<group>";
+		};
 		6252E8BE2137F89C00042E0C /* ViewModels Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +182,6 @@
 				6252E8B92137F7F200042E0C /* GifSearchViewModelTests.swift */,
 			);
 			path = "ViewModels Tests";
->>>>>>> Tests
 			sourceTree = "<group>";
 		};
 		9A3DD0302130489E005375F5 = {
@@ -354,20 +351,6 @@
 				9A3DD093213071E5005375F5 /* GifCollectionViewLayout.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		9A58E1C721381B2400869E8E /* Image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		9A58E1C821381B2D00869E8E /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		9AC153042133E696000CE838 /* Extensions */ = {
