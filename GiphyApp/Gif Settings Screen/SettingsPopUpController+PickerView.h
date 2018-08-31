@@ -8,6 +8,6 @@
 
 #import "SettingsPopUpController.h"
 
-@interface SettingsPopUpController (PickerView) 
+@interface SettingsPopUpController (PickerView) <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsPopUpController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SettingsPopUpController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *saveAndCancelButton;

@@ -7,9 +7,12 @@
 //
 
 #import "SettingsPopUpController.h"
+#import "SettingsPopUpController+PickerView.h"
 #import "GiphyApp-Swift.h"
 
 @interface SettingsPopUpController()
+
+@property (nonatomic, strong) SettingsViewModel *viewModel;
 
 @end
 

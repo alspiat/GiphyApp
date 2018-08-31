@@ -18,5 +18,6 @@
 @property (readonly, weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 - (instancetype)initWithViewModel:(id<GifListViewModel>)viewModel;
+- (void)reloadList;
 
 @end

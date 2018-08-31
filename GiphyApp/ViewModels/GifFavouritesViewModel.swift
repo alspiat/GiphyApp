@@ -23,7 +23,6 @@ import Foundation
     public var didUpdate: (() -> Void) = {}
     
     func loadDataIfNeeded(fromIndex index: Int) {
-        
         let coreDataServive = CoreDataManager()
         self.gifEntities = coreDataServive.getAllItems()
         self.didUpdate()
@@ -36,6 +35,10 @@ import Foundation
     func contentSize(at index: Int) -> CGSize {
         let image = gifEntities[index].previewImage
         return CGSize(width: image.width, height: image.height)
+    }
+    
+    func clearData() {
+        self.gifEntities.removeAll()
     }
     
 }

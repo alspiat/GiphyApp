@@ -14,6 +14,7 @@ import Foundation
     var title: String { get }
     
     func loadDataIfNeeded(fromIndex index: Int)
+    func clearData()
     func viewModelForCell(at index: Int) -> GifCellViewModel
     func contentSize(at index: Int) -> CGSize
 }

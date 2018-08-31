@@ -16,6 +16,8 @@ import UIKit
     var isAnimating: Bool = true
     var isSaved: Bool = false
     
+    private var loadingTask: NetworkCancelable?
+    
     init(gifEntity: GifEntity) {
         self.gifEntity = gifEntity
         
@@ -28,14 +30,23 @@ import UIKit
     public var didUpdate: (() -> Void) = {}
     
     public func loadGif() {
-        DataManager.loadOriginalImageData(self.gifEntity, previewFirstly: true) { (data) in
+        self.loadingTask = DataManager.loadOriginalImageData(self.gifEntity, previewFirstly: true) { (data) in
             DispatchQueue.main.async {
                 self.gifData = data
-                if let data = self.gifData {
-                    self.gifImage = UIImage.animatedImage(data: data)
+                if self.isAnimating {
+                    self.startAnimating()
+                } else {
+                    self.gifImage = UIImage.animatedImage(data: data!)
+                    self.stopAnimating()
                 }
                 self.didUpdate()
             }
+        }
+    }
+    
+    func cancelImageLoading() {
+        if let loadingTask = self.loadingTask {
+            loadingTask.cancel()
         }
     }
     

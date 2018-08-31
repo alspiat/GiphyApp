@@ -52,6 +52,10 @@ import Foundation
         }
     }
     
+    func clearData() {
+        self.gifEntities.removeAll()
+    }
+    
     func viewModelForCell(at index: Int) -> GifCellViewModel {
         return GifCellViewModel(gifEntity: gifEntities[index])
     }

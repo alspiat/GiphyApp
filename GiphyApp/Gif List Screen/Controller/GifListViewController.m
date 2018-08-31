@@ -40,6 +40,12 @@
     GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     layout.delegate = self;
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(reloadList) forControlEvents:UIControlEventValueChanged];
+    refreshControl.backgroundColor = UIColor.clearColor;
+    refreshControl.tintColor = UIColor.whiteColor;
+    self.collectionView.refreshControl = refreshControl;
+    
     UIView *paddingView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 10, self.searchTextField.frame.size.height)];
     self.searchTextField.leftView = paddingView;
     self.searchTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -85,6 +91,10 @@
 }
 
 - (void)viewModelDidUpdate {
+    if (self.collectionView.refreshControl.refreshing) {
+        [self.collectionView.refreshControl endRefreshing];
+    }
+    
     [self.collectionView performBatchUpdates:^{
         for (NSInteger i = [self.collectionView numberOfItemsInSection:0]; i < self.viewModel.numberOfRows; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -95,8 +105,18 @@
 //    [self.collectionView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"Log");
+}
 
 //MARK: - Button's Actions
+- (void)reloadList {
+    [self.viewModel clearData];
+    [self.collectionView reloadData];
+    [self.viewModel loadDataIfNeededFromIndex:0];
+}
+
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     if (![self.searchTextField.text isEqualToString:@""]) {
         [Navigation.shared showSearchingGifsWithQuery:self.searchTextField.text];

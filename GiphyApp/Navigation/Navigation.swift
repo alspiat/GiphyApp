@@ -65,7 +65,7 @@ import UIKit
         
         gifDetailViewController?.modalPresentationStyle = .custom
         gifDetailViewController?.transitioningDelegate = self;
-        self.navigationController.viewControllers[0].present(gifDetailViewController!, animated: true, completion: nil)
+        self.navigationController.viewControllers.last?.present(gifDetailViewController!, animated: true, completion: nil)
     }
     
     
@@ -75,6 +75,12 @@ import UIKit
         controller.modalPresentationStyle = .overCurrentContext
         self.navigationController.present(controller, animated: true, completion: nil)
         
+    }
+    
+    public func reloadControllerList() {
+        if let controller = self.navigationController.viewControllers.last as? GifListViewController {
+            controller.reloadList()
+        }
     }
 }
 

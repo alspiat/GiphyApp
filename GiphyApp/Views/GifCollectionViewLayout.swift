@@ -11,7 +11,7 @@ import UIKit
 import UIKit
 
 @objc protocol GifCollectionViewLayoutDelegate: class {
-    func collectionView(_ collectionView:UICollectionView, heightForContentAtIndexPath indexPath:IndexPath) -> CGFloat
+    func collectionView(_ collectionView:UICollectionView, heightForContentAtIndexPath indexPath:IndexPath, withWidth columnWidth:CGFloat) -> CGFloat
 }
 
 class GifCollectionViewLayout: UICollectionViewLayout {
@@ -38,15 +38,15 @@ class GifCollectionViewLayout: UICollectionViewLayout {
         return UIScreen.main.bounds.width - (insets.left + insets.right)
     }
     
-    @objc var columnWidth: CGFloat {
-        return contentWidth / CGFloat(numberOfColumns)
-    }
-    
     override var collectionViewContentSize: CGSize {
         return CGSize(width: contentWidth, height: contentHeight)
     }
     
     override func prepare() {
+        
+        self.cache.removeAll()
+        //self.contentHeight = 0;
+        
         guard let collectionView = collectionView else {
             return
         }
@@ -63,7 +63,7 @@ class GifCollectionViewLayout: UICollectionViewLayout {
             
             let indexPath = IndexPath(item: item, section: 0)
             
-            let insideContentHeight = delegate.collectionView(collectionView, heightForContentAtIndexPath: indexPath)
+            let insideContentHeight = delegate.collectionView(collectionView, heightForContentAtIndexPath: indexPath, withWidth: columnWidth)
             let height = cellPadding * 2 + insideContentHeight
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
             let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)

@@ -134,6 +134,7 @@
 }
 
 - (IBAction)dismissActionHandler:(id)sender {
+    [self.viewModel cancelImageLoading];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -175,6 +176,7 @@
     } else {
         if ([self.viewModel removeFromPersistance]) {
             [self.saveButton setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+            [Navigation.shared reloadControllerList];
             [self showInfoAlert:@"Removing" message:@"GIF removed from persistance"];
         }
     }
