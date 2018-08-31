@@ -7,34 +7,28 @@
 //
 
 #import "SettingsPopUpController.h"
+#import "GiphyApp-Swift.h"
 
-@interface SettingsPopUpController() <UIPickerViewDelegate, UIPickerViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIPickerView *ratingPicker;
-@property (weak, nonatomic) IBOutlet UILabel *chooseRatingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *clearCacheLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *clearCacheSwitch;
-@property (weak, nonatomic) IBOutlet UIView *popUpView;
+@interface SettingsPopUpController()
 
-
-@property (strong, nonatomic) NSMutableArray* pickerItems;
-@property (assign, nonatomic) NSInteger currentRating;
 @end
 
 static NSString * const kSettingsRatingPicker     = @"rating";
 static NSString * const kSettingsClearCacheSwitch = @"clearCache";
 
+/******** RatingType ********
+typedef enum {
+    RatingTypeY,
+    RatingTypeG,
+    RatingTypePG,
+    RatingTypePG13,
+    RatingTypeR,
+    RatingTypeNotSafeForWork,
+    RatingTypeUnrated
+} RatingType;
+*/
 
-//typedef enum {
-//    RatingTypeY,
-//    RatingTypeG,
-//    RatingTypePG,
-//    RatingTypePG13,
-//    RatingTypeR,
-//    RatingTypeNotSafeForWork,
-//    RatingTypeUnrated
-//} RatingType;
+
 
 @implementation SettingsPopUpController
 
@@ -61,10 +55,15 @@ static NSString * const kSettingsClearCacheSwitch = @"clearCache";
     self.popUpView.layer.borderWidth = 1;
     self.popUpView.layer.borderColor = UIColor.darkGrayColor.CGColor;
     
-    //button
-    self.cancelButton.layer.cornerRadius = 15;
-    self.cancelButton.layer.borderWidth = 1;
-    self.cancelButton.layer.borderColor = UIColor.darkGrayColor.CGColor;
+    //cancel button
+     [self.saveAndCancelButton setTitleColor:UIColor.giphyPurple forState:UIControlStateNormal];
+    self.saveAndCancelButton.layer.cornerRadius = 15;
+    self.saveAndCancelButton.layer.borderWidth = 1;
+    self.saveAndCancelButton.layer.borderColor = UIColor.darkGrayColor.CGColor;
+    
+    //clear cache button
+    self.clearCacheButton.backgroundColor = UIColor.giphyPurple;
+    [self.clearCacheButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     
     //title label
     self.settingsLabel.layer.borderColor = UIColor.darkGrayColor.CGColor;
@@ -81,108 +80,86 @@ static NSString * const kSettingsClearCacheSwitch = @"clearCache";
     
 }
 
-//
-//-(NSString*)ratingFromType:(RatingType)ratingType {
-//    switch (RatingTypeY) {
-//        case RatingTypeY:
-//            return @"y";
-//            break;
-//        case RatingTypeG:
-//            return @"g";
-//            break;
-//        case RatingTypePG:
-//            return @"pg";
-//            break;
-//        case RatingTypePG13:
-//            return @"pg-13";
-//            break;
-//        case RatingTypeR:
-//            return @"r";
-//            break;
-//        case RatingTypeNotSafeForWork:
-//            return @"nsfw";
-//            break;
-//        case RatingTypeUnrated:
-//            return @"unrated";
-//            break;
-//        default:
-//            return @"unrated";
-//            break;
-//    }
-//}
-
+/******* enum Converter **********
+-(NSString*)ratingFromType:(RatingType)ratingType {
+    switch (RatingTypeY) {
+        case RatingTypeY:
+            return @"y";
+            break;
+        case RatingTypeG:
+            return @"g";
+            break;
+        case RatingTypePG:
+            return @"pg";
+            break;
+        case RatingTypePG13:
+            return @"pg-13";
+            break;
+        case RatingTypeR:
+            return @"r";
+            break;
+        case RatingTypeNotSafeForWork:
+            return @"nsfw";
+            break;
+        case RatingTypeUnrated:
+            return @"unrated";
+            break;
+        default:
+            return @"unrated";
+            break;
+    }
+}
+*/
 
 
 //MARK: - Actions
 - (IBAction)cancelActionHandler:(id)sender {
-    [self saveSettings];
+    [self updateViewModel];
     [self dismissViewControllerAnimated:YES completion:^{
         //dismissed
     }];
 }
 
-- (IBAction)clearCacheValueChanged:(UISwitch*)sender {
-    [self saveSettings];
-    NSLog(@"clear cache value changed");
+
+- (IBAction)clearCacheAction:(id)sender {
+    [self updateViewModel];
+    //cache clearing
+    AppFileManager *fileManger = [[AppFileManager alloc] init];
+    
+    if ([fileManger clearPreviewsCacheFrom:@""]) {
+        NSLog(@"clear cache value changed");
+    }
 }
 
+
 -(void)swipeDown:(UISwipeGestureRecognizer*)gesture {
-    [self saveSettings];
+    [self updateViewModel];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+//MARK: - Update ViewModel;
+-(void)updateViewModel {
+     [self saveSettings];
+}
+
+
 
 //MARK: Save and Load settings
 -(void)saveSettings{
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:self.currentRating forKey:kSettingsRatingPicker];
-    [userDefaults setBool:self.clearCacheSwitch.isOn forKey:kSettingsClearCacheSwitch];
     [userDefaults synchronize];
 }
 
 -(void)loadSettings {
      NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    self.clearCacheSwitch.on = [userDefaults boolForKey:kSettingsClearCacheSwitch];
     
     NSInteger numberOfRow = [userDefaults integerForKey:kSettingsRatingPicker];
     self.currentRating = numberOfRow;
     [self.ratingPicker selectRow:numberOfRow inComponent:0 animated:YES];
     
-}
-
-
-//MARK: - PickerViewDelegate and DataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.pickerItems.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.pickerItems[row];
-}
-
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width /4, self.cancelButton.frame.size.height)];
-    label.backgroundColor = [UIColor blackColor];
-    label.layer.cornerRadius = 15;
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
-    NSString* text = (NSString*)self.pickerItems[row];
-    label.text = text.capitalizedString;
-    label.textAlignment = NSTextAlignmentCenter;
-    return label;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.currentRating = row;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    return self.cancelButton.frame.size.height + 5;
 }
 
 

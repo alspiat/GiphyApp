@@ -13,12 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsPopUpController">
             <connections>
-                <outlet property="cancelButton" destination="GHh-FT-qof" id="0IX-bI-okE"/>
                 <outlet property="chooseRatingLabel" destination="09P-bZ-O4a" id="RIj-3D-wxy"/>
-                <outlet property="clearCacheLabel" destination="j2w-ja-fWP" id="Oo1-PS-cCR"/>
-                <outlet property="clearCacheSwitch" destination="7jB-78-eSm" id="evi-NZ-urP"/>
+                <outlet property="clearCacheButton" destination="yts-tp-zDq" id="EG1-dP-YKt"/>
                 <outlet property="popUpView" destination="MYH-Uj-h7C" id="7jb-N6-hiC"/>
                 <outlet property="ratingPicker" destination="cKz-I5-250" id="cwq-HF-moh"/>
+                <outlet property="saveAndCancelButton" destination="GHh-FT-qof" id="0IX-bI-okE"/>
                 <outlet property="settingsLabel" destination="g7G-Ef-4sc" id="HdG-g1-JWp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,8 +36,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHh-FT-qof">
                                 <rect key="frame" x="20" y="578.5" width="335" height="48.5"/>
                                 <color key="backgroundColor" red="0.18714028437208119" green="0.18714028437208119" blue="0.18714028437208119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Cancel">
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <state key="normal" title="Save">
                                     <color key="titleColor" red="0.88773073189999996" green="0.3490716693" blue="0.2322941379" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -57,42 +56,41 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKz-I5-250">
-                                        <rect key="frame" x="0.0" y="194" width="335" height="130"/>
+                                        <rect key="frame" x="0.0" y="145" width="335" height="130"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Search Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09P-bZ-O4a">
-                                        <rect key="frame" x="20" y="150" width="294.5" height="24"/>
+                                        <rect key="frame" x="20" y="101" width="294.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clear Cache" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-ja-fWP">
-                                        <rect key="frame" x="20" y="106" width="108" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jB-78-eSm">
-                                        <rect key="frame" x="266" y="102.5" width="51" height="31"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yts-tp-zDq">
+                                        <rect key="frame" x="0.0" y="275" width="335" height="48.5"/>
+                                        <color key="backgroundColor" red="0.1871402844" green="0.1871402844" blue="0.1871402844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                        <state key="normal" title="Clear Cache">
+                                            <color key="titleColor" red="0.4129917321239393" green="0.34962860491046766" blue="0.79891920336787559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
-                                            <action selector="clearCacheValueChanged:" destination="-1" eventType="valueChanged" id="gfK-qA-FzG"/>
+                                            <action selector="cancelActionHandler:" destination="-1" eventType="touchUpInside" id="m5h-R6-mHd"/>
+                                            <action selector="clearCacheAction:" destination="-1" eventType="touchUpInside" id="ul4-K8-L5d"/>
                                         </connections>
-                                    </switch>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="cKz-I5-250" firstAttribute="leading" secondItem="MYH-Uj-h7C" secondAttribute="leading" id="0Yg-aK-m0M"/>
                                     <constraint firstItem="g7G-Ef-4sc" firstAttribute="centerX" secondItem="MYH-Uj-h7C" secondAttribute="centerX" id="39G-U3-buJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="yts-tp-zDq" secondAttribute="bottom" id="9gy-bt-hb8"/>
+                                    <constraint firstItem="yts-tp-zDq" firstAttribute="leading" secondItem="MYH-Uj-h7C" secondAttribute="leading" id="ApR-LR-18Y"/>
                                     <constraint firstItem="g7G-Ef-4sc" firstAttribute="top" secondItem="MYH-Uj-h7C" secondAttribute="top" id="C7X-nj-mFQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="cKz-I5-250" secondAttribute="bottom" id="HTW-jC-zZf"/>
                                     <constraint firstItem="09P-bZ-O4a" firstAttribute="leading" secondItem="MYH-Uj-h7C" secondAttribute="leading" constant="20" id="HUb-5U-TGL"/>
-                                    <constraint firstItem="j2w-ja-fWP" firstAttribute="leading" secondItem="MYH-Uj-h7C" secondAttribute="leading" constant="20" id="IFu-BL-Ibc"/>
                                     <constraint firstItem="g7G-Ef-4sc" firstAttribute="width" secondItem="MYH-Uj-h7C" secondAttribute="width" id="ILd-Nj-2Jy"/>
-                                    <constraint firstItem="09P-bZ-O4a" firstAttribute="top" secondItem="j2w-ja-fWP" secondAttribute="bottom" constant="20" id="LUO-PV-XQt"/>
                                     <constraint firstAttribute="trailing" secondItem="cKz-I5-250" secondAttribute="trailing" id="ODM-vE-bGL"/>
-                                    <constraint firstAttribute="trailing" secondItem="7jB-78-eSm" secondAttribute="trailing" constant="20" id="ZLc-Ze-56F"/>
-                                    <constraint firstItem="7jB-78-eSm" firstAttribute="centerY" secondItem="j2w-ja-fWP" secondAttribute="centerY" id="a0Z-M1-ahf"/>
+                                    <constraint firstItem="yts-tp-zDq" firstAttribute="top" secondItem="cKz-I5-250" secondAttribute="bottom" id="UbQ-oK-5Xs"/>
+                                    <constraint firstAttribute="trailing" secondItem="yts-tp-zDq" secondAttribute="trailing" id="gpt-OK-DxH"/>
                                     <constraint firstItem="cKz-I5-250" firstAttribute="top" secondItem="09P-bZ-O4a" secondAttribute="bottom" constant="20" id="inQ-0g-nSs"/>
                                     <constraint firstItem="09P-bZ-O4a" firstAttribute="centerX" secondItem="MYH-Uj-h7C" secondAttribute="centerX" id="uWJ-pU-i4e"/>
                                     <constraint firstItem="cKz-I5-250" firstAttribute="height" secondItem="MYH-Uj-h7C" secondAttribute="height" multiplier="0.4" id="ucf-LA-JsH"/>
@@ -103,6 +101,7 @@
                             <constraint firstItem="GHh-FT-qof" firstAttribute="leading" secondItem="RwM-Pw-7Ox" secondAttribute="leading" constant="20" id="6ws-wq-9M7"/>
                             <constraint firstItem="GHh-FT-qof" firstAttribute="height" secondItem="g7G-Ef-4sc" secondAttribute="height" id="8t6-VC-zt6"/>
                             <constraint firstAttribute="trailing" secondItem="GHh-FT-qof" secondAttribute="trailing" constant="20" id="Dn6-k6-Tsq"/>
+                            <constraint firstItem="GHh-FT-qof" firstAttribute="height" secondItem="yts-tp-zDq" secondAttribute="height" id="TNL-Vz-cUM"/>
                             <constraint firstItem="GHh-FT-qof" firstAttribute="top" secondItem="MYH-Uj-h7C" secondAttribute="bottom" constant="15" id="eoc-Wv-CQI"/>
                             <constraint firstItem="MYH-Uj-h7C" firstAttribute="height" secondItem="RwM-Pw-7Ox" secondAttribute="height" multiplier="0.5" id="lUh-FG-YQN"/>
                             <constraint firstAttribute="bottom" secondItem="GHh-FT-qof" secondAttribute="bottom" constant="20" id="q0B-Wz-PRx"/>

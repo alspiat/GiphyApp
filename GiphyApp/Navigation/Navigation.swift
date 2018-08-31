@@ -20,7 +20,6 @@ import UIKit
         self.navigationController = UINavigationController()
         self.transitionManager = CircularControllerTransition()
         self.currentCenterPoint = CGPoint.zero
-
         
         let attributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white
@@ -32,6 +31,7 @@ import UIKit
         super.init()
     }
     
+    //show TrendingGifs
     public func showTrendingGifs() {
         let viewModel = GifTrendingViewModel()
         let gifListViewController = GifListViewController(viewModel: viewModel)
@@ -40,18 +40,21 @@ import UIKit
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
     
+    //show FavouritesGifs CoreData
     public func showFavouritesGifs() {
         let viewModel = GifFavouritesViewModel()
         let gifListViewController = GifListViewController(viewModel: viewModel)
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
     
+    //show SearchingGifs with query
     public func showSearchingGifs(query: String) {
         let viewModel = GifSearchViewModel(query: query)
         let gifListViewController = GifListViewController(viewModel: viewModel)
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
     
+    //show GifDetailController
     public func showGifDetail(with gifEntity: GifEntity ,and centerPoint:CGPoint) {
         self.currentCenterPoint = centerPoint
         self.transitionManager.startingPoint = self.currentCenterPoint
@@ -79,6 +82,7 @@ import UIKit
 //MARK: ControllerTransitionDelegete
 extension Navigation: UIViewControllerTransitioningDelegate {
     
+    //for presenting
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
         self.transitionManager.transitionMode = .present
@@ -87,7 +91,7 @@ extension Navigation: UIViewControllerTransitioningDelegate {
         return self.transitionManager
     }
     
-    
+    //for dimsissing
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         self.transitionManager.transitionMode = .dismiss
         self.transitionManager.startingPoint = self.currentCenterPoint

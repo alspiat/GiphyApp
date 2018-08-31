@@ -137,6 +137,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//share
 - (IBAction)shareActionHandler:(id)sender {
     NSData *gifData = self.viewModel.gifData;
     NSString *gifTitle = self.viewModel.gifEntity.title.capitalizedString;
@@ -157,6 +158,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
+//show info Alert
 - (void)showInfoAlert:(NSString *)title message:(NSString *)message {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];

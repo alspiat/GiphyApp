@@ -22,6 +22,7 @@
 		6252E8B82137F74700042E0C /* GifDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8B72137F74700042E0C /* GifDetailViewModelTests.swift */; };
 		6252E8BA2137F7F200042E0C /* GifSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8B92137F7F200042E0C /* GifSearchViewModelTests.swift */; };
 		6252E8BD2137F86F00042E0C /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8BC2137F86F00042E0C /* APIServiceTests.swift */; };
+		6252E8C22139289900042E0C /* SettingsPopUpController+PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8C12139289900042E0C /* SettingsPopUpController+PickerView.m */; };
 		9A3DD03D2130489E005375F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DD03C2130489E005375F5 /* AppDelegate.swift */; };
 		9A3DD0422130489E005375F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD0402130489E005375F5 /* Main.storyboard */; };
 		9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3DD046213048A0005375F5 /* Assets.xcassets */; };
@@ -87,6 +88,8 @@
 		6252E8B72137F74700042E0C /* GifDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailViewModelTests.swift; sourceTree = "<group>"; };
 		6252E8B92137F7F200042E0C /* GifSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifSearchViewModelTests.swift; sourceTree = "<group>"; };
 		6252E8BC2137F86F00042E0C /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		6252E8C02139289900042E0C /* SettingsPopUpController+PickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SettingsPopUpController+PickerView.h"; sourceTree = "<group>"; };
+		6252E8C12139289900042E0C /* SettingsPopUpController+PickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SettingsPopUpController+PickerView.m"; sourceTree = "<group>"; };
 		9A3DD0392130489E005375F5 /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3DD03C2130489E005375F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3DD0412130489E005375F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 			children = (
 				325E7573213882F2000C9698 /* SettingsPopUpController.h */,
 				325E7574213882F2000C9698 /* SettingsPopUpController.m */,
+				6252E8C02139289900042E0C /* SettingsPopUpController+PickerView.h */,
+				6252E8C12139289900042E0C /* SettingsPopUpController+PickerView.m */,
 				325E7575213882F2000C9698 /* SettingsPopUpController.xib */,
 			);
 			path = "Gif Settings Screen";
@@ -580,6 +585,7 @@
 				9A91FFA22136C3E70012F072 /* GifListViewController+SearchTextField.m in Sources */,
 				9A91FF9F2136C3D70012F072 /* GifListViewController+CollectionView.m in Sources */,
 				9A3DD08F21306E24005375F5 /* GifCellViewModel.swift in Sources */,
+				6252E8C22139289900042E0C /* SettingsPopUpController+PickerView.m in Sources */,
 				9AFC5690213829A5008CB0B3 /* GifManagedObjectImage+CoreDataClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

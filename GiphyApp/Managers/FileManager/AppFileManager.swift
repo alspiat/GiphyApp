@@ -52,6 +52,7 @@ fileprivate let originalsDirectory = "Originals"
     func clearPreviewsCache(from rootDirectory: String) -> Bool {
         do {
             try self.fileManager.removeItem(atPath: AppFileManager.previewsPath)
+            print(AppFileManager.previewsPath)
             return true
         } catch {
             return false
