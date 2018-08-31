@@ -36,6 +36,7 @@ import UIKit
         let viewModel = GifTrendingViewModel()
         let gifListViewController = GifListViewController(viewModel: viewModel)
         gifListViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem()
+        gifListViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem()
         self.navigationController.pushViewController(gifListViewController!, animated: true)
     }
     
@@ -61,8 +62,16 @@ import UIKit
         
         gifDetailViewController?.modalPresentationStyle = .custom
         gifDetailViewController?.transitioningDelegate = self;
-        //        self.navigationController.present(gifDetailViewController!, animated: true, completion: nil)
         self.navigationController.viewControllers[0].present(gifDetailViewController!, animated: true, completion: nil)
+    }
+    
+    
+    //showSettingsController
+    public func showSettingsController() {
+        let controller = SettingsPopUpController()
+        controller.modalPresentationStyle = .overCurrentContext
+        self.navigationController.present(controller, animated: true, completion: nil)
+        
     }
 }
 

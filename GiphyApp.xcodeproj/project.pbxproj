@@ -10,6 +10,8 @@
 		3213C10D2135B126002100E6 /* TransitionManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3213C10C2135B126002100E6 /* TransitionManger.swift */; };
 		325E7556213728C4000C9698 /* GiphyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 325E7554213728C4000C9698 /* GiphyApp.xcdatamodeld */; };
 		325E756221372C01000C9698 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E756121372C01000C9698 /* CoreDataManager.m */; };
+		325E7576213882F2000C9698 /* SettingsPopUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 325E7574213882F2000C9698 /* SettingsPopUpController.m */; };
+		325E7577213882F2000C9698 /* SettingsPopUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 325E7575213882F2000C9698 /* SettingsPopUpController.xib */; };
 		6252E8AA2136CF2F00042E0C /* GifListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6252E8A92136CF2E00042E0C /* GifListViewController.xib */; };
 		6252E8AC2137F59600042E0C /* AppFileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8AB2137F59600042E0C /* AppFileManagerTests.swift */; };
 		6252E8AE2137F62A00042E0C /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6252E8AD2137F62A00042E0C /* DataManagerTests.swift */; };
@@ -72,6 +74,9 @@
 		325E7555213728C4000C9698 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		325E756021372C01000C9698 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		325E756121372C01000C9698 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		325E7573213882F2000C9698 /* SettingsPopUpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsPopUpController.h; sourceTree = "<group>"; };
+		325E7574213882F2000C9698 /* SettingsPopUpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsPopUpController.m; sourceTree = "<group>"; };
+		325E7575213882F2000C9698 /* SettingsPopUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsPopUpController.xib; sourceTree = "<group>"; };
 		6252E8A92136CF2E00042E0C /* GifListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GifListViewController.xib; sourceTree = "<group>"; };
 		6252E8AB2137F59600042E0C /* AppFileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFileManagerTests.swift; sourceTree = "<group>"; };
 		6252E8AD2137F62A00042E0C /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
@@ -173,6 +178,16 @@
 			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
+		325E7578213882FA000C9698 /* Gif Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				325E7573213882F2000C9698 /* SettingsPopUpController.h */,
+				325E7574213882F2000C9698 /* SettingsPopUpController.m */,
+				325E7575213882F2000C9698 /* SettingsPopUpController.xib */,
+			);
+			path = "Gif Settings Screen";
+			sourceTree = "<group>";
+		};
 		6252E8BE2137F89C00042E0C /* ViewModels Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +226,7 @@
 				9A3DD081213060B1005375F5 /* Navigation */,
 				9A3DD060213049DD005375F5 /* Gif List Screen */,
 				9A3DD061213049E7005375F5 /* Gif Detail Screen */,
+				325E7578213882FA000C9698 /* Gif Settings Screen */,
 				9A58E1C32137F7EB00869E8E /* ViewModels */,
 				9A58E1C42137FDAC00869E8E /* Views */,
 				9A3DD05F213049CE005375F5 /* Model */,
@@ -494,6 +510,7 @@
 			files = (
 				9A3DD04A213048A0005375F5 /* LaunchScreen.storyboard in Resources */,
 				9A3DD07E21306004005375F5 /* GifDetailViewController.xib in Resources */,
+				325E7577213882F2000C9698 /* SettingsPopUpController.xib in Resources */,
 				9A3DD047213048A0005375F5 /* Assets.xcassets in Resources */,
 				9A3DD08D21306846005375F5 /* GifCollectionViewCell.xib in Resources */,
 				9A3DD0422130489E005375F5 /* Main.storyboard in Resources */,
@@ -555,6 +572,7 @@
 				9AF2FCBD2135B26200347C36 /* NetworkCancelable.swift in Sources */,
 				9AF2FCB821354F8600347C36 /* AppFileManager.swift in Sources */,
 				9A3DD09F21307AF8005375F5 /* APIService.swift in Sources */,
+				325E7576213882F2000C9698 /* SettingsPopUpController.m in Sources */,
 				9A91FF9A2136AF480012F072 /* GifListViewModel.swift in Sources */,
 				9AC1530A2133E6B3000CE838 /* UIColor+AppColor.m in Sources */,
 				9AFC569521383485008CB0B3 /* GifFavouritesViewModel.swift in Sources */,

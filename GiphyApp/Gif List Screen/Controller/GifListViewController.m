@@ -47,15 +47,36 @@
 
     [self.collectionView registerNib:[UINib nibWithNibName:gifCellNibName bundle:NSBundle.mainBundle] forCellWithReuseIdentifier:gifCellIdentifier];
     
-    UIImage *buttonImage = [[UIImage imageNamed:@"bookmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.navigationItem.leftBarButtonItem setImage:buttonImage];
-    [self.navigationItem.leftBarButtonItem setTarget:self];
-    [self.navigationItem.leftBarButtonItem setAction:@selector(favouritesButtonTapped:)];
+    //add bookmark button
+    [self setupBookmarkButton];
     
+    //add settings button
+    [self setupSettingsButton];
+   
+    //bind to viewModel
     [self bindToViewModel];
     [self.viewModel loadDataIfNeededFromIndex:0];
 }
 
+//MARK: - Buttons
+-(void)setupBookmarkButton {
+    UIImage *buttonImage = [[UIImage imageNamed:@"bookmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.navigationItem.leftBarButtonItem setImage:buttonImage];
+    [self.navigationItem.leftBarButtonItem setTarget:self];
+    [self.navigationItem.leftBarButtonItem setAction:@selector(favouritesButtonTapped:)];
+}
+
+-(void)setupSettingsButton {
+    UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:settingsImage];
+    imgView.layer.contentsGravity =kCAGravityResizeAspect;
+    
+    self.navigationItem.rightBarButtonItem.image = imgView.image;
+    [self.navigationItem.rightBarButtonItem setTarget:self];
+    [self.navigationItem.rightBarButtonItem setAction:@selector(settingsButtonTapped:)];
+}
+
+//MARK: - Binding
 - (void)bindToViewModel {
     __weak typeof(self) weakSelf = self;
     self.viewModel.didUpdate = ^{
@@ -74,6 +95,8 @@
 //    [self.collectionView reloadData];
 }
 
+
+//MARK: - Button's Actions
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     if (![self.searchTextField.text isEqualToString:@""]) {
         [Navigation.shared showSearchingGifsWithQuery:self.searchTextField.text];
@@ -84,5 +107,8 @@
     [Navigation.shared showFavouritesGifs];
 }
 
+-(IBAction)settingsButtonTapped:(id)sender {
+    [Navigation.shared showSettingsController];
+}
 
 @end
