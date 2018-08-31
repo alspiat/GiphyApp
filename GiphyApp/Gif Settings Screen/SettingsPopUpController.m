@@ -43,7 +43,7 @@ static NSString * const kSettingsClearCacheSwitch = @"clearCache";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pickerItems =
-    [NSMutableArray arrayWithObjects: @"y",@"pg",@"pg-13",@"r",@"nsfw",@"unrated", nil];
+    [NSMutableArray arrayWithObjects: @"y",@"g",@"pg",@"pg-13",@"r",@"nsfw",@"unrated", nil];
     //pickerView
     self.ratingPicker.delegate = self;
     self.ratingPicker.dataSource = self;
