@@ -139,7 +139,7 @@
 }
 
 //share
-- (IBAction)shareActionHandler:(id)sender {
+- (IBAction)shareActionHandler:(UIButton *)sender {
     NSData *gifData = self.viewModel.gifData;
     NSString *gifTitle = self.viewModel.gifEntity.title.capitalizedString;
     
@@ -152,8 +152,8 @@
     };
     
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        activityVC.popoverPresentationController.sourceView = self.shareButton;
-        activityVC.popoverPresentationController.sourceRect = self.shareButton.bounds;
+        activityVC.popoverPresentationController.sourceView = sender;
+        activityVC.popoverPresentationController.sourceRect = sender.bounds;
     }
     
     [self presentViewController:activityVC animated:YES completion:nil];

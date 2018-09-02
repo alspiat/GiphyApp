@@ -42,7 +42,6 @@
 // MARK: - GifCollectionViewLayout Delegate methods
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView heightForContentAtIndexPath:(NSIndexPath *)indexPath withWidth:(CGFloat)columnWidth {
-    GifCollectionViewLayout *layout = (GifCollectionViewLayout *)self.collectionView.collectionViewLayout;
     CGSize contentSize = [self.viewModel contentSizeAt:indexPath.row];
     return contentSize.height * columnWidth / contentSize.width;
 }

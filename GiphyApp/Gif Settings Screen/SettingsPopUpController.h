@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class SettingsViewModel;
+
 @interface SettingsPopUpController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
@@ -16,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *chooseRatingLabel;
 @property (weak, nonatomic) IBOutlet UIButton *clearCacheButton;
 @property (weak, nonatomic) IBOutlet UIView *popUpView;
-@property (strong, nonatomic) NSMutableArray* pickerItems;
-@property (assign, nonatomic) NSInteger currentRating;
+@property (copy, nonatomic) NSString *currentRating;
+
+@property (readonly, nonatomic, strong) SettingsViewModel *viewModel;
+
+- (instancetype)initWithViewModel:(SettingsViewModel *)viewModel;
+
 @end

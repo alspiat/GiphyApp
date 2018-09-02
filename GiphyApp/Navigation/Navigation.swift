@@ -71,9 +71,10 @@ import UIKit
     
     //showSettingsController
     public func showSettingsController() {
-        let controller = SettingsPopUpController()
-        controller.modalPresentationStyle = .overCurrentContext
-        self.navigationController.present(controller, animated: true, completion: nil)
+        let viewModel = SettingsViewModel()
+        let controller = SettingsPopUpController(viewModel: viewModel)
+        controller!.modalPresentationStyle = .overCurrentContext
+        self.navigationController.present(controller!, animated: true, completion: nil)
         
     }
     

@@ -16,6 +16,7 @@
 @property (readwrite, weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (readwrite, weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (readwrite, nonatomic, strong) id<GifListViewModel> viewModel;
+@property (weak, nonatomic) IBOutlet UILabel *noItemsLabel;
 
 
 @end
@@ -73,7 +74,7 @@
 }
 
 -(void)setupSettingsButton {
-    UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *settingsImage = [[UIImage imageNamed:@"settings1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:settingsImage];
     imgView.layer.contentsGravity =kCAGravityResizeAspect;
     
@@ -95,6 +96,12 @@
         [self.collectionView.refreshControl endRefreshing];
     }
     
+    if (self.viewModel.numberOfRows == 0) {
+        [self.noItemsLabel setHidden:NO];
+    } else {
+        [self.noItemsLabel setHidden:YES];
+    }
+    
     [self.collectionView performBatchUpdates:^{
         for (NSInteger i = [self.collectionView numberOfItemsInSection:0]; i < self.viewModel.numberOfRows; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -107,7 +114,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"Log");
 }
 
 //MARK: - Button's Actions

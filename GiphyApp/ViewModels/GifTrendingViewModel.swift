@@ -33,7 +33,7 @@ import UIKit
         
         let api = APIService.shared
         
-        api.fetchTrending(offset: gifEntities.count, limit: dataLimit) { (result) in
+        api.fetchTrending(offset: gifEntities.count + 1, limit: dataLimit) { (result) in
             switch result {
             case .Success(let gifEntities):
                 DispatchQueue.main.async {
@@ -42,6 +42,9 @@ import UIKit
                 }
             case .Failure(let apiError):
                 print("Error: ", apiError.description)
+                DispatchQueue.main.async {
+                    self.didUpdate()
+                }
             }
         }
     }

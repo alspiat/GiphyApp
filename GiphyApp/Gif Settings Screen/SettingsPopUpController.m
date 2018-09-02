@@ -12,38 +12,19 @@
 
 @interface SettingsPopUpController()
 
-@property (nonatomic, strong) SettingsViewModel *viewModel;
+@property (readwrite, nonatomic, strong) SettingsViewModel *viewModel;
 
 @end
 
-static NSString * const kSettingsRatingPicker     = @"rating";
-static NSString * const kSettingsClearCacheSwitch = @"clearCache";
-
-/******** RatingType ********
-typedef enum {
-    RatingTypeY,
-    RatingTypeG,
-    RatingTypePG,
-    RatingTypePG13,
-    RatingTypeR,
-    RatingTypeNotSafeForWork,
-    RatingTypeUnrated
-} RatingType;
-*/
-
-
-
 @implementation SettingsPopUpController
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.pickerItems =
-    [NSMutableArray arrayWithObjects: @"y",@"g",@"pg",@"pg-13",@"r",@"nsfw",@"unrated", nil];
+    
     //pickerView
     self.ratingPicker.delegate = self;
     self.ratingPicker.dataSource = self;
+    
     //load settings
     [self loadSettings];
     
@@ -51,118 +32,76 @@ typedef enum {
     [self setupViews];
 }
 
+- (instancetype)initWithViewModel:(SettingsViewModel *)viewModel {
+    self = [super init];
+    if (self) {
+        self.viewModel = viewModel;
+    }
+    return self;
+}
 
--(void)setupViews {
+- (void)setupViews {
     //popupView
-    self.popUpView.layer.cornerRadius = 30;
+    self.popUpView.layer.cornerRadius = 15;
     self.popUpView.layer.borderWidth = 1;
     self.popUpView.layer.borderColor = UIColor.darkGrayColor.CGColor;
     
     //cancel button
-     [self.saveAndCancelButton setTitleColor:UIColor.giphyPurple forState:UIControlStateNormal];
     self.saveAndCancelButton.layer.cornerRadius = 15;
     self.saveAndCancelButton.layer.borderWidth = 1;
     self.saveAndCancelButton.layer.borderColor = UIColor.darkGrayColor.CGColor;
-    
-    //clear cache button
-    self.clearCacheButton.backgroundColor = UIColor.giphyPurple;
-    [self.clearCacheButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
     
     //title label
     self.settingsLabel.layer.borderColor = UIColor.darkGrayColor.CGColor;
     self.settingsLabel.layer.borderWidth = 1;
     
-    //pickerView
-    self.ratingPicker.layer.borderColor = UIColor.darkGrayColor.CGColor;
-    self.ratingPicker.layer.borderWidth = 1;
-    
     //swipe
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDown:)];
     swipe.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:swipe];
-    
 }
-
-/******* enum Converter **********
--(NSString*)ratingFromType:(RatingType)ratingType {
-    switch (RatingTypeY) {
-        case RatingTypeY:
-            return @"y";
-            break;
-        case RatingTypeG:
-            return @"g";
-            break;
-        case RatingTypePG:
-            return @"pg";
-            break;
-        case RatingTypePG13:
-            return @"pg-13";
-            break;
-        case RatingTypeR:
-            return @"r";
-            break;
-        case RatingTypeNotSafeForWork:
-            return @"nsfw";
-            break;
-        case RatingTypeUnrated:
-            return @"unrated";
-            break;
-        default:
-            return @"unrated";
-            break;
-    }
-}
-*/
 
 
 //MARK: - Actions
-- (IBAction)cancelActionHandler:(id)sender {
-    [self updateViewModel];
-    [self dismissViewControllerAnimated:YES completion:^{
-        //dismissed
-    }];
-}
-
-
-- (IBAction)clearCacheAction:(id)sender {
-    [self updateViewModel];
-    //cache clearing
-    AppFileManager *fileManger = [[AppFileManager alloc] init];
-    
-    if ([fileManger clearPreviewsCacheFrom:@""]) {
-        NSLog(@"clear cache value changed");
-    }
-}
-
-
--(void)swipeDown:(UISwipeGestureRecognizer*)gesture {
-    [self updateViewModel];
+- (IBAction)saveActionHandler:(id)sender {
+    [self saveSettings];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-
-//MARK: - Update ViewModel;
--(void)updateViewModel {
-     [self saveSettings];
+- (IBAction)clearCacheAction:(id)sender {
+    AppFileManager *fileManger = [[AppFileManager alloc] init];
+    
+    if ([fileManger clearPreviewsCache]) {
+        [self showInfoAlert:@"Clearing" message:@"Cache has cleared successfully" completion:^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }
 }
 
+//show info Alert
+- (void)showInfoAlert:(NSString *)title message:(NSString *)message completion: (void(^)(void))completion {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:completion];
+}
 
+- (void)swipeDown:(UISwipeGestureRecognizer*)gesture {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 //MARK: Save and Load settings
--(void)saveSettings{
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setInteger:self.currentRating forKey:kSettingsRatingPicker];
-    [userDefaults synchronize];
+- (void)saveSettings {
+    [self.viewModel saveRatingToUserDefaultsWithRating:self.currentRating];
 }
 
--(void)loadSettings {
-     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    NSInteger numberOfRow = [userDefaults integerForKey:kSettingsRatingPicker];
-    self.currentRating = numberOfRow;
-    [self.ratingPicker selectRow:numberOfRow inComponent:0 animated:YES];
-    
+- (void)loadSettings {
+    NSString *currentRating = [self.viewModel ratingFromUserDefaults];
+    if (currentRating) {
+        self.currentRating = currentRating;
+        [self.ratingPicker selectRow:[self.viewModel.ratingItems indexOfObject:currentRating] inComponent:0 animated:YES];
+    }
 }
 
 

@@ -39,7 +39,12 @@ import Foundation
         
         let api = APIService.shared
         
-        api.fetchSearch(query: query, offset: gifEntities.count, limit: dataLimit) { (result) in
+        var ratingType = GifRatingType.unrated
+        if let rating = UserDefaults.standard.string(forKey: SettingsViewModel.kSettingsRatingPicker()) {
+            ratingType = GifRatingType(rawValue: rating)!
+        }
+        
+        api.fetchSearch(query: query, offset: gifEntities.count, limit: dataLimit, rating: ratingType) { (result) in
             switch result {
             case .Success(let gifEntities):
                 DispatchQueue.main.async {

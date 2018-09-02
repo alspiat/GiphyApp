@@ -34,47 +34,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHh-FT-qof">
-                                <rect key="frame" x="20" y="578.5" width="335" height="48.5"/>
+                                <rect key="frame" x="20" y="575" width="335" height="52"/>
                                 <color key="backgroundColor" red="0.18714028437208119" green="0.18714028437208119" blue="0.18714028437208119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.88773073189999996" green="0.3490716693" blue="0.2322941379" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelActionHandler:" destination="-1" eventType="touchUpInside" id="Cwx-G1-cYg"/>
+                                    <action selector="saveActionHandler:" destination="-1" eventType="touchUpInside" id="Q4N-af-TT6"/>
                                 </connections>
                             </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYH-Uj-h7C">
-                                <rect key="frame" x="20" y="240" width="335" height="323.5"/>
+                                <rect key="frame" x="20" y="253.5" width="335" height="306.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7G-Ef-4sc">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="48.5"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="335" height="52"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKz-I5-250">
-                                        <rect key="frame" x="0.0" y="145" width="335" height="130"/>
+                                        <rect key="frame" x="0.0" y="102.5" width="335" height="153"/>
                                         <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pickerView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Search Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09P-bZ-O4a">
-                                        <rect key="frame" x="20" y="101" width="294.5" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search rating:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09P-bZ-O4a">
+                                        <rect key="frame" x="20" y="62.5" width="294.5" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ldJ-Uq-BNw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yts-tp-zDq">
-                                        <rect key="frame" x="0.0" y="275" width="335" height="48.5"/>
+                                        <rect key="frame" x="0.0" y="255.5" width="335" height="51.5"/>
                                         <color key="backgroundColor" red="0.1871402844" green="0.1871402844" blue="0.1871402844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Clear Cache">
-                                            <color key="titleColor" red="0.4129917321239393" green="0.34962860491046766" blue="0.79891920336787559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="1" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="cancelActionHandler:" destination="-1" eventType="touchUpInside" id="m5h-R6-mHd"/>
                                             <action selector="clearCacheAction:" destination="-1" eventType="touchUpInside" id="ul4-K8-L5d"/>
                                         </connections>
                                     </button>
@@ -89,11 +91,12 @@
                                     <constraint firstItem="09P-bZ-O4a" firstAttribute="leading" secondItem="MYH-Uj-h7C" secondAttribute="leading" constant="20" id="HUb-5U-TGL"/>
                                     <constraint firstItem="g7G-Ef-4sc" firstAttribute="width" secondItem="MYH-Uj-h7C" secondAttribute="width" id="ILd-Nj-2Jy"/>
                                     <constraint firstAttribute="trailing" secondItem="cKz-I5-250" secondAttribute="trailing" id="ODM-vE-bGL"/>
+                                    <constraint firstItem="09P-bZ-O4a" firstAttribute="top" secondItem="g7G-Ef-4sc" secondAttribute="bottom" constant="10" id="PpP-lB-Xjs"/>
                                     <constraint firstItem="yts-tp-zDq" firstAttribute="top" secondItem="cKz-I5-250" secondAttribute="bottom" id="UbQ-oK-5Xs"/>
                                     <constraint firstAttribute="trailing" secondItem="yts-tp-zDq" secondAttribute="trailing" id="gpt-OK-DxH"/>
-                                    <constraint firstItem="cKz-I5-250" firstAttribute="top" secondItem="09P-bZ-O4a" secondAttribute="bottom" constant="20" id="inQ-0g-nSs"/>
+                                    <constraint firstItem="cKz-I5-250" firstAttribute="top" secondItem="09P-bZ-O4a" secondAttribute="bottom" constant="10" id="inQ-0g-nSs"/>
                                     <constraint firstItem="09P-bZ-O4a" firstAttribute="centerX" secondItem="MYH-Uj-h7C" secondAttribute="centerX" id="uWJ-pU-i4e"/>
-                                    <constraint firstItem="cKz-I5-250" firstAttribute="height" secondItem="MYH-Uj-h7C" secondAttribute="height" multiplier="0.4" id="ucf-LA-JsH"/>
+                                    <constraint firstItem="cKz-I5-250" firstAttribute="height" secondItem="MYH-Uj-h7C" secondAttribute="height" multiplier="0.5" id="ucf-LA-JsH"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -103,11 +106,10 @@
                             <constraint firstAttribute="trailing" secondItem="GHh-FT-qof" secondAttribute="trailing" constant="20" id="Dn6-k6-Tsq"/>
                             <constraint firstItem="GHh-FT-qof" firstAttribute="height" secondItem="yts-tp-zDq" secondAttribute="height" id="TNL-Vz-cUM"/>
                             <constraint firstItem="GHh-FT-qof" firstAttribute="top" secondItem="MYH-Uj-h7C" secondAttribute="bottom" constant="15" id="eoc-Wv-CQI"/>
-                            <constraint firstItem="MYH-Uj-h7C" firstAttribute="height" secondItem="RwM-Pw-7Ox" secondAttribute="height" multiplier="0.5" id="lUh-FG-YQN"/>
                             <constraint firstAttribute="bottom" secondItem="GHh-FT-qof" secondAttribute="bottom" constant="20" id="q0B-Wz-PRx"/>
                             <constraint firstItem="MYH-Uj-h7C" firstAttribute="leading" secondItem="RwM-Pw-7Ox" secondAttribute="leading" constant="20" id="qPt-i6-1mr"/>
                             <constraint firstAttribute="trailing" secondItem="MYH-Uj-h7C" secondAttribute="trailing" constant="20" id="tUR-Jv-RWA"/>
-                            <constraint firstItem="GHh-FT-qof" firstAttribute="height" secondItem="MYH-Uj-h7C" secondAttribute="height" multiplier="0.15" id="xGv-GD-amT"/>
+                            <constraint firstItem="GHh-FT-qof" firstAttribute="height" secondItem="MYH-Uj-h7C" secondAttribute="height" multiplier="0.17" id="xGv-GD-amT"/>
                         </constraints>
                     </view>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

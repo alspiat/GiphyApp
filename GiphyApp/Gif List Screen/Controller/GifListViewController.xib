@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GifListViewController">
             <connections>
                 <outlet property="collectionView" destination="ylT-Nq-JHS" id="YcQ-MK-OLh"/>
+                <outlet property="noItemsLabel" destination="Ncc-lC-ebg" id="A49-BH-Klo"/>
                 <outlet property="searchTextField" destination="qRK-pR-mtA" id="bT4-CX-5d3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -47,18 +48,27 @@
                         <action selector="searchButtonTapped:" destination="-1" eventType="touchUpInside" id="ODG-gw-l1g"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, but there are no items to show :(" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncc-lC-ebg">
+                    <rect key="frame" x="31.5" y="359" width="313.5" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ylT-Nq-JHS" firstAttribute="top" secondItem="qRK-pR-mtA" secondAttribute="bottom" constant="6" id="5GK-Zy-NSo"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ORc-6Q-NVi" secondAttribute="trailing" constant="3" id="Eoz-Le-6M7"/>
+                <constraint firstItem="Ncc-lC-ebg" firstAttribute="centerX" secondItem="ylT-Nq-JHS" secondAttribute="centerX" id="Qag-XI-hzs"/>
                 <constraint firstItem="ORc-6Q-NVi" firstAttribute="top" secondItem="qRK-pR-mtA" secondAttribute="top" id="V5T-GR-47K"/>
+                <constraint firstItem="Ncc-lC-ebg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ylT-Nq-JHS" secondAttribute="leading" constant="30" id="XUB-Dl-RLX"/>
                 <constraint firstItem="ORc-6Q-NVi" firstAttribute="bottom" secondItem="qRK-pR-mtA" secondAttribute="bottom" id="eN2-60-4Fv"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ylT-Nq-JHS" secondAttribute="trailing" id="h27-rm-Lty"/>
                 <constraint firstItem="ylT-Nq-JHS" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="hiz-Cz-xQw"/>
                 <constraint firstItem="ORc-6Q-NVi" firstAttribute="leading" secondItem="qRK-pR-mtA" secondAttribute="trailing" id="lLR-0L-lUB"/>
                 <constraint firstItem="qRK-pR-mtA" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="mKV-yE-iBq"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="ylT-Nq-JHS" secondAttribute="bottom" id="oO0-u2-8hZ"/>
+                <constraint firstItem="Ncc-lC-ebg" firstAttribute="centerY" secondItem="ylT-Nq-JHS" secondAttribute="centerY" id="teZ-kc-2lW"/>
                 <constraint firstItem="qRK-pR-mtA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="3" id="two-8G-L3E"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

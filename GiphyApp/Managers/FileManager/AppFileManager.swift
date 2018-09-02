@@ -49,7 +49,7 @@ fileprivate let originalsDirectory = "Originals"
         return try? Data(contentsOf: url)
     }
     
-    func clearPreviewsCache(from rootDirectory: String) -> Bool {
+    func clearPreviewsCache() -> Bool {
         do {
             try self.fileManager.removeItem(atPath: AppFileManager.previewsPath)
             return true

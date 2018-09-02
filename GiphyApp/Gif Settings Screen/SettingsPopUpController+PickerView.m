@@ -7,8 +7,7 @@
 //
 
 #import "SettingsPopUpController+PickerView.h"
-
-
+#import "GiphyApp-Swift.h"
 
 @implementation SettingsPopUpController (PickerView)
 
@@ -18,28 +17,28 @@
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.pickerItems.count;
+    return self.viewModel.ratingItems.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.pickerItems[row];
+    return self.viewModel.ratingItems[row];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width /4, self.saveAndCancelButton.frame.size.height)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width / 2, self.saveAndCancelButton.frame.size.height)];
     label.backgroundColor = [UIColor blackColor];
     label.layer.cornerRadius = 15;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:20];
-    NSString* text = (NSString*)self.pickerItems[row];
-    label.text = text.capitalizedString;
+    NSString* text = (NSString*)self.viewModel.ratingItems[row];
+    label.text = text.uppercaseString;
     label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.currentRating = row;
+    self.currentRating = self.viewModel.ratingItems[row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
