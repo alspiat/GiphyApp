@@ -126,7 +126,7 @@ class GifFavoriteViewModelTests: XCTestCase {
         coreDataManager.addItem(self.gifEntity)
         self.gifFavoritesViewModel?.loadDataIfNeeded(fromIndex: 0)
         let contentSize = self.gifFavoritesViewModel?.contentSize(at: 0)
-        let expectedSize = CGSize(width: 138, height: 74)
+        let expectedSize = CGSize(width: 480, height: 480)
         
         XCTAssertEqual(contentSize, expectedSize)
     }

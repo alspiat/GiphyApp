@@ -64,8 +64,7 @@ class File: XCTestCase {
     
     //clearPreviewsCache
     func test_clearPreviewsCache_Success() {
-        let failDirectory = "fail/Directory.path"
-        guard let result = self.fileManager?.clearPreviewsCache(from: failDirectory) else { return XCTAssert(true, "test_clearPreviewsCache_Success (cache is clear)")}
+        guard let result = self.fileManager?.clearPreviewsCache() else { return XCTAssert(true, "test_clearPreviewsCache_Success (cache is clear)")}
         XCTAssertTrue(result)
     }
 
