@@ -15,17 +15,37 @@ import Foundation
     }
     
     var ratingItems = ["y", "g", "pg", "pg-13", "r", "nsfw", "unrated"]
+    var currentRating: String?
+    
+    override init() {
+        super.init()
+        if let rating = self.ratingFromUserDefaults() {
+            currentRating = rating
+        } else {
+            currentRating = ratingItems.last
+        }
+    }
+    
+    public var didUpdate: (() -> Void) = {}
     
     var userDefaults: UserDefaults {
         return UserDefaults.standard
     }
     
-    func saveRatingToUserDefaults(rating: String) {
-        userDefaults.set(rating, forKey: SettingsViewModel.kSettingsRatingPicker())
-        userDefaults.synchronize()
+    func saveRatingToUserDefaults() {
+        if let rating = self.currentRating {
+            userDefaults.set(rating, forKey: SettingsViewModel.kSettingsRatingPicker())
+            userDefaults.synchronize()
+        }
     }
     
     func ratingFromUserDefaults() -> String? {
         return userDefaults.object(forKey: SettingsViewModel.kSettingsRatingPicker()) as? String
+    }
+    
+    func setCurrentRating(index: Int) {
+        if index < self.ratingItems.count {
+            self.currentRating = self.ratingItems[index]
+        }
     }
 }

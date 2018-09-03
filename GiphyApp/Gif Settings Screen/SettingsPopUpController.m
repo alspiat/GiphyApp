@@ -12,6 +12,12 @@
 
 @interface SettingsPopUpController()
 
+@property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
+@property (readwrite, weak, nonatomic) IBOutlet UIButton *saveAndCancelButton;
+@property (weak, nonatomic) IBOutlet UIPickerView *ratingPicker;
+@property (weak, nonatomic) IBOutlet UILabel *chooseRatingLabel;
+@property (weak, nonatomic) IBOutlet UIButton *clearCacheButton;
+@property (weak, nonatomic) IBOutlet UIView *popUpView;
 @property (readwrite, nonatomic, strong) SettingsViewModel *viewModel;
 
 @end
@@ -24,12 +30,12 @@
     //pickerView
     self.ratingPicker.delegate = self;
     self.ratingPicker.dataSource = self;
-    
-    //load settings
-    [self loadSettings];
-    
+
     //draw views
     [self setupViews];
+    
+    [self bindToViewModel];
+    [self viewModelDidUpdate];
 }
 
 - (instancetype)initWithViewModel:(SettingsViewModel *)viewModel {
@@ -93,14 +99,20 @@
 
 //MARK: Save and Load settings
 - (void)saveSettings {
-    [self.viewModel saveRatingToUserDefaultsWithRating:self.currentRating];
+    [self.viewModel saveRatingToUserDefaults];
 }
 
-- (void)loadSettings {
-    NSString *currentRating = [self.viewModel ratingFromUserDefaults];
-    if (currentRating) {
-        self.currentRating = currentRating;
-        [self.ratingPicker selectRow:[self.viewModel.ratingItems indexOfObject:currentRating] inComponent:0 animated:YES];
+//MARK: - Binding
+- (void)bindToViewModel {
+    __weak typeof(self) weakSelf = self;
+    self.viewModel.didUpdate = ^{
+        [weakSelf viewModelDidUpdate];
+    };
+}
+
+- (void)viewModelDidUpdate {
+    if ([self.viewModel currentRating]) {
+        [self.ratingPicker selectRow:[self.viewModel.ratingItems indexOfObject:[self.viewModel currentRating]] inComponent:0 animated:YES];
     }
 }
 
