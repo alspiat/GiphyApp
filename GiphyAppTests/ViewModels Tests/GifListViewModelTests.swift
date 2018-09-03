@@ -70,20 +70,33 @@ class GifListViewModelTests: XCTestCase {
     
     //for trending
     func test_trending_loadDataIfNeeded_Success(){
-        let index = 12
+        
+        var index = 10
+        let expectation = self.expectation(description: "ready")
+        
+        self.gifListViewModel?.didUpdate = {
+            expectation.fulfill()
+            index = 1000
+        }
         self.gifListViewModel?.loadDataIfNeeded(fromIndex: index)
+      
+        self.waitForExpectations(timeout: 10) { (error) in
+             XCTAssertTrue(index == 1000)
+        }
+       
         
     }
     
-    func test_loadDataIfDontNeeded_Success() {
-        
+    func test_clearData_Success() {
+        //calls standard function and don't need to be tested
     }
     
     func test_viewModelForCell_Success() {
+        //don't need to be testes because this tested in GifCellViewModel
     }
     
     func test_contentSize_Success() {
-        
+        //don't need to be testes because this method works with standaed functions
     }
     
     func testPerformanceExample() {
