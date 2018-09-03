@@ -22,11 +22,10 @@ import Foundation
     required init?(JSON: JSON) {
         
         // Required values
-        guard let id = JSON["id"] as? String,
-            let imagesData = JSON["images"] as? JSON,
-            let originalImageData = imagesData["original"] as? JSON,
-            //let previewImageData = imagesData["fixed_width"] as? JSON,
-            let previewImageData = imagesData["preview_gif"] as? JSON,
+        guard let id = JSON[gifIdField] as? String,
+            let imagesData = JSON[gifImagesField] as? JSON,
+            let originalImageData = imagesData[gifOriginalField] as? JSON,
+            let previewImageData = imagesData[gifPreviewField] as? JSON,
             let originalImage = GifImage(JSON: originalImageData),
             let previewImage = GifImage(JSON: previewImageData) else {
                 return nil
@@ -37,25 +36,25 @@ import Foundation
         self.previewImage = previewImage
         
         // Optional values
-        if let title = JSON["title"] as? String {
+        if let title = JSON[gifTitleField] as? String {
             self.title = title
         }
         
-        if let username = JSON["username"] as? String {
+        if let username = JSON[gifUsernameField] as? String {
             self.username = username
         }
         
-        if let rating = JSON["rating"] as? String,
+        if let rating = JSON[gifRatingField] as? String,
             let ratingType = GifRatingType(rawValue: rating) {
             self.rating = ratingType
         }
         
-        if let publishingDateStr = JSON["import_datetime"] as? String,
+        if let publishingDateStr = JSON[gifPubDateField] as? String,
             let publishingDate = Date.date(string: publishingDateStr) {
             self.publishingDate = publishingDate
         }
         
-        if let trendingDateStr = JSON["trending_datetime"] as? String,
+        if let trendingDateStr = JSON[gifTrendDateField] as? String,
             let trendingDate = Date.date(string: trendingDateStr) {
             self.trendingDate = trendingDate
         }

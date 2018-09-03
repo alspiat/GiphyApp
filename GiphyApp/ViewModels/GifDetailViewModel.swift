@@ -55,7 +55,7 @@ import UIKit
         let fileManager = AppFileManager()
         
         if let data = self.gifData {
-            let filename = "\(self.gifEntity.id).gif"
+            let filename = "\(self.gifEntity.id).\(gifExtension)"
             fileManager.createFile(filename, data: data, folder: AppFileManager.originalsPath)
             coreDataManager.addItem(self.gifEntity)
             self.isSaved = true
@@ -69,7 +69,7 @@ import UIKit
         let coreDataManager = CoreDataManager()
         let fileManager = AppFileManager()
         
-        let filename = "\(self.gifEntity.id).gif"
+        let filename = "\(self.gifEntity.id).\(gifExtension)"
         let result = fileManager.removeFile(filename, folder: AppFileManager.originalsPath)
         
         if result {

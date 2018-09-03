@@ -9,6 +9,8 @@
 #import "GifDetailViewController.h"
 #import "NSDate+FormattedString.h"
 #import "CoreDataManager.h"
+#import "ButtonConstants.h"
+#import "MessageConstants.h"
 #import "GiphyApp-Swift.h"
 
 @interface GifDetailViewController ()
@@ -76,9 +78,9 @@
     }
     
     if (self.viewModel.isSaved) {
-        [self.saveButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [self.saveButton setBackgroundImage:[UIImage imageNamed:gifDeleteButtonImage] forState:UIControlStateNormal];
     } else {
-        [self.saveButton setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+        [self.saveButton setBackgroundImage:[UIImage imageNamed:gifSaveButtonImage] forState:UIControlStateNormal];
     }
     
     //buttons
@@ -115,9 +117,9 @@
     } completion:nil];
     
     if (self.viewModel.isAnimating) {
-        [self.animateButton setBackgroundImage:[UIImage imageNamed:@"stop-button"] forState:UIControlStateNormal];
+        [self.animateButton setBackgroundImage:[UIImage imageNamed:gifStopButtonImage] forState:UIControlStateNormal];
     } else {
-        [self.animateButton setBackgroundImage:[UIImage imageNamed:@"play-button"] forState:UIControlStateNormal];
+        [self.animateButton setBackgroundImage:[UIImage imageNamed:gifPlayButtonImage] forState:UIControlStateNormal];
     }
 }
 
@@ -147,7 +149,7 @@
     
     activityVC.completionWithItemsHandler = ^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
         if (completed && activityType == UIActivityTypeSaveToCameraRoll) {
-            [self showInfoAlert:@"Saving" message:@"GIF saved to camera roll"];
+            [self showInfoAlert:gifSavingCameraTitle message:gifSavingCameraMessage];
         }
     };
     
@@ -162,7 +164,7 @@
 //show info Alert
 - (void)showInfoAlert:(NSString *)title message:(NSString *)message {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:gifOkActionTitle style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -170,14 +172,14 @@
 - (IBAction)saveActionHandler:(id)sender {
     if (!self.viewModel.isSaved) {
         if ([self.viewModel saveToPersistance]) {
-            [self.saveButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-            [self showInfoAlert:@"Saving" message:@"GIF saved to persistance"];
+            [self.saveButton setBackgroundImage:[UIImage imageNamed:gifDeleteButtonImage] forState:UIControlStateNormal];
+            [self showInfoAlert:gifSavingTitle message:gifSavingMessage];
         }
     } else {
         if ([self.viewModel removeFromPersistance]) {
-            [self.saveButton setBackgroundImage:[UIImage imageNamed:@"save"] forState:UIControlStateNormal];
+            [self.saveButton setBackgroundImage:[UIImage imageNamed:gifSaveButtonImage] forState:UIControlStateNormal];
             [Navigation.shared reloadControllerList];
-            [self showInfoAlert:@"Removing" message:@"GIF removed from persistance"];
+            [self showInfoAlert:gifRemovingTitle message:gifRemovingMessage];
         }
     }
 }

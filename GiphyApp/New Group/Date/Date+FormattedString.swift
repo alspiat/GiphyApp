@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
     public static func date(string: String) -> Date? {
-        let dateFormats = ["yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"]
+        let dateFormats = [gifDateFormatIn1, gifDateFormatIn2]
         for format in dateFormats {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = format
@@ -25,7 +25,7 @@ extension Date {
     
     public func formattedString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, dd MMM yyyy"
+        dateFormatter.dateFormat = gifDateFormatOut
         return dateFormatter.string(from: self)
     }
 }

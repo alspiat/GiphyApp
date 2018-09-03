@@ -10,24 +10,24 @@
 
 @implementation UIColor (AppColor)
 
-+ (UIColor *)giphyPurple {
++ (UIColor *)appPurple {
     return [UIColor colorWithRed:97.0/255.0 green:87.0/255.0 blue:255.0/255.0 alpha:255.0/255.0];
 }
 
-+ (UIColor *)giphyPink {
++ (UIColor *)appPink {
     return [UIColor colorWithRed:230.0/255.0 green:70.0/255.0 blue:182.0/255.0 alpha:255.0/255.0];
 }
 
-+ (UIColor *)giphyBlue {
++ (UIColor *)appBlue {
     return [UIColor colorWithRed:0.0/255.0 green:204.0/255.0 blue:255.0/255.0 alpha:255.0/255.0];
 }
 
-+ (UIColor *)giphyGreen {
++ (UIColor *)appGreen {
     return [UIColor colorWithRed:0.0/255.0 green:230.0/255.0 blue:204.0/255.0 alpha:255.0/255.0];
 }
 
-+ (UIColor *)randomThemeColor {
-    NSArray<UIColor *> *array = [NSArray arrayWithObjects:[UIColor giphyPurple], [UIColor giphyPink], [UIColor giphyBlue], [UIColor giphyGreen], nil];
++ (UIColor *)appRandomColor {
+    NSArray<UIColor *> *array = [NSArray arrayWithObjects:[UIColor appPurple], [UIColor appPink], [UIColor appBlue], [UIColor appGreen], nil];
     return array[0 + arc4random() % (array.count - 0)];
 }
 

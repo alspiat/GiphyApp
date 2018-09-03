@@ -141,6 +141,9 @@
 		9AFC568D213829A5008CB0B3 /* GifManagedObjectEntity+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GifManagedObjectEntity+CoreDataClass.h"; sourceTree = "<group>"; };
 		9AFC568E213829A5008CB0B3 /* GifManagedObjectEntity+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GifManagedObjectEntity+CoreDataClass.m"; sourceTree = "<group>"; };
 		9AFC569421383485008CB0B3 /* GifFavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFavouritesViewModel.swift; sourceTree = "<group>"; };
+		AA3B49DC213D407400ABDF4B /* ButtonConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonConstants.h; sourceTree = "<group>"; };
+		AA3B49DD213D429F00ABDF4B /* MessageConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageConstants.h; sourceTree = "<group>"; };
+		AA3B49DE213D44E300ABDF4B /* GlobalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConstants.h; sourceTree = "<group>"; };
 		AA92E77F213732D600339F56 /* NSDate+FormattedString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+FormattedString.h"; sourceTree = "<group>"; };
 		AA92E780213732D600339F56 /* NSDate+FormattedString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FormattedString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,6 +230,7 @@
 		9A3DD03B2130489E005375F5 /* GiphyApp */ = {
 			isa = PBXGroup;
 			children = (
+				AA3B49D9213D401000ABDF4B /* Constants */,
 				9AF2FCB121354B2800347C36 /* Managers */,
 				9AC153042133E696000CE838 /* Extensions */,
 				9A3DD06321304A09005375F5 /* Launching files */,
@@ -421,6 +425,16 @@
 				9AF2FCB321354BA400347C36 /* DataManager.m */,
 			);
 			path = DataManager;
+			sourceTree = "<group>";
+		};
+		AA3B49D9213D401000ABDF4B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AA3B49DC213D407400ABDF4B /* ButtonConstants.h */,
+				AA3B49DD213D429F00ABDF4B /* MessageConstants.h */,
+				AA3B49DE213D44E300ABDF4B /* GlobalConstants.h */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		AA92E782213732DB00339F56 /* Date */ = {

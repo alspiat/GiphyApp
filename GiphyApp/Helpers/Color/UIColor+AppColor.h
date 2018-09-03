@@ -10,11 +10,11 @@
 
 @interface UIColor (AppColor)
 
-+ (UIColor *)giphyPurple;
-+ (UIColor *)giphyPink;
-+ (UIColor *)giphyBlue;
-+ (UIColor *)giphyGreen;
++ (UIColor *)appPurple;
++ (UIColor *)appPink;
++ (UIColor *)appBlue;
++ (UIColor *)appGreen;
 
-+ (UIColor *)randomThemeColor;
++ (UIColor *)appRandomColor;
 
 @end

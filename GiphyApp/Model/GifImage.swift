@@ -18,9 +18,9 @@ import UIKit
     required init?(JSON: JSON) {
         
         // Required values
-        guard let url = JSON["url"] as? String,
-            let heightStr = JSON["height"] as? String,
-            let widthStr = JSON["width"] as? String,
+        guard let url = JSON[gifUrlField] as? String,
+            let heightStr = JSON[gifHeightField] as? String,
+            let widthStr = JSON[gifWidthField] as? String,
             let height = Int(heightStr),
             let width = Int(widthStr) else {
                 return nil
@@ -31,7 +31,7 @@ import UIKit
         self.height = height
         
         // Optional values
-        if let sizeStr = JSON["size"] as? String,
+        if let sizeStr = JSON[gifSizeField] as? String,
             let size = Int(sizeStr) {
             self.size = size
         }

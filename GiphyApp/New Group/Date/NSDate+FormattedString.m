@@ -7,12 +7,13 @@
 //
 
 #import "NSDate+FormattedString.h"
+#import "GlobalConstants.h"
 
 @implementation NSDate (FormattedString)
 
 - (NSString *)formattedString {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"E, dd MMM yyyy"];
+    [dateFormatter setDateFormat:gifDateFormatOut];
     
     return [dateFormatter stringFromDate:self];
 }

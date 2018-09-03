@@ -8,6 +8,8 @@
 
 #import "SettingsPopUpController.h"
 #import "SettingsPopUpController+PickerView.h"
+#import "ButtonConstants.h"
+#import "MessageConstants.h"
 #import "GiphyApp-Swift.h"
 
 @interface SettingsPopUpController()
@@ -79,7 +81,7 @@
     AppFileManager *fileManger = [[AppFileManager alloc] init];
     
     if ([fileManger clearPreviewsCache]) {
-        [self showInfoAlert:@"Clearing" message:@"Cache has cleared successfully" completion:^{
+        [self showInfoAlert:gifClearingTitle message:gifClearingMessage completion:^{
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
     }
@@ -88,7 +90,7 @@
 //show info Alert
 - (void)showInfoAlert:(NSString *)title message:(NSString *)message completion: (void(^)(void))completion {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:gifOkActionTitle style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:completion];
 }

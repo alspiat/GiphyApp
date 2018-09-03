@@ -35,7 +35,7 @@ NSString * const gifCellNibName = @"GifCollectionViewCell";
 
 - (void)setup:(GifCellViewModel *)viewModel {
     [self.activityIndicator startAnimating];
-    self.backgroundColor = [UIColor randomThemeColor];
+    self.backgroundColor = [UIColor appRandomColor];
     self.viewModel = viewModel;
     
     [self bindToViewModel];

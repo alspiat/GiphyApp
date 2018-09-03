@@ -43,7 +43,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="nLZ-nE-AHL"/>
                     </constraints>
-                    <state key="normal" backgroundImage="button"/>
+                    <state key="normal" backgroundImage="search"/>
                     <connections>
                         <action selector="searchButtonTapped:" destination="-1" eventType="touchUpInside" id="ODG-gw-l1g"/>
                     </connections>
@@ -76,6 +76,6 @@
         </view>
     </objects>
     <resources>
-        <image name="button" width="26" height="26"/>
+        <image name="search" width="26" height="26"/>
     </resources>
 </document>

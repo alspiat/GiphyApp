@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * _Nonnull const gifIdField = @"id";
+static NSString * _Nonnull const gifTitleField = @"title";
+static NSString * _Nonnull const gifUsernameField = @"username";
+static NSString * _Nonnull const gifPubDateField = @"import_datetime";
+static NSString * _Nonnull const gifTrendDateField = @"trending_datetime";
+static NSString * _Nonnull const gifRatingField = @"rating";
+static NSString * _Nonnull const gifImagesField = @"images";
+static NSString * _Nonnull const gifOriginalField = @"original";
+static NSString * _Nonnull const gifSizeField = @"size";
+static NSString * _Nonnull const gifPreviewField = @"preview_gif";
+static NSString * _Nonnull const gifUrlField = @"url";
+static NSString * _Nonnull const gifHeightField = @"height";
+static NSString * _Nonnull const gifWidthField = @"width";
+
 @protocol GifImageModel <NSObject>
 
 @property (nonnull, nonatomic, copy) NSString *url;

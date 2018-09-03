@@ -10,6 +10,7 @@
 #import "GifListViewController+CollectionView.h"
 #import "GifListViewController+SearchTextField.h"
 #import "GifCollectionViewCell.h"
+#import "ButtonConstants.h"
 
 @interface GifListViewController ()
 
@@ -67,14 +68,14 @@
 
 //MARK: - Buttons
 -(void)setupBookmarkButton {
-    UIImage *buttonImage = [[UIImage imageNamed:@"bookmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *buttonImage = [[UIImage imageNamed:gifFavoritesButtonImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [self.navigationItem.leftBarButtonItem setImage:buttonImage];
     [self.navigationItem.leftBarButtonItem setTarget:self];
     [self.navigationItem.leftBarButtonItem setAction:@selector(favouritesButtonTapped:)];
 }
 
 -(void)setupSettingsButton {
-    UIImage *settingsImage = [[UIImage imageNamed:@"settings1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *settingsImage = [[UIImage imageNamed:gifSettingsButtonImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:settingsImage];
     imgView.layer.contentsGravity =kCAGravityResizeAspect;
     

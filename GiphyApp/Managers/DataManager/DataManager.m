@@ -9,8 +9,6 @@
 #import "DataManager.h"
 #import "GiphyApp-Swift.h"
 
-static NSString * const dataType = @"gif";
-
 @implementation DataManager
 
 + (id<NetworkCancelable>)loadImageData:(GifImage*)gifImage withName:(NSString *)filename folder:(NSString*)folderPath
@@ -39,7 +37,7 @@ static NSString * const dataType = @"gif";
 + (id<NetworkCancelable>)loadPreviewImageData:(GifEntity*)gifEntity
                         completionHandler:(BlockWithData)completionHandler {
     
-    NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
+    NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, gifExtension];
     return [self loadImageData:gifEntity.previewImage withName:filename folder: AppFileManager.previewsPath saving:YES completionHandler:completionHandler];
 }
 
@@ -47,7 +45,7 @@ static NSString * const dataType = @"gif";
                         previewFirstly:(BOOL)isPreview
                         completionHandler:(BlockWithData)completionHandler {
     
-    NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, dataType];
+    NSString *filename = [NSString stringWithFormat:@"%@.%@", gifEntity.id, gifExtension];
     
     if (isPreview) {
         [self loadImageData:gifEntity.originalImage withName:filename folder: AppFileManager.previewsPath saving:NO completionHandler:completionHandler];
