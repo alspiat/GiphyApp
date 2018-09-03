@@ -13,68 +13,108 @@ import XCTest
 
 class DataManagerTests: XCTestCase {
     var fileManager:AppFileManager?
+    var gif: GifEntity!
     
     override func setUp() {
         super.setUp()
+        let json:JSON = [
+            "id": "feqkVgjJpYtjy",
+            "url": "https://giphy.com/gifs/eyes-shocked-bird-feqkVgjJpYtjy",
+            "username": "",
+            "rating": "g",
+            "content_url": "",
+            "source_tld": "littleanimalgifs.tumblr.com",
+            "source_post_url": "http://littleanimalgifs.tumblr.com/post/17994517807",
+            "import_datetime": "2013-03-21 04:03:08",
+            "trending_datetime": "2014-11-12 06:22:52",
+            
+            "images": [
+                "fixed_height_still": [
+                    "url": "https://media0.giphy.com/media/feqkVgjJpYtjy/200_s.gif",
+                    "width": "445",
+                    "height": "200"
+                ],
+                "preview_gif": [
+                    "url": "https://media0.giphy.com/media/feqkVgjJpYtjy/200_d.gif",
+                    "width": "445",
+                    "height": "200",
+                    "size": "183225",
+                    "webp": "https://media0.giphy.com/media/feqkVgjJpYtjy/200_d.webp",
+                    "webp_size": "89516"
+                ],
+                "original": [
+                    "url": "https://media0.giphy.com/media/feqkVgjJpYtjy/giphy.gif",
+                    "width": "334",
+                    "height": "150",
+                    "size": "511581",
+                    "frames": "27",
+                    "mp4": "https://media0.giphy.com/media/feqkVgjJpYtjy/giphy.mp4",
+                    "mp4_size": "97841",
+                    "webp": "http://media0.giphy.com/media/feqkVgjJpYtjy/giphy.webp",
+                    "webp_size": "270108"
+                ],
+                
+            ],
+            "title": "Shocked Eyes GIF",
+            ]
+        
+        self.gif = GifEntity(JSON: json)
         self.fileManager = AppFileManager()
     }
     
     override func tearDown() {
+        self.gif = nil
         self.fileManager = nil
         super.tearDown()
     }
     
-    
-    //loadImageData
-    func test_loadImageData_Success(){
-        
-    }
-    
+    //WARNING: multiple fullFilltrouble
     //loadPreviewImageData
+    /*
     func test_loadPreviewImageData_Success() {
-//        let json:JSON = ["id":"myId", "url":"url1",
-//                         "height": "120", "width":"200",
-//                         "preview_gif": ["url": "http://media2.giphy.com/media/FiGiRei2ICzzG/200w.gif",
-//                                         "width": "200",
-//                                         "height": "70"],
-//                         "original": ["url": "http://media2.giphy.com/media/FiGiRei2ICzzG/200w_d.gif",
-//                                      "width": "200",
-//                                      "height": "70"]]
+        var resultData:Data?
+        let expectation:XCTestExpectation  = self.expectation(description: "success")
         
-//        let gifEntity = GifEntity(JSON: json)
-//        let image = GifImage(JSON: json)
-//        gifEntity?.originImage = image!
-//        let image = UIImage(named: "settings")
-//        var myData = UIImagePNGRepresentation(image!)
-//
-//        var newData: Data;
-//
-//
-//        let expectation:XCTestExpectation  = self.expectation(description: "success")
-//         DataManager.loadOriginalImageData(gifEntity, previewFirstly: true, completionHandler:  {(data) in
-//            let image = UIImage(named: "settings")
-//            newData = UIImagePNGRepresentation(image!)!
-//            data = newData
-//            print(newData)
-//            expectation.fulfill()
-//        })
-//
-//            self.waitForExpectations(timeout: 5, handler: { (error) in
-//                if error != nil {
-//                    print("error occured \(error.debugDescription)")
-//                }
-//            })
-//
-//        XCTAssert(myData != nil, "Data exists")
-//        XCTAssertEqual(myData, newData)
-        
+        DataManager.loadPreviewImageData(self.gif) { (data) in
+            resultData = data
+            expectation.fulfill()
+        }
+        self.waitForExpectations(timeout: 5, handler:nil)
+        XCTAssert(resultData != nil, "preview image data should not be nil")
     }
+    */
     
+    /*
     //loadOriginalImageData
-    func test_loadOriginalImageData_Success(){
+    func test_loadOriginalImageDataPreviewFirstly_Success(){
+        var resultData:Data?
+        let expectation:XCTestExpectation  = self.expectation(description: "success")
         
+        DataManager.loadOriginalImageData(self.gif, previewFirstly: true, completionHandler:  {(data) in
+            print(data)
+            resultData = data
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 5, handler:nil)
+        XCTAssert(resultData != nil, "original image data should not be nil")
     }
     
+    
+    func test_loadOriginalImageData_Success(){
+        var resultData:Data?
+        let expectation:XCTestExpectation  = self.expectation(description: "success")
+        
+        DataManager.loadOriginalImageData(self.gif, previewFirstly: false, completionHandler:  {(data) in
+            print(data)
+            resultData = data
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 5, handler:nil)
+        XCTAssert(resultData != nil, "original image data should not be nil")
+    }
+ */
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

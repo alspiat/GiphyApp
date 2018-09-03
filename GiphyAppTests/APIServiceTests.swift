@@ -10,30 +10,139 @@ import XCTest
 @testable import GiphyApp
 
 class APIServiceTests: XCTestCase {
+    var api: APIService!
     
     override func setUp() {
         super.setUp()
-
+        self.api = APIService.shared
     }
     
     override func tearDown() {
-  
+        self.api = nil
         super.tearDown()
     }
     
     //fetch Data
     func test_fetchData_Success() {
+        let someURlString = "https://giphy.com/gifs/eyes-shocked-bird-feqkVgjJpYtjy"
+        var expectedData: Data?
+        let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet")
+        let dataTask = self.api.fetchData(URL: URL(string: someURlString)) { (data) in
+            expectedData = data
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertTrue(expectedData != nil && (dataTask != nil))
         
     }
     
     //fetchSearch
     func test_fetchSearch_Success() {
+        let requestString = "cats"
+        var gifArray: [GifEntity]?
         
+        let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet with search query")
+        
+    
+        self.api.fetchSearch(query: requestString, offset: 20, limit: 24, rating: .ratedPG) { (result) in
+            switch result {
+            case .Success(let gifEntities):
+                DispatchQueue.main.async {
+                    gifArray = gifEntities
+                    print("this is gif array : \(gifEntities)")
+                }
+            case .Failure(let apiError):
+                print(apiError.description)
+            }
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(gifArray != nil)
     }
+    
+    func test_fetchSearch_invalidQuery_Failure() {
+        let requestString = "catsdkjsdkjf322342"
+        var gifArray: [GifEntity]?
+        
+        let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet with search query")
+        
+        
+        self.api.fetchSearch(query: requestString, offset: 20, limit: 24, rating: .ratedPG) { (result) in
+            switch result {
+            case .Success(let gifEntities):
+                DispatchQueue.main.async {
+                    gifArray = gifEntities
+                    print("this is gif array : \(gifEntities)")
+                }
+            case .Failure(let apiError):
+                print(apiError.description)
+            }
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10, handler: nil)
+        
+        if let result = gifArray {
+             XCTAssertTrue((result.isEmpty))
+        } else {
+            XCTFail()
+        }
+       
+    }
+    
+    
+    
+    
     
     //fetch trending
     func test_fetchTrending_Success() {
+        var gifArray: [GifEntity]?
         
+        let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet with search query")
+        
+        
+        self.api.fetchTrending(offset: 20, limit: 24, rating: .unrated, completionHandler: { (result) in
+            switch result {
+            case .Success(let gifEntities):
+                DispatchQueue.main.async {
+                    gifArray = gifEntities
+                    print("this is gif array : \(gifEntities)")
+                }
+            case .Failure(let apiError):
+                print(apiError.description)
+            }
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(gifArray != nil)
+    }
+    
+
+    func test_fetch_trending_Error_Success() {
+        var gifArray: [GifEntity]?
+        
+        let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet with search query")
+        
+        
+        self.api.fetchTrending(offset: -110, limit: -122, rating: .unrated, completionHandler: { (result) in
+            
+            switch result {
+            case .Success(let gifEntities):
+                DispatchQueue.main.async {
+                    gifArray?.append(contentsOf: gifEntities)
+                    print("this is gif array : \(gifEntities)")
+                }
+            case .Failure(let apiError):
+                print(apiError.description)
+            }
+            expectation.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(gifArray == nil)
     }
     
     func testPerformanceExample() {

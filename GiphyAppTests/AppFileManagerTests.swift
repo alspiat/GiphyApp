@@ -60,4 +60,23 @@ class File: XCTestCase {
         
         XCTAssertEqual(data, requestData)
     }
+    
+    
+    //clearPreviewsCache
+    func test_clearPreviewsCache_Success() {
+        let failDirectory = "fail/Directory.path"
+        guard let result = self.fileManager?.clearPreviewsCache(from: failDirectory) else { return XCTAssert(true, "test_clearPreviewsCache_Success (cache is clear)")}
+        XCTAssertTrue(result)
+    }
+
+    //remove file from directory
+    func test_removeFile_Success(){
+        let failFolder = "folder"
+        let failFile = "file.gif"
+        guard let result = self.fileManager?.removeFile(failFile, folder: failFolder) else { return XCTAssert(false, "test_removeFile_Success")}
+        XCTAssertFalse(result)
+    }
+    
 }
+    
+
