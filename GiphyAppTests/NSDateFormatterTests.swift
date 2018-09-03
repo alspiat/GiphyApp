@@ -57,6 +57,20 @@ class NSDateFormatterTests: XCTestCase {
         return someDateTime!
     }
     
+   
+    
+    //NSDate tests
+    func test_formattedStringNSDate_Success() {
+        let nsdate = NSDate()
+        let date = Date()
+        //expected result
+        let expectedResult = self.stringFromDateWithFormatString(date: date)
+        let stringDate = nsdate.formattedString()
+        
+        XCTAssertEqual(expectedResult, stringDate)
+    }
+    
+    //helpers
     func stringFromDateWithFormatString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, dd MMM yyyy"
