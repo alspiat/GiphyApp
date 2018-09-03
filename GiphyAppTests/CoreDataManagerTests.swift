@@ -91,6 +91,7 @@ class CoreDataManagerTests: XCTestCase {
         
         manager.addItem(self.gif)
         XCTAssertTrue(manager.itemExists(withID: self.gif.id))
+        manager.deleteItem(self.gif)
     }
     
     func test_deletaItem_Success() {

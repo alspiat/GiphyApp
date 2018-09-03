@@ -32,8 +32,10 @@ class APIServiceTests: XCTestCase {
             expectation.fulfill()
         }
         
-        self.waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertTrue(expectedData != nil && (dataTask != nil))
+        self.waitForExpectations(timeout: 10) { (error) in
+            XCTAssertTrue(expectedData != nil )
+        }
+      
         
     }
     
@@ -51,11 +53,11 @@ class APIServiceTests: XCTestCase {
                 DispatchQueue.main.async {
                     gifArray = gifEntities
                     print("this is gif array : \(gifEntities)")
+                    expectation.fulfill()
                 }
             case .Failure(let apiError):
                 print(apiError.description)
             }
-            expectation.fulfill()
         }
         
         self.waitForExpectations(timeout: 10, handler: nil)
@@ -63,7 +65,7 @@ class APIServiceTests: XCTestCase {
     }
     
     func test_fetchSearch_invalidQuery_Failure() {
-        let requestString = "catsdkjsdkjf322342"
+        let requestString = "dkjsdkjf322342"
         var gifArray: [GifEntity]?
         
         let expectation:XCTestExpectation = self.expectation(description: "this method should download data from internet with search query")
@@ -75,21 +77,17 @@ class APIServiceTests: XCTestCase {
                 DispatchQueue.main.async {
                     gifArray = gifEntities
                     print("this is gif array : \(gifEntities)")
+                    expectation.fulfill()
                 }
             case .Failure(let apiError):
                 print(apiError.description)
             }
-            expectation.fulfill()
+           
         }
         
         self.waitForExpectations(timeout: 10, handler: nil)
         
-        if let result = gifArray {
-             XCTAssertTrue((result.isEmpty))
-        } else {
-            XCTFail()
-        }
-       
+        XCTAssertTrue(gifArray != nil)
     }
     
     
