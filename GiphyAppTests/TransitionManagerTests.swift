@@ -28,7 +28,6 @@ class TransitionManagerTests: XCTestCase {
     }
     
     func test_animateTransition_Success()  {
-//        self.transitionManager?.animateTransition(using: UIViewControllerContextTransitioning)
     }
     
     func test_frameForCircle_Success(){

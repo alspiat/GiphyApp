@@ -66,7 +66,8 @@ class GifSearchViewModelTests: XCTestCase {
     }
     
     override func tearDown() {
- 
+        self.gifEntity = nil
+        self.gifSearchViewModel = nil
         super.tearDown()
     }
     
@@ -114,15 +115,30 @@ class GifSearchViewModelTests: XCTestCase {
     }
     
     func test_clearData_Success() {
-        //don't need to be tested because it uses standard function
+        self.gifSearchViewModel?.clearData()
     }
     
     func test_viewModelForCell_Success() {
-        //don't need to be tested because it uses functions which were tested before
+        //was tested
+        let gifSearch = GifSearchViewModel(query: "cats")
+        gifSearch.loadDataIfNeeded(fromIndex: 10)
+        
+        gifSearch.didUpdate = {
+            let cell = gifSearch.viewModelForCell(at: 0)
+            XCTAssertTrue(cell.gifEntity.publishingDate != nil)
+        }
     }
     
     func test_contentSize_Success() {
         //don't need to be tested because it uses functions which were tested before
+        let gifSearch = GifSearchViewModel(query: "cats")
+        gifSearch.loadDataIfNeeded(fromIndex: 10)
+       
+        gifSearch.didUpdate = {
+             let contentSize = gifSearch.contentSize(at: 0)
+            XCTAssertTrue(contentSize != nil)
+        }
+        
     }
     
     func testPerformanceExample() {

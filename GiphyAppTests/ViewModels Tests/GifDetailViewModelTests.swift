@@ -78,6 +78,11 @@ class GifDetailViewModelTests: XCTestCase {
     
     func test_loadGif_Success() {
         //intrinsic methods was tested previously
+        let data = self.gifDetailViewModel?.gifData
+        self.gifDetailViewModel?.loadGif()
+        self.performBlockAfterDelay(block: {
+             XCTAssertTrue(data != nil)
+        }, delay: 10)
     }
     
     func test_cancelImageLoading_Success() {
@@ -85,21 +90,66 @@ class GifDetailViewModelTests: XCTestCase {
     }
     
     func test_saveToPersistance_Success() {
-        //intrinsic methods was tested previously
+        let data = Data()
+        self.gifDetailViewModel?.gifData = data
+        let result = self.gifDetailViewModel?.saveToPersistance()
+        XCTAssertTrue(result == true)
+        self.gifDetailViewModel?.removeFromPersistance()
+    }
+    
+    func test_saveToPersistance_Failure() {
+        let result = self.gifDetailViewModel?.saveToPersistance()
+        XCTAssertTrue(result == false)
+    self.gifDetailViewModel?.removeFromPersistance()
     }
     
     func test_removeFromPersistance_Success() {
-        //intrinsic methods was tested previously in CoreDataManager
+        let data = Data()
+        self.gifDetailViewModel?.gifData = data
+        self.gifDetailViewModel?.saveToPersistance()
+        let result = self.gifDetailViewModel?.removeFromPersistance()
+        XCTAssertTrue(result == true)
+    }
+    
+    func test_removeFromPersistance_Failure() {
+        self.gifDetailViewModel?.saveToPersistance()
+        let result = self.gifDetailViewModel?.removeFromPersistance()
+        XCTAssertTrue(result == false)
     }
     
     func test_stopAnimating_Success() {
-        //intrinsic methods was tested previously
+        let image = UIImage()
+        self.gifDetailViewModel?.gifImage = image
+        self.gifDetailViewModel?.stopAnimating()
+        
+        self.gifDetailViewModel?.didUpdate = {
+            XCTAssertTrue(true)
+        }
     }
     
     func test_startAnimating_Success() {
-       //intrinsic methods was tested previously
+        let data = Data()
+        let image = UIImage()
+        self.gifDetailViewModel?.gifData = data
+        self.gifDetailViewModel?.gifImage = image
+        self.gifDetailViewModel?.startAnimating()
+        
+        self.gifDetailViewModel?.didUpdate = {
+            XCTAssertTrue(true)
+        }
     }
     
+    
+    
+    /////////////helper Functions////////////////
+    @objc func  performBlock(block: ()->()) {
+        block()
+    }
+    
+    func performBlockAfterDelay(block: ()->(), delay: TimeInterval) {
+        self.perform(#selector(performBlock(block:)), with: block, afterDelay: delay)
+    }
+    /////////////////////////////////////////////
     
     
     func testPerformanceExample() {

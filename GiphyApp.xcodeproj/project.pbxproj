@@ -15,6 +15,7 @@
 		32B7243D213C66EC00A3F3ED /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7243C213C66EC00A3F3ED /* CoreDataManagerTests.swift */; };
 		32B7243F213C8EE800A3F3ED /* GifEntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7243E213C8EE800A3F3ED /* GifEntityTest.swift */; };
 		32B72443213CAD8500A3F3ED /* NSDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B72442213CAD8500A3F3ED /* NSDateFormatterTests.swift */; };
+		32B72445213DD35900A3F3ED /* GifSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B72444213DD35900A3F3ED /* GifSettingsViewModelTests.swift */; };
 		62211697213D3ADA0016179C /* GifFavoriteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62211696213D3ADA0016179C /* GifFavoriteViewModelTests.swift */; };
 		62211699213D622C0016179C /* APITypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62211698213D622C0016179C /* APITypesTests.swift */; };
 		6252E8AA2136CF2F00042E0C /* GifListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6252E8A92136CF2E00042E0C /* GifListViewController.xib */; };
@@ -86,6 +87,7 @@
 		32B7243C213C66EC00A3F3ED /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		32B7243E213C8EE800A3F3ED /* GifEntityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifEntityTest.swift; sourceTree = "<group>"; };
 		32B72442213CAD8500A3F3ED /* NSDateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDateFormatterTests.swift; sourceTree = "<group>"; };
+		32B72444213DD35900A3F3ED /* GifSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifSettingsViewModelTests.swift; sourceTree = "<group>"; };
 		62211696213D3ADA0016179C /* GifFavoriteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFavoriteViewModelTests.swift; sourceTree = "<group>"; };
 		62211698213D622C0016179C /* APITypesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITypesTests.swift; sourceTree = "<group>"; };
 		6252E8A92136CF2E00042E0C /* GifListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GifListViewController.xib; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				6252E8B32137F6FB00042E0C /* GifListViewModelTests.swift */,
+				32B72444213DD35900A3F3ED /* GifSettingsViewModelTests.swift */,
 				6252E8B52137F71000042E0C /* GifCellViewModelTests.swift */,
 				6252E8B72137F74700042E0C /* GifDetailViewModelTests.swift */,
 				62211696213D3ADA0016179C /* GifFavoriteViewModelTests.swift */,
@@ -638,6 +641,7 @@
 				6252E8BA2137F7F200042E0C /* GifSearchViewModelTests.swift in Sources */,
 				32B7243F213C8EE800A3F3ED /* GifEntityTest.swift in Sources */,
 				6252E8AC2137F59600042E0C /* AppFileManagerTests.swift in Sources */,
+				32B72445213DD35900A3F3ED /* GifSettingsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

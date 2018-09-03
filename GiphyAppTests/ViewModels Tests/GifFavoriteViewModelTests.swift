@@ -71,8 +71,24 @@ class GifFavoriteViewModelTests: XCTestCase {
 
     
     func test_loadDataIfNeeded_Success() {
-        //call inside CoreDataManager functions which were tested by CoreDataManager
+        self.gifFavoritesViewModel?.loadDataIfNeeded(fromIndex: 0)
+        self.gifFavoritesViewModel?.didUpdate = {
+            XCTAssertTrue(true)
+        }
     }
+    
+    func test_getTitle_Success() {
+        let title = "Favourites"
+        let returnedTitle = self.gifFavoritesViewModel?.title
+        
+        XCTAssertEqual(title, returnedTitle)
+    }
+    
+    func test_getNumberOfRows_Success() {
+        let count = self.gifFavoritesViewModel?.numberOfRows
+        XCTAssertEqual(count, 0)
+    }
+    
     
     func test_viewModelForCell_Success() {
         let json:JSON = [
@@ -131,6 +147,7 @@ class GifFavoriteViewModelTests: XCTestCase {
     
     func test_clearCoreData_Sucess() {
         //don't need to be tested
+        self.gifFavoritesViewModel?.clearData()
     }
     
 
