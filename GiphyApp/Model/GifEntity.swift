@@ -61,7 +61,7 @@ import Foundation
         
     }
     
-    //MARK: - MamagedObjectInit
+    //MARK: - ManagedObjectInit
     init?(with managedObject: GifManagedObjectEntity) {
         guard let titleMO       = managedObject.title,
             let usernameMO       = managedObject.username,

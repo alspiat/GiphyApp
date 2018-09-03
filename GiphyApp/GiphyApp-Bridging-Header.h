@@ -6,7 +6,7 @@
 #import "GifDetailViewController.h"
 #import "GifCollectionViewCell.h"
 #import "SettingsPopUpController.h"
-
+#import "NSDate+FormattedString.h"
 #import "UIColor+AppColor.h"
 #import "DataManager.h"
 #import "GifModel.h"

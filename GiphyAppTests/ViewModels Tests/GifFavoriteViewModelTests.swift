@@ -1,18 +1,17 @@
 //
-//  GifCellViewModelTests.swift
+//  GifFavoriteViewModelTests.swift
 //  GiphyAppTests
 //
-//  Created by Dzmitry Tarelkin on 8/30/18.
+//  Created by Dzmitry Tarelkin on 9/3/18.
 //  Copyright © 2018 Aliaksei Piatyha. All rights reserved.
 //
 
 import XCTest
 @testable import GiphyApp
 
-class GifCellViewModelTests: XCTestCase {
-    var cellViewModel:GifCellViewModel?
+class GifFavoriteViewModelTests: XCTestCase {
+    var gifFavoritesViewModel : GifFavouritesViewModel?
     var gifEntity: GifEntity?
-    var loadingTask: NetworkCancelable?
     
     override func setUp() {
         super.setUp()
@@ -59,18 +58,23 @@ class GifCellViewModelTests: XCTestCase {
         self.gifEntity = GifEntity(JSON: json)
         
         if let gif = self.gifEntity {
-            self.cellViewModel = GifCellViewModel(gifEntity: gif)
+            self.gifFavoritesViewModel = GifFavouritesViewModel()
+            self.gifEntity = gif
         }
         
     }
     
     override func tearDown() {
         self.gifEntity = nil
-        self.cellViewModel = nil
-        super.tearDown()
+        self.gifFavoritesViewModel = nil
+    }
+
+    
+    func test_loadDataIfNeeded_Success() {
+        //call inside CoreDataManager functions which were tested by CoreDataManager
     }
     
-    func test_GifCellViewModel_initWithGif_Success() {
+    func test_viewModelForCell_Success() {
         let json:JSON = [
             "id": "feqkVgjJpYtjy",
             "url": "https://giphy.com/gifs/eyes-shocked-bird-feqkVgjJpYtjy",
@@ -117,42 +121,21 @@ class GifCellViewModelTests: XCTestCase {
         XCTAssertTrue(cell.gifEntity == gif)
     }
     
-    
-    func test_startImageDownloading_Success() {
-        var image: UIImage?
-        guard let cell = self.cellViewModel else {return XCTFail("test_startImageDownloading_Success FAILURE with cellViewModel")}
+    func test_contentSize_Success() {
+        let coreDataManager = CoreDataManager()
+        coreDataManager.addItem(self.gifEntity)
+        self.gifFavoritesViewModel?.loadDataIfNeeded(fromIndex: 0)
+        let contentSize = self.gifFavoritesViewModel?.contentSize(at: 0)
+        let expectedSize = CGSize(width: 138, height: 74)
         
-        cell.startImageLoading()
-        self.performBlockAfterDelay(block: {
-             XCTAssertTrue(image != nil)
-        }, delay: 10)
+        XCTAssertEqual(contentSize, expectedSize)
     }
     
+    func test_clearCoreData_Sucess() {
+        //don't need to be tested
+    }
     
-    
-    func test_cancel_imageDownloading_Success() {
-        var image: UIImage?
-        guard let cell = self.cellViewModel else {return XCTFail("test_startImageDownloading_Success FAILURE with cellViewModel")}
-        //start
-        cell.startImageLoading()
 
-        //cancel
-        cell.cancelImageLoading()
-        image = cell.image
-        XCTAssertTrue(image == nil)
-    }
-    
-    
-    //helper Functions
-   @objc func  performBlock(block: ()->()) {
-        block()
-    }
-    
-    func performBlockAfterDelay(block: ()->(), delay: TimeInterval) {
-        self.perform(#selector(performBlock(block:)), with: block, afterDelay: delay)
-    }
-    
-    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
