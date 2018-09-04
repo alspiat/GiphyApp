@@ -45,7 +45,7 @@ class GifCollectionViewLayout: UICollectionViewLayout {
     override func prepare() {
         
         self.cache.removeAll()
-        //self.contentHeight = 0;
+        self.contentHeight = 0;
         
         guard let collectionView = collectionView else {
             return
