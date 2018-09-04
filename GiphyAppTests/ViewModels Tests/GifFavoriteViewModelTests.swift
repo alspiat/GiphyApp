@@ -78,7 +78,7 @@ class GifFavoriteViewModelTests: XCTestCase {
     }
     
     func test_getTitle_Success() {
-        let title = "Favourites"
+        let title = "Favorites"
         let returnedTitle = self.gifFavoritesViewModel?.title
         
         XCTAssertEqual(title, returnedTitle)
