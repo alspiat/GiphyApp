@@ -9,6 +9,8 @@
 #ifndef GlobalConstants_h
 #define GlobalConstants_h
 
+static NSString * _Nonnull const gifTrendingTitle = @"Trending";
+static NSString * _Nonnull const gifFavoritesTitle = @"Favorites";
 static NSString * _Nonnull const gifDateFormatOut = @"E, dd MMM yyyy";
 static NSString * _Nonnull const gifDateFormatIn1 = @"yyyy-MM-dd HH:mm:ss";
 static NSString * _Nonnull const gifDateFormatIn2 = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";

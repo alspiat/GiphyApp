@@ -10,15 +10,15 @@ import Foundation
 
 @objcMembers class GifFavouritesViewModel: NSObject, GifListViewModel {
     
+    var message: String = gifNoItemsMessage
+    
     private var gifEntities = [GifEntity]()
     
     var numberOfRows: Int {
         return gifEntities.count
     }
     
-    var title: String {
-        return "Favourites"
-    }
+    var title: String = gifFavoritesTitle
     
     public var didUpdate: (() -> Void) = {}
     

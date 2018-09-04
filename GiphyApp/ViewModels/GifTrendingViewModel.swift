@@ -16,9 +16,9 @@ import UIKit
         return gifEntities.count
     }
     
-    var title: String {
-        return "Trending"
-    }
+    var title: String = gifTrendingTitle
+    
+    var message: String = gifNoItemsMessage
     
     public var didUpdate: (() -> Void) = {}
     
@@ -38,11 +38,12 @@ import UIKit
             case .Success(let gifEntities):
                 DispatchQueue.main.async {
                     self.gifEntities.append(contentsOf: gifEntities)
+                    self.message = gifNoItemsMessage
                     self.didUpdate()
                 }
             case .Failure(let apiError):
-                print("Error: ", apiError.description)
                 DispatchQueue.main.async {
+                    self.message = gifNoConnectionMessage
                     self.didUpdate()
                 }
             }

@@ -103,6 +103,8 @@
         [self.noItemsLabel setHidden:YES];
     }
     
+    self.noItemsLabel.text = self.viewModel.message;
+    
     [self.collectionView performBatchUpdates:^{
         for (NSInteger i = [self.collectionView numberOfItemsInSection:0]; i < self.viewModel.numberOfRows; i++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];

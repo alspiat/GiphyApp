@@ -9,6 +9,7 @@
 import Foundation
 
 @objcMembers class GifSearchViewModel: NSObject, GifListViewModel {
+    var message: String = gifNoItemsMessage
     
     private var gifEntities = [GifEntity]()
     private var query: String
@@ -49,10 +50,14 @@ import Foundation
             case .Success(let gifEntities):
                 DispatchQueue.main.async {
                     self.gifEntities.append(contentsOf: gifEntities)
+                    self.message = gifNoItemsMessage
                     self.didUpdate()
                 }
             case .Failure(let apiError):
-                print(apiError.description)
+                DispatchQueue.main.async {
+                    self.message = gifNoConnectionMessage
+                    self.didUpdate()
+                }
             }
         }
     }

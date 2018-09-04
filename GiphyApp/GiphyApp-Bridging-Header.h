@@ -14,3 +14,4 @@
 #import "GifManagedObjectEntity+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "GlobalConstants.h"
+#import "MessageConstants.h"

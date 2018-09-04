@@ -17,5 +17,8 @@ static NSString * _Nonnull const gifSavingCameraTitle = @"Saving";
 static NSString * _Nonnull const gifSavingCameraMessage = @"GIF saved to camera roll";
 static NSString * _Nonnull const gifClearingTitle = @"Clearing";
 static NSString * _Nonnull const gifClearingMessage = @"Cache has cleared successfully";
+static NSString * _Nonnull const gifNoItemsMessage = @"Sorry, but there are no items to show :(";
+static NSString * _Nonnull const gifNoConnectionMessage = @"You are not connected to the internet!";
+
 
 #endif /* MessageConstants_h */

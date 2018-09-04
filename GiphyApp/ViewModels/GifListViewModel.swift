@@ -11,6 +11,7 @@ import Foundation
 @objc protocol GifListViewModel {
     var didUpdate: (() -> Void) { get set }
     var numberOfRows: Int { get }
+    var message: String { get }
     var title: String { get }
     
     func loadDataIfNeeded(fromIndex index: Int)
